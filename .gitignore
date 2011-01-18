@@ -1,3 +1,6 @@
 
 /Megawastu.Valas.RateFeeder/MoneyChanger/build
 /Megawastu.Valas.RateFeeder/MoneyChanger/WebContent/WEB-INF/classes
+
+*.sln.cache
+*.suo
