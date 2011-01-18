@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Excel = Microsoft.Office.Interop.Excel;
 using Megawastu.Valas.KursProvider.ViewModel;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 namespace Megawastu.Valas.KursProvider.Application
 {
@@ -19,11 +20,23 @@ namespace Megawastu.Valas.KursProvider.Application
         {
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
+            Range excelRange = xlWorkSheet.UsedRange;
+            object[,] valueArray = (object[,])excelRange.get_Value(
+                XlRangeValueDataType.xlRangeValueDefault);
+            
+            return ConvertToKurs(valueArray);
+        }
 
-            Console.WriteLine(xlWorkSheet.get_Range("B23", "B23").Value2.ToString());
+        private IList<Kurs> ConvertToKurs(object[,] valueArray)
+        {
+            IList<Kurs> kursList = new List<Kurs>();
 
-            //for
-            return null;
+            for (int i = 0; i < 19; i++)
+            {
+                kursList.Add(new Kurs { Currency = valueArray[22 + i, 1].ToString().TrimEnd('='), Ask = Convert.ToDouble(valueArray[22 + i, 2]), Bid = Convert.ToDouble(valueArray[22 + i, 3]) });
+            }
+
+            return kursList;
         }
 
         public void Open()

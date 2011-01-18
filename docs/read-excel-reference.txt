@@ -1,0 +1,4 @@
+http://www.sharpprogrammer.com/dotnet/how-to-read-excel-file-in-c-net/
+http://social.msdn.microsoft.com/Forums/en/vsto/thread/b6e8a28c-6760-4e86-a1aa-e2ce9ec36380
+http://support.microsoft.com/kb/302084
+http://dotnetperls.com/excel

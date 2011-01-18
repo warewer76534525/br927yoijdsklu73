@@ -58,6 +58,5 @@ namespace Megawastu.Valas.KursProvider.Specs
                 GC.Collect();
             }
         }
-
     }
 }
