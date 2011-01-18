@@ -21,6 +21,8 @@ namespace Megawastu.Valas.KursProvider.Application
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
 
             Console.WriteLine(xlWorkSheet.get_Range("B23", "B23").Value2.ToString());
+
+            //for
             return null;
         }
 
