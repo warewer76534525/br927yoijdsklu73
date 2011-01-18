@@ -1,0 +1,47 @@
+<project name="BonaStoco.InternetMessaging" default="install" xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+  <property name="project.config" value="debug"/>
+  <property name="deploy.dir" value="${directory::get-current-directory()}"/>
+  <property name="solution.dir" value="." />
+  <property name="build.base" value="${project::get-name()}" />
+  <property name="build.dir" value="${deploy.dir}/${build.base}" />
+  <property name="outputDir" value="${directory::get-current-directory()}/build" />
+  <target name="clean.project">
+    <foreach item="Folder" property="foldername">
+      <in>
+        <items>
+          <include name="**/bin" />
+          <include name="**/obj" />
+        </items>
+      </in>
+      <do>
+        <delete dir="${foldername}" />
+      </do>
+    </foreach>
+  </target>
+
+  <target name="clean" description="remove all build products" depends="clean.project">
+    <delete dir="${build.dir}" if="${directory::exists(build.dir)}" />
+  </target>
+
+  <target name="init" depends="clean">
+    <mkdir dir="${build.dir}" unless="${directory::exists(build.dir)}"/>
+  </target>
+
+  <!--<target name="copy.to.bonastoco.gui-bin" depends="compile">
+    <copy todir="${bonastoco.gui-bin}" flatten="true" overwrite="true">
+      <fileset basedir="${build.dir}">
+        <include name="${project::get-name()}.Query.dll" />
+        <include name="${project::get-name()}.Query.pdb" />
+        <include name="${project::get-name()}.ViewModel.*" />
+      </fileset>
+    </copy>
+  </target>-->
+
+  <target name="compile" depends ="init">
+    <exec program="${framework::get-framework-directory(framework::get-target-framework())}\MSBuild.exe"
+    commandline="/v:q /p:Configuration=${project.config} /p:OutDir=${build.dir}/"
+    workingdir="${solution.dir}" />
+  </target>
+
+  <target name="install" depends="compile"/>
+</project>
