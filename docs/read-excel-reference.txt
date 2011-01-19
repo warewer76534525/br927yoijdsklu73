@@ -1,0 +1,14 @@
+http://www.sharpprogrammer.com/dotnet/how-to-read-excel-file-in-c-net/
+http://social.msdn.microsoft.com/Forums/en/vsto/thread/b6e8a28c-6760-4e86-a1aa-e2ce9ec36380
+http://support.microsoft.com/kb/302084
+http://dotnetperls.com/excel
+
+threading support
+
+http://msdn.microsoft.com/en-us/library/8sesy69e(VS.80).aspx
+http://social.msdn.microsoft.com/forums/en-US/vsto/thread/70ef972b-51b6-4ece-a4af-d6b4e111eea5
+http://support.microsoft.com/kb/257757/en-us
+http://www.developerdotstar.com/community/node/717/print
+http://blogs.msdn.com/b/jfoscoding/archive/2005/04/07/40634z1.aspx
+http://blogs.msdn.com/b/vbteam/archive/2008/03/24/stathread-vs-mtathread-whorst.aspx
+http://stackoverflow.com/questions/165316/stathread-and-multithreading

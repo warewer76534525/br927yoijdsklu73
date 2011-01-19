@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	<title>test</title>
+	<script src="jquery-1.4.4"></script>
+	<script>
+		$(document).ready(function() {
+		setInterval(function () {
+			$('#time').load('test_inner.php');
+			}, 3000);
+		});
+	</script>
+    </head>
+    <body>
+        <p><span id="time"></span>
+    </body>
+</html>
