@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.web;
+package com.triplelands.megawastu.valas.moneychanger.web;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.triplelands.megwastu.valas.moneychanger.domain.Rate;
-import com.triplelands.megwastu.valas.moneychanger.domain.Rates;
-import com.triplelands.megwastu.valas.moneychanger.service.IRateService;
+import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
+import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
+import com.triplelands.megawastu.valas.moneychanger.service.IRateService;
 
 @Controller
 @RequestMapping("/rest/rates")

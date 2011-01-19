@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.web;
+package com.triplelands.megawastu.valas.moneychanger.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

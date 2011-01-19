@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.domain;
+package com.triplelands.megawastu.valas.moneychanger.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

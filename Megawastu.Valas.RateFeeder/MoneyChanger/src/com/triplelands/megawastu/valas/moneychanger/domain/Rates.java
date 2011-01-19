@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.domain;
+package com.triplelands.megawastu.valas.moneychanger.domain;
 
 import java.util.ArrayList;
 import java.util.List;

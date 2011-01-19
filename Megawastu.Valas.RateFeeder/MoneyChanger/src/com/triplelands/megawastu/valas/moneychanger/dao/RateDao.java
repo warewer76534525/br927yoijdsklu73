@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.dao;
+package com.triplelands.megawastu.valas.moneychanger.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.triplelands.megwastu.valas.moneychanger.domain.Rate;
+import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
 @Repository("rateDao")
 public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {

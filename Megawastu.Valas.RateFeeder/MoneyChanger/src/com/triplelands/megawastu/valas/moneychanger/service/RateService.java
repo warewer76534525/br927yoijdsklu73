@@ -1,4 +1,4 @@
-package com.triplelands.megwastu.valas.moneychanger.service;
+package com.triplelands.megawastu.valas.moneychanger.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.triplelands.megwastu.valas.moneychanger.dao.IRateDao;
-import com.triplelands.megwastu.valas.moneychanger.domain.Rate;
+import com.triplelands.megawastu.valas.moneychanger.dao.IRateDao;
+import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
 @Service("rateService")
 @Transactional(readOnly=true)
