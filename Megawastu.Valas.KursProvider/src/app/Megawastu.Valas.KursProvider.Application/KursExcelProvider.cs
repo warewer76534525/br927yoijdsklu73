@@ -1,6 +1,8 @@
 ﻿
 using Megawastu.Valas.KursProvider.ViewModel;
 using System.Collections.Generic;
+using System.Threading;
+using System;
 namespace Megawastu.Valas.KursProvider.Application
 {
     public class KursExcelProvider
@@ -10,12 +12,22 @@ namespace Megawastu.Valas.KursProvider.Application
 
             ExcelKursReader reader = new ExcelKursReader();
             KursPublisher publisher = new KursPublisher();
-            
+
+            reader.Open();
             // TODO can be paralalize
             while (true)
             {
-                IList<Kurs> dollarKurs = reader.GetKursInDollar();
-                publisher.Publish(dollarKurs);
+                try
+                {
+                    IList<Kurs> dollarKurs = reader.GetKursInDollar();
+                    publisher.Publish(dollarKurs);
+
+                    Thread.Sleep(2000); // TODO atur sleep -> bisa diganti menjadi real times
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }

@@ -15,12 +15,12 @@ namespace Megawastu.Valas.KursProvider.Application
         Excel.Workbook xlWorkBook;
         Excel.Worksheet xlWorkSheet;
         object misValue = System.Reflection.Missing.Value;
+        
 
         public IList<Kurs> GetKursInDollar()
-        {
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+        {    
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
-            Range excelRange = xlWorkSheet.UsedRange;
+           Range excelRange = xlWorkSheet.UsedRange;
             object[,] valueArray = (object[,])excelRange.get_Value(
                 XlRangeValueDataType.xlRangeValueDefault);
             
@@ -45,6 +45,7 @@ namespace Megawastu.Valas.KursProvider.Application
             //xlApp.UserControl = true;
 
             xlWorkBook = xlApp.Workbooks.Open(excelPath, 0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, true, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
         }
 
         public void Close()

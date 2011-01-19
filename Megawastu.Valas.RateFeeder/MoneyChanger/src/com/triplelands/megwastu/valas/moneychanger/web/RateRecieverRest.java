@@ -29,6 +29,8 @@ public class RateRecieverRest {
     @ResponseStatus(CREATED)
     public void recieveRates(@RequestBody List<Rate> rates,
             HttpServletResponse response) {
+		System.out.println(rates.size());
+		System.out.println(rates);
         log.info(">>>" + rates.size());
         log.info(">>>" + rates);
     }
