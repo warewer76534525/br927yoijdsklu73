@@ -4,13 +4,11 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,35 +16,44 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.triplelands.megwastu.valas.moneychanger.domain.Rate;
+import com.triplelands.megwastu.valas.moneychanger.domain.Rates;
+import com.triplelands.megwastu.valas.moneychanger.service.IRateService;
 
 @Controller
 @RequestMapping("/rest/rates")
 public class RateRecieverRest {
 	
 	protected Log log = LogFactory.getLog(RateRecieverRest.class);
+	private IRateService rateService;
 	
-    @RequestMapping(method = POST)
+	
+	@Autowired
+    public void setRateService(IRateService rateService) {
+		this.rateService = rateService;
+	}
+
+	@RequestMapping(method = POST)
     @ResponseStatus(CREATED)
-    public void recieveRates(@RequestBody List<Rate> rates,
+    public void recieveRates(@RequestBody Rates rates,
             HttpServletResponse response) {
-        log.info(">>>" + rates.size());
-        log.info(">>>" + rates);
+		rateService.save(rates.getRates());
+        log.info("rates: " + rates);
     }
 
     @RequestMapping( method = GET)
     @ResponseBody
-    public List<Rate> rates() {
-    	List<Rate> rates = new ArrayList<Rate>();
+    public Rates rates() {
+    	Rates rates = new Rates();
     	
     	Rate idr = new Rate("IDR", 0, 0);
     	Rate aud = new Rate("AUD", 3, 2);
     	Rate yui = new Rate("YUI", 5, 6);
     	
-    	rates.add(idr);
-    	rates.add(yui);
-    	rates.add(aud);
+    	rates.addRate(idr);
+    	rates.addRate(yui);
+    	rates.addRate(aud);
+    	log.info("rates: " + rates);
         return rates;
     }
-
-
+    
 }

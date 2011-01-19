@@ -26,14 +26,15 @@ public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {
 	@Override
 	public void save(List<Rate> rates) {
 		List<Object[]> batch = new ArrayList<Object[]>();
-	        for (Rate rate : rates) {
-	            Object[] values = new Object[] {
-	                    rate.getCurrency(),
-	                    rate.getBid(),
-	                    rate.getAsk(),
-	                    new Date()};
-	            batch.add(values);
-	        }
+		
+        for (Rate rate : rates) {
+            Object[] values = new Object[] {
+                    rate.getCurrency(),
+                    rate.getBid(),
+                    rate.getAsk(),
+                    new Date()};
+            batch.add(values);
+        }
 	    int[] updateCounts = getSimpleJdbcTemplate().batchUpdate("INSERT INTO valas.rates (currency, bid, ask, TIMESTAMP) VALUES (?, ?, ?, ?)",  batch);
 	    log.info("update batch: " + updateCounts);    
 	}

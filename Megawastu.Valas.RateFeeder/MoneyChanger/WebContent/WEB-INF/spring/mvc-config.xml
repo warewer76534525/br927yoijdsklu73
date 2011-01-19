@@ -23,8 +23,8 @@
 		p:order="1">
 		<property name="mediaTypes">
 			<map>
-				<entry key="xml" value="application/xml" />
-				<entry key="json" value="application/json" />
+				<entry key="xml" value="text/xml" />
+				<entry key="json" value="text/json" />
 			</map>
 		</property>
 		<property name="favorPathExtension" value="true"></property>

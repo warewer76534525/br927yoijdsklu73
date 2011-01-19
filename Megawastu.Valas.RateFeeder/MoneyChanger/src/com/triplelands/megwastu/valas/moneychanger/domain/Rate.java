@@ -1,7 +1,5 @@
 package com.triplelands.megwastu.valas.moneychanger.domain;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("customer")
@@ -9,7 +7,11 @@ public class Rate {
 	private String currency;
 	private double bid;
 	private double ask;
-
+	
+	public Rate() {
+		
+	}
+	
 	public Rate(String currency, double bid, double ask) {
 		super();
 		this.currency = currency;
@@ -43,6 +45,8 @@ public class Rate {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
+		return "Rate [currency=" + currency + ", bid=" + bid + ", ask=" + ask
+				+ "]";
 	}
+
 }
