@@ -8,7 +8,7 @@ namespace Megawastu.Valas.KursProvider.WinService
         [STAThread]
         static void Main(string[] args)
         {
-            KursExcelProvider kursExcelProvider = new KursExcelProvider();  
+            KursExcelProvider kursExcelProvider = new KursExcelProvider();
             kursExcelProvider.Start();
         }
     }

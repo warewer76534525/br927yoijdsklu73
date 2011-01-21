@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="When_detect_change_in_excel.cs" />
     <Compile Include="When_reading_excel_faster.cs" />
     <Compile Include="When_reading_excel_file.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

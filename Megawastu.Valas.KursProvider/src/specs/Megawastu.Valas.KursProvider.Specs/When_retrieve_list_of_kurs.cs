@@ -19,7 +19,7 @@ namespace Megawastu.Valas.KursProvider.Specs
 
             foreach (var kurs in dollarKurs)
             {
-                Console.WriteLine("{0} : {1} {2}", kurs.Currency, kurs.Ask, kurs.Bid);
+                Console.WriteLine("{0} : {1} {2}", kurs.currency, kurs.ask, kurs.bid);
             }
             reader.Close();
         }
