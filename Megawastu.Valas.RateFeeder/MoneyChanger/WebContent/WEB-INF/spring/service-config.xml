@@ -19,9 +19,5 @@
 		</property>
 	</bean>
 	
-	<bean class="com.triplelands.megawastu.valas.moneychanger.scheduler.RateFeeder">
-		<property name="directory" value="${rate.directory}"></property>
-		<property name="fileName" value="${rate.fileName}"></property>
-		<property name="interval" value="${quartz.interval}"></property>
-	</bean>
+	
 </beans>

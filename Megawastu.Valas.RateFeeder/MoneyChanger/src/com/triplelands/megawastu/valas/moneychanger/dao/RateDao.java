@@ -1,5 +1,7 @@
 package com.triplelands.megawastu.valas.moneychanger.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +19,7 @@ import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
 @Repository("rateDao")
 public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {
-	protected static Log log = LogFactory.getLog(RateDao.class);
+	protected final Log log = LogFactory.getLog(getClass());
 	
 	@Autowired()
 	public RateDao(DataSource dataSource) {
@@ -38,7 +41,26 @@ public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {
 	    int[] updateCounts = getSimpleJdbcTemplate().batchUpdate("INSERT INTO valas.rates (currency, bid, ask, TIMESTAMP) VALUES (?, ?, ?, ?)",  batch);
 	    log.info("update batch: " + updateCounts);    
 	}
+
+	@Override
+	public List<Rate> findLatestRates() {
+		String sql = "SELECT * FROM rates r GROUP BY r.currency ORDER BY r.currency ASC, r.timestamp DESC ";
+		return getJdbcTemplate().query(sql, new RateMapper());
+	}
 	
+	private static class RateMapper implements
+	RowMapper<Rate> {
+
+		public Rate mapRow(ResultSet rs, int rowNum)
+				throws SQLException {
+			Rate rate = new Rate();
+			rate.setCurrency(rs.getString("CURRENCY"));
+			rate.setBid(rs.getDouble("BID"));
+			rate.setAsk(rs.getInt("ASK"));
+			
+			return rate;
+		}
+	}
 	
 	
 	
