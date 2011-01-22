@@ -6,42 +6,58 @@
 	<script src="js/jquery-1.4.4.js"></script>
 	<script>
 		$(document).ready(function() {
-		setInterval(function () {
-			<!--$('#result').load('test_inner.php'); -->
-			$.getJSON('json/kurs.json', function(data) {
-				$('#result').html('');
-				$.each(data.rates, function(i,item){
-					$('#ask' + i).html(item.ask);
-					$('#bid' + i).html(item.bid);
-					$('#currency' + i).html(item.currency);
+			initTable();
+			setInterval(function () {
+				$.ajax({
+					url: "json/kurs.json",
+					cache: false,
+					dataType: "json",
+					success: updateTableRow
 				});
-
-				  //$('#cell1').html(data[1].bid);
-				  //$('#cell2').html(data[1].ask);
-			});
 			}, 3000);
+			
+			function initTable() {
+				$('#kurs').html(
+				"<table id='kursTable' border = '1' cellspacing='0' cellpadding='2'>" +
+					"<tr>" +
+						"<td width='30%'><b>BID</b></td>" +
+						"<td width='30%'><b>ASK</b></td>" +
+						"<td width='30%'><b>CURRENCY</b>" +
+						"</td>" +
+					"</tr>" +
+				"</table>");
+			}
+			
+			function updateTableRow(data) {
+				$.each(data.rates, function(i,item){
+					if ($("#currency-" + item.currency).length){
+						updateRowValue(item.currency, item.ask, item.bid);
+					} else {
+						addRowValue(item.currency, item.ask, item.bid);
+					}
+				});
+			}
+			
+			function updateRowValue($currency, $ask, $bid) {
+				$('#ask-' + $currency).html($ask);
+				$('#bid-' + $currency).html($bid);
+				$('#currency-' + $currency).html($currency);
+			}
+			
+			function addRowValue($currency, $ask, $bid) {
+				$('#kursTable tr:last').after(
+						"<tr>" + 
+							"<td id='ask-" + $currency +"'>" + $ask + "</td>" +
+							"<td id='bid-" + $currency +"'>" + $bid + "</td>" +
+							"<td id='currency-" + $currency +"'>" + $currency + "</td>" +
+						"</tr>");
+			}
+			
 		});
 		
 	</script>
     </head>
     <body>
-		<table border = '1' cellspacing='0' cellpadding='2'>
-			<tr>
-				<td><b>BID</b></td>
-				<td><b>ASK</b></td>
-				<td><b>CURRENCY</b></td>
-			</tr>
-		<?php
-			for ($i=0; $i < 3; $i++){
-				echo "<tr class='light'>";
-					echo "<td><div id='bid".$i."'>0</div></td>";
-					echo "<td><div id='ask".$i."'>0</div></td>";
-					echo "<td><div id='currency".$i."'>0</div></td>";
-				echo "</tr>";
-			}
-		?>
-		</table>
-		
-        <p><span id="result"></span>
+		<span id='kurs'></span>
     </body>
 </html>

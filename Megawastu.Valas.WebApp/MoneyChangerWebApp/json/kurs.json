@@ -1,5 +1,8 @@
 {"rates":[
-{"bid":1.3,"ask":3.5,"currency":"IDR"},
-{"bid":5.9,"ask":6.7,"currency":"JPN"},
-{"bid":3.4,"ask":2.1,"currency":"AUD"}
+{"bid":1.3,"ask":3.9,"currency":"IDR"},
+{"bid":5.4,"ask":6.7,"currency":"JPN"},
+{"bid":3.4,"ask":2.3,"currency":"AUD"},
+{"bid":3.4,"ask":9.3,"currency":"AUS"},
+{"bid":3.8,"ask":1.3,"currency":"SIN"},
+{"bid":3.8,"ask":10.3,"currency":"US"},
 ]}
