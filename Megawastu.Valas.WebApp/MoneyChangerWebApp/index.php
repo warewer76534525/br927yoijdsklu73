@@ -22,7 +22,7 @@
 					"<tr>" +
 						"<td width='30%'><b>BID</b></td>" +
 						"<td width='30%'><b>ASK</b></td>" +
-						"<td width='30%'><b>CURRENCY</b>" +
+						"<td><b>CURRENCY</b>" +
 						"</td>" +
 					"</tr>" +
 				"</table>");
@@ -39,14 +39,30 @@
 			}
 			
 			function updateRowValue($currency, $ask, $bid) {
+				$lastAsk = $('#ask-' + $currency).html();
+				$lastBid = $('#bid-' + $currency).html();
+				
 				$('#ask-' + $currency).html($ask);
 				$('#bid-' + $currency).html($bid);
 				$('#currency-' + $currency).html($currency);
+				
+				if($ask > $lastAsk){
+					$("<font color = 'blue'><b> UP</b></font>").appendTo('#ask-' + $currency);
+				}
+				if($ask < $lastAsk){
+					$("<font color = 'red'><b> DOWN</b></font>").appendTo('#ask-' + $currency);
+				}
+				if($bid > $lastBid){
+					$("<font color = 'blue'><b> UP</b></font>").appendTo('#bid-' + $currency);
+				}
+				if($bid < $lastBid){
+					$("<font color = 'red'><b> DOWN</b></font>").appendTo('#bid-' + $currency);
+				}
 			}
 			
 			function addRowValue($currency, $ask, $bid) {
 				$('#kursTable tr:last').after(
-						"<tr>" + 
+						"<tr class = 'light'>" + 
 							"<td id='ask-" + $currency +"'>" + $ask + "</td>" +
 							"<td id='bid-" + $currency +"'>" + $bid + "</td>" +
 							"<td id='currency-" + $currency +"'>" + $currency + "</td>" +
