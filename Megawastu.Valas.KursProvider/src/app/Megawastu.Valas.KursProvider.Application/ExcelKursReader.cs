@@ -33,7 +33,7 @@ namespace Megawastu.Valas.KursProvider.Application
 
             for (int i = 0; i < 19; i++)
             {
-                kursList.Add(new Kurs { Currency = valueArray[22 + i, 1].ToString().TrimEnd('='), Ask = Convert.ToDouble(valueArray[22 + i, 2]), Bid = Convert.ToDouble(valueArray[22 + i, 3]) });
+                kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[22 + i, 3]) });
             }
 
             return kursList;

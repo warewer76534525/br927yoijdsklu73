@@ -15,11 +15,11 @@ namespace Megawastu.Valas.KursProvider.Specs
             KursPublisher publisher = new KursPublisher();
 
             publisher.Publish(new List<Kurs> 
-            { 
-                new Kurs{ Currency = "IDR", Ask = 8.867, Bid = 8.999 }, 
-                new Kurs{ Currency = "EUR", Ask = 8.867, Bid = 8.999 }, 
-                new Kurs{ Currency = "AUD", Ask = 8.867, Bid = 8.999 }, 
-            });
+                { 
+                    new Kurs{ currency = "IDR", ask = 8.867, bid = 8.999 }, 
+                    new Kurs{ currency = "EUR", ask = 8.867, bid = 8.999 }, 
+                    new Kurs{ currency = "AUD", ask = 8.867, bid = 8.999 }, 
+                });
         }
 
         [Test]
@@ -27,9 +27,9 @@ namespace Megawastu.Valas.KursProvider.Specs
         {
             string json = JsonConvert.SerializeObject(new List<Kurs> 
             { 
-                new Kurs{ Currency = "IDR", Ask = 8.867, Bid = 8.999 }, 
-                new Kurs{ Currency = "EUR", Ask = 8.867, Bid = 8.999 }, 
-                new Kurs{ Currency = "AUD", Ask = 8.867, Bid = 8.999 }, 
+                new Kurs{ currency = "IDR", ask = 8.867, bid = 8.999 }, 
+                new Kurs{ currency = "EUR", ask = 8.867, bid = 8.999 }, 
+                new Kurs{ currency = "AUD", ask = 8.867, bid = 8.999 }, 
             });
 
             Assert.IsNotEmpty(json);

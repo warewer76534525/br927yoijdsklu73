@@ -13,12 +13,14 @@ namespace Megawastu.Valas.KursProvider.Application
         public void Publish(IList<Kurs> dollarKurs)
         {
             webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
-            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(dollarKurs));
+            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(new Rates { rates = dollarKurs }));
         }
 
-        private string Serialize(IList<Kurs> dollarKurs)
+        private string Serialize(Rates dollarKurs)
         {
-            return JsonConvert.SerializeObject(dollarKurs);
+            return JsonConvert.SerializeObject(
+                dollarKurs
+            );
         }
     }
 }
