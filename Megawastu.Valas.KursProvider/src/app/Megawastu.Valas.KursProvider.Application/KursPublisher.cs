@@ -8,16 +8,19 @@ namespace Megawastu.Valas.KursProvider.Application
     public class KursPublisher
     {
         WebClient webClient = new WebClient();
-        static readonly string MONEY_CHANGER_ENDPOINT = "http://localhost/upload.php";
+        static readonly string MONEY_CHANGER_ENDPOINT = "http://localhost:8080/moneychanger/rest/rates";
 
         public void Publish(IList<Kurs> dollarKurs)
         {
-            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(dollarKurs));
+            webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(new Rates { rates = dollarKurs }));
         }
 
-        private string Serialize(IList<Kurs> dollarKurs)
+        private string Serialize(Rates dollarKurs)
         {
-            return JsonConvert.SerializeObject(dollarKurs);
+            return JsonConvert.SerializeObject(
+                dollarKurs
+            );
         }
     }
 }

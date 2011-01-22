@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.triplelands.megwastu.valas.moneychanger.domain.Rate;
+import com.triplelands.megawastu.valas.moneychanger.dao.IRateDao;
+import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")

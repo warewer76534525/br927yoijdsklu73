@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Excel = Microsoft.Office.Interop.Excel;
 using Megawastu.Valas.KursProvider.ViewModel;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 namespace Megawastu.Valas.KursProvider.Application
 {
@@ -14,14 +15,28 @@ namespace Megawastu.Valas.KursProvider.Application
         Excel.Workbook xlWorkBook;
         Excel.Worksheet xlWorkSheet;
         object misValue = System.Reflection.Missing.Value;
+        
 
         public IList<Kurs> GetKursInDollar()
-        {
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+        {    
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
+           Range excelRange = xlWorkSheet.UsedRange;
+            object[,] valueArray = (object[,])excelRange.get_Value(
+                XlRangeValueDataType.xlRangeValueDefault);
+            
+            return ConvertToKurs(valueArray);
+        }
 
-            Console.WriteLine(xlWorkSheet.get_Range("B23", "B23").Value2.ToString());
-            return null;
+        private IList<Kurs> ConvertToKurs(object[,] valueArray)
+        {
+            IList<Kurs> kursList = new List<Kurs>();
+
+            for (int i = 0; i < 19; i++)
+            {
+                kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[22 + i, 3]) });
+            }
+
+            return kursList;
         }
 
         public void Open()
@@ -30,6 +45,7 @@ namespace Megawastu.Valas.KursProvider.Application
             //xlApp.UserControl = true;
 
             xlWorkBook = xlApp.Workbooks.Open(excelPath, 0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, true, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
         }
 
         public void Close()

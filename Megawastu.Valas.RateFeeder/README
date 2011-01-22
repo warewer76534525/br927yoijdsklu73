@@ -1,0 +1,6 @@
+Konfigurasi Aplikasi:
+database properties: MoneyChanger\src\jdbc.properties
+scheduler prorties: MoneyChanger\src\scheduler.properties
+
+Konfigurasi Deployment:
+tomcat: MoneyChanger\build.properties

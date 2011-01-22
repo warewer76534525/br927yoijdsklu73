@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Megawastu.Valas.KursProvider.ViewModel;
 using Megawastu.Valas.KursProvider.Application;
 using NUnit.Framework;
+using System;
 namespace Megawastu.Valas.KursProvider.Specs
 {
     [TestFixture]
@@ -15,6 +16,11 @@ namespace Megawastu.Valas.KursProvider.Specs
             reader.Open();
             IList<Kurs> dollarKurs = reader.GetKursInDollar();
             Assert.IsFalse(dollarKurs.Count == 0);
+
+            foreach (var kurs in dollarKurs)
+            {
+                Console.WriteLine("{0} : {1} {2}", kurs.currency, kurs.ask, kurs.bid);
+            }
             reader.Close();
         }
     }

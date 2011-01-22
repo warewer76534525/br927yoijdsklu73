@@ -2,6 +2,7 @@
 
 <project name="moneychanger" basedir="." default="usage">
 	<property file="build.properties" />
+	<property file="src/scheduller.properties" />
 
 	<property name="src.dir" value="src" />
 	<property name="web.dir" value="WebContent" />
@@ -48,6 +49,7 @@
 	</target>
 
 	<target name="deploy" depends="build" description="Deploy application">
+		<mkdir dir="${rate.directory}" />
 		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
 			<fileset dir="${web.dir}">
 				<include name="**/*.*" />
@@ -62,9 +64,9 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
 	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
-			<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
 	</target>
 
 	<target name="deploywar" depends="build" description="Deploy application as a WAR file">
@@ -130,7 +132,7 @@
 	<target name="reload" description="Reload application in Tomcat">
 		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
 	</target>
-	
+
 	<target name="remove" description="Remove application in Tomcat">
 		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
 	</target>
@@ -145,6 +147,19 @@
 
 	<target name="list" description="List Tomcat applications">
 		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" />
+	</target>
+
+	<target name="tomcat-start">
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+		</java>
+	</target>
+
+	<target name="tomcat-stop">
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+			<arg line="stop" />
+		</java>
 	</target>
 
 	<!-- End Tomcat tasks -->
@@ -183,5 +198,6 @@
 	            ***********************************************************
 	        </fail>
 	</target>
+
 	<!-- End Test Task -->
 </project>
