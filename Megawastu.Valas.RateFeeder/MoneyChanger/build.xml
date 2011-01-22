@@ -149,18 +149,19 @@
 		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" />
 	</target>
 
-	<target name="tomcat-start">
+	<target name="tomcat-start" description="Start tomcat service">
 		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
 			<jvmarg value="-Dcatalina.home=${appserver.home}" />
 		</java>
 	</target>
 
-	<target name="tomcat-stop">
+	<target name="tomcat-stop" description="Stop tomcat service">
 		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
 			<jvmarg value="-Dcatalina.home=${appserver.home}" />
 			<arg line="stop" />
 		</java>
 	</target>
+	
 
 	<!-- End Tomcat tasks -->
 
