@@ -30,5 +30,10 @@ namespace Megawastu.Valas.KursProvider.Application
                 }
             }
         }
+
+        public void Stop()
+        {
+            
+        }
     }
 }

@@ -12,3 +12,21 @@ http://www.developerdotstar.com/community/node/717/print
 http://blogs.msdn.com/b/jfoscoding/archive/2005/04/07/40634z1.aspx
 http://blogs.msdn.com/b/vbteam/archive/2008/03/24/stathread-vs-mtathread-whorst.aspx
 http://stackoverflow.com/questions/165316/stathread-and-multithreading
+#####
+
+agar dapat di acess dari windows service maka harus ditambahkan folder
+
+http://bytes.com/topic/net/answers/854715-windows-service-accessing-excel-file
+
+I found another solution on this site:
+http://social.msdn.microsoft.com/For...?prof=required
+
+For 64-bit (x64), create this folder:
+C:\Windows\SysWOW64\config\systemprofile\Desktop
+
+For 32-bit (x86), create this folder:
+C:\Windows\System32\config\systemprofile\Desktop
+
+Personally, I had the problem on a VISTA x86 system. I created the folder as described in the 32-bit option above, and it solved my problem.
+
+The windows service, if running under the systemprofile, needs the Desktop folder. This folder was automatically created on XP and older Windows Server versions, but not for Vista and Windows 2008 Server.
