@@ -8,35 +8,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.triplelands.megawastu.valas.moneychanger.domain.IMessagePublisher;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
-import com.triplelands.megawastu.valas.moneychanger.service.IRateService;
 
 @Controller
 @RequestMapping("/rest/rates")
 public class RateRecieverRest {
 	
 	protected Log log = LogFactory.getLog(RateRecieverRest.class);
-	private IRateService rateService;
 	
-	
-	@Autowired
-    public void setRateService(IRateService rateService) {
-		this.rateService = rateService;
-	}
+	private IMessagePublisher<Rates> kursUpdatedPublisher;
 
 	@RequestMapping(method = POST)
     @ResponseStatus(CREATED)
     public void recieveRates(@RequestBody Rates rates,
             HttpServletResponse response) {
-		rateService.save(rates.getRates());
+		kursUpdatedPublisher.publish(rates);
         log.info("rates: " + rates);
     }
 

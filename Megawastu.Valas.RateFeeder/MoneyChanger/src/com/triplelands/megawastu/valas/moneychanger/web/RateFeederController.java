@@ -15,20 +15,17 @@ public class RateFeederController {
 
 	protected Log log = LogFactory.getLog(RateFeederController.class);
 
-	
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String status(ModelMap model) {
-		
-		
-		
+
 		return "ratefeeder";
 	}
-	
-	@RequestMapping(value="/{status}",  method = RequestMethod.GET)
-	public String process(@PathVariable String status) throws SchedulerException {
+
+	@RequestMapping(value = "/{status}", method = RequestMethod.GET)
+	public String process(@PathVariable String status)
+			throws SchedulerException {
 		log.info("status: " + status);
-		
+
 		return "redirect:ratefeeder";
 	}
 }

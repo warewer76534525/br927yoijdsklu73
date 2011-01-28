@@ -8,6 +8,7 @@
 
 	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
 	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.service" />
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.domain"></context:component-scan>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="com/dev/sss" />
@@ -39,7 +40,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:jdbc.properties</value>
+				<value>classpath:application.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -49,5 +50,21 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	
+	
+	<!-- JMS Context -->
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616" />
+	</bean>
 
+	<bean id="ratesDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="rates.updated.topic" />
+	</bean>
+
+	<bean id="kursJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="ratesDestination"></property>
+		<property name="messageConverter" ref="ratesMessageConverter"></property>
+	</bean>
 </beans>
