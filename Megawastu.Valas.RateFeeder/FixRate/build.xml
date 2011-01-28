@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<project name="FixRate" basedir="../">
+	<property name="project.dir" value="${basedir}/FixRate" />
+	<property name="build.dir" value="${project.dir}/build" />
+	<property name="lib.dir" value="${basedir}/ResourceProject" />
+	<property name="src.dir" value="${project.dir}/src" />
+	
+	
+	<property name="dependency.project" value="${basedir}/MoneyChangerLib" />
+	<property name="dependency.build.dir" value="${dependency.project}/build" />
+	<property name="dependency.src.dir" value="${dependency.project}/src" />
+	
+	<path id="master-classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+
+	<target name="compile-dep" description="Compile project dependency">
+		<mkdir dir="${dependency.build.dir}" />
+		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${dependency.src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+	
+	<target name="jar-dep" depends="compile-dep" description="Compile project dependency">
+		<jar destfile="${lib.dir}/MoneyChangerLib.jar"
+		         basedir="${dependency.build.dir}"
+		         includes="**/*.class"
+		         />
+	</target>
+
+	<target name="compile" depends="jar-dep" description="Compile main source tree java files">
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+	
+	
+	<target name="buildHello" depends="compile" />
+</project>

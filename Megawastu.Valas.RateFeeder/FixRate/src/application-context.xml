@@ -1,0 +1,103 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+">
+	
+	<!-- Basic Configuration -->
+	<context:component-scan
+		base-package="com.triplelands.megawastu.valas.fixrate.service" />
+		
+	<context:component-scan
+		base-package="com.triplelands.megawastu.valas.moneychanger.domain" />
+		
+	<context:component-scan
+		base-package="	com.triplelands.megawastu.valas.fixrate.dao" />
+		
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>		
+
+	<!-- JMS Configuration -->
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${jms.brokerURL}" />
+	</bean>
+	
+		<!-- jms listener config -->
+	
+		<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+			<constructor-arg value="${jms.fixRate.topic}" />
+		</bean>
+			
+		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+			<property name="connectionFactory" ref="connectionFactory" />
+			<property name="destination" ref="fixRateListenerDestination" />
+			<property name="messageListener" ref="fixRateUpdatedListener" />
+		</bean>
+		
+		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+			<property name="connectionFactory" ref="connectionFactory" />
+			<property name="destination" ref="fixRateListenerDestination" />
+			<property name="messageListener" ref="logRateUpdatedListener" />
+		</bean>
+		
+		<!-- JMS Publisher configuration -->
+	
+	<!-- Bean Config -->
+	<bean id="fixRateService" class="com.triplelands.megawastu.valas.fixrate.service.FixRateService">
+		<property name="availableCurrency">
+			<list>
+				<value>YUI</value>
+				<value>AUD</value>
+				<value>IDR</value>
+			</list>
+		</property>
+		<property name="directory" value="${rate.directory}"></property>
+		<property name="fileName" value="${rate.fileName}"></property>
+	</bean>	
+	
+	
+	<!-- Database Config -->
+	<!-- Scans within the base package of the application for @Components to configure as beans -->
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="com/dev/sss" />
+		<property name="defaultObject" ref="developmentDataSource" />
+	</bean>
+
+	<!-- fall back datasource if JNDI look up of main datasource fails -->
+	<bean id="developmentDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="initialSize">
+			<value>10</value>
+		</property>
+		<property name="maxActive">
+			<value>0</value>
+		</property>
+		<property name="maxWait">
+			<value>5000</value>
+		</property>
+
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>
+
+
