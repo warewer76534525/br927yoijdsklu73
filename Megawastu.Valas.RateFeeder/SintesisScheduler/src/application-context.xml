@@ -1,0 +1,101 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+">
+	
+	<!-- Basic Configuration -->
+	<context:component-scan
+		base-package="com.triplelands.megawastu.valas.moneychanger.sintesis.service" />
+		
+	<context:component-scan
+		base-package="	com.triplelands.megawastu.valas.moneychanger.domain" />
+		
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>		
+
+	<!-- JMS Configuration -->
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${jms.brokerURL}" />
+	</bean>
+	
+	<!-- Rate updated Listener -->
+	<bean id="rateUpdatedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.ratesUpdate.topic}" />
+	</bean>
+		
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="rateUpdatedDestination" />
+		<property name="messageListener" ref="rateUpdatedListener" />
+	</bean>
+	
+	<!-- Fix rates publisher -->
+	<bean id="sintesisDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.fixRate.topic}" />
+	</bean>
+
+	<bean id="sintesisJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="sintesisDestination"></property>
+		<property name="messageConverter" ref="ratesMessageConverter"></property>
+	</bean>
+	
+	
+	<bean id="sintesisService" class="com.triplelands.megawastu.valas.moneychanger.sintesis.service.SintesisService">
+		<property name="currencyListForSintesis">
+			<list>
+				<value>IDR</value>
+				<value>MYR</value>
+			</list>
+		</property>
+	</bean>	
+	
+	<!-- Scheduler Config -->
+	
+	 
+	<bean name="sintesisGeneratorJob"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+ 		<property name="jobClass" value="com.triplelands.megawastu.valas.moneychanger.sintesis.scheduler.SintesisGeneratorJob" />
+ 
+		<property name="jobDataAsMap">
+		<map>
+			<entry key="sintesisService" value-ref="sintesisService" />
+		</map>
+		</property>
+		
+	</bean>
+	
+	<bean id="simpleTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="sintesisGeneratorJob" />
+		<property name="repeatInterval" value="${quartz.interval}" />
+		<property name="startDelay" value="1000" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+		   <list>
+		      <ref bean="sintesisGeneratorJob" />
+		   </list>
+		</property>
+ 
+		<property name="triggers">
+		    <list>
+			<ref bean="simpleTrigger" />
+		    </list>
+		</property>
+   </bean>
+    
+</beans>
+
+
