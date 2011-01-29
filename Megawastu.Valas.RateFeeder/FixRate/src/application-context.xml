@@ -62,13 +62,6 @@
 	
 	<!-- Bean Config -->
 	<bean id="fixRateService" class="com.triplelands.megawastu.valas.fixrate.service.FixRateService">
-		<property name="availableCurrency">
-			<list>
-				<value>YUI</value>
-				<value>AUD</value>
-				<value>IDR</value>
-			</list>
-		</property>
 		<property name="directory" value="${rate.directory}"></property>
 		<property name="fileName" value="${rate.fileName}"></property>
 	</bean>	

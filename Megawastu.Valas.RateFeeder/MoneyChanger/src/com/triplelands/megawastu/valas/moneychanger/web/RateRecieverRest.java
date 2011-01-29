@@ -38,7 +38,6 @@ public class RateRecieverRest {
 	public void recieveRates(@RequestBody Rates rates,
 			HttpServletResponse response) {
 		ratesUpdatedPublisher.publish(rates);
-		log.info("rates: " + rates);
 	}
 
 	@RequestMapping(method = GET)
