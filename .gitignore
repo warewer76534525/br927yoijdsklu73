@@ -8,3 +8,4 @@
 bin/
 obj/
 build/
+/Megawastu.Valas.RateFeeder/MoneyChanger/WebContent/WEB-INF/lib/MoneyChangerLib.jar
