@@ -3,9 +3,12 @@
 <project name="FixRate" basedir="../">
 	<property name="project.dir" value="${basedir}/FixRate" />
 	<property name="build.dir" value="${project.dir}/build" />
+	<property name="service.dir" value="${project.dir}/service" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
 	<property name="lib.dir" value="${basedir}/ResourceProject" />
 	<property name="src.dir" value="${project.dir}/src" />
-
+	<property name="tools.dir" value="${base.dir}/../tools" />
+	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
 
 	<property name="dependency.project" value="${basedir}/MoneyChangerLib" />
 	<property name="dependency.build.dir" value="${dependency.project}/build" />
@@ -39,6 +42,66 @@
 		</javac>
 	</target>
 
+	<target name="clean-service">
+		<delete dir="${service.dir}" />
+	</target>
+
+	<target name="init-service" depends="clean-service">
+		<mkdir dir="${service.dir}" />
+		<mkdir dir="${service.lib.dir}" />
+	</target>
+
+	<target name="copy-service-config" depends="init-service">
+		<copy todir="${service.dir}">
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+				<include name="*.ini" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy-service-tools" depends="copy-service-config">
+		<copy todir="${service.dir}">
+			<fileset dir="${winrun4j.dir}">
+				<include name="*.exe" />
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy-service-libs" depends="copy-service-tools">
+		<copy todir="${service.lib.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="package-service" depends="compile, copy-service-libs" description="Package service project">
+		<jar destfile="${service.dir}/fix-rate-service.jar" basedir="${build.dir}">
+			<fileset dir="${build.dir}">
+				<include name="**/*.class" />
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="install.service" depends="package-service">
+		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
+			<arg line="--WinRun4J:RegisterService" />
+		</exec>
+	</target>
+
+	<target name="uninstall.service">
+		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
+			<arg line="--WinRun4J:UnregisterService" />
+		</exec>
+	</target>
 
 	<target name="buildHello" depends="compile" />
 </project>
