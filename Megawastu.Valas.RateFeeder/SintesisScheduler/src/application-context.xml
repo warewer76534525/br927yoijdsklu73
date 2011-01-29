@@ -78,7 +78,7 @@
 	<bean id="simpleTrigger"
 		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
 		<property name="jobDetail" ref="sintesisGeneratorJob" />
-		<property name="repeatInterval" value="${quartz.interval}" />
+		<property name="repeatInterval" value="${quartz.sintesis.interval}" />
 		<property name="startDelay" value="1000" />
 	</bean>
 	
