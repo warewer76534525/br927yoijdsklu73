@@ -9,7 +9,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 import com.triplelands.megawastu.valas.moneychanger.snap.service.SnapService;
 
 public class SnapGeneratorJob extends QuartzJobBean {
-
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected void executeInternal(JobExecutionContext context)
@@ -18,7 +18,7 @@ public class SnapGeneratorJob extends QuartzJobBean {
 		SnapService snapService = (SnapService) dataMap.get("snapService");
 		
 		
-		snapService.generate();
+		snapService.publish();
 	}
 
 }

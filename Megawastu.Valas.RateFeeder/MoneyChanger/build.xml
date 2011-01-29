@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="moneychanger" basedir="." default="usage">
+<project name="moneychanger" basedir=".">
 	<property file="build.properties" />
 	<property file="src/scheduller.properties" />
 
@@ -9,6 +9,10 @@
 	<property name="build.dir" value="${web.dir}/WEB-INF/classes" />
 	<property name="name" value="moneychanger" />
 
+	<property name="dependency.project" value="../MoneyChangerLib" />
+	<property name="dependency.build.dir" value="${dependency.project}/build" />
+	<property name="dependency.src.dir" value="${dependency.project}/src" />
+	
 	<path id="master-classpath">
 		<fileset dir="${web.dir}/WEB-INF/lib">
 			<include name="*.jar" />
@@ -22,25 +26,21 @@
 		<pathelement path="${build.dir}" />
 	</path>
 
-	<target name="usage">
-		<echo message="" />
-		<echo message="${name} build file" />
-		<echo message="-----------------------------------" />
-		<echo message="" />
-		<echo message="Available targets are:" />
-		<echo message="" />
-		<echo message="build     --> Build the application" />
-		<echo message="deploy    --> Deploy application as directory" />
-		<echo message="deploywar --> Deploy application as a WAR file" />
-		<echo message="install   --> Install application in Tomcat" />
-		<echo message="reload    --> Reload application in Tomcat" />
-		<echo message="start     --> Start Tomcat application" />
-		<echo message="stop      --> Stop Tomcat application" />
-		<echo message="list      --> List Tomcat applications" />
-		<echo message="" />
+	<target name="compile-dep" description="Compile project dependency">
+		<delete dir="${dependency.build.dir}"></delete>
+		<mkdir dir="${dependency.build.dir}" />
+		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${dependency.src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
 	</target>
 
-	<target name="build" description="Compile main source tree java files">
+	<target name="jar-dep" depends="compile-dep" description="Compile project dependency">
+		<delete file="${web.dir}/WEB-INF/lib/MoneyChangerLib.jar" />
+		<jar destfile="${web.dir}/WEB-INF/lib/MoneyChangerLib.jar" basedir="${dependency.build.dir}" includes="**/*.class" />
+	</target>
+
+	<target name="build" depends="jar-dep" description="Compile main source tree java files">
 		<mkdir dir="${build.dir}" />
 		<javac destdir="${build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
 			<src path="${src.dir}" />
@@ -83,7 +83,8 @@
 	</target>
 
 	<target name="clean" description="Clean output directories">
-		<delete>
+		<echo>delete directory ${build.dir}</echo>
+		<delete>			
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
@@ -134,7 +135,7 @@
 	</target>
 
 	<target name="remove" description="Remove application in Tomcat">
-		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+		<delete dir="${deploy.path}/${name}"></delete>
 	</target>
 
 	<target name="start" description="Start Tomcat application">
@@ -161,7 +162,7 @@
 			<arg line="stop" />
 		</java>
 	</target>
-	
+
 
 	<!-- End Tomcat tasks -->
 

@@ -3,9 +3,7 @@ package com.triplelands.megawastu.valas.fixrate.service;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +16,6 @@ public class FixRateService implements IFixRateService {
 	protected Log log = LogFactory.getLog(getClass());
 
 	private Rates rates = new Rates();
-	private List<String> availableCurrency = new ArrayList<String>();
 	private String directory;
 	private String fileName;
 
@@ -28,10 +25,6 @@ public class FixRateService implements IFixRateService {
 
 	public void setRates(Rates rates) {
 		this.rates = rates;
-	}
-
-	public void setAvailableCurrency(List<String> availableCurrency) {
-		this.availableCurrency = availableCurrency;
 	}
 
 	public void setDirectory(String directory) {
@@ -46,9 +39,7 @@ public class FixRateService implements IFixRateService {
 		Iterator<Rate> ratesIterator = _rate.getRates().iterator();
 		while (ratesIterator.hasNext()) {
 			Rate rate = (Rate) ratesIterator.next();
-			if (availableCurrency.contains(rate.getCurrency())) {
-				rates.update(rate);
-			}
+			rates.update(rate);
 		}
 	}
 

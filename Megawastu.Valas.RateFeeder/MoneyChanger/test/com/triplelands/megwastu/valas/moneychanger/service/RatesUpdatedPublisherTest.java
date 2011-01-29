@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.triplelands.megawastu.valas.moneychanger.domain.IMessagePublisher;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
-import com.triplelands.megawastu.valas.moneychanger.service.IRatesUpdatedPublisher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/test-context.xml")
+@ContextConfiguration(locations = "classpath:test-context.xml")
 public class RatesUpdatedPublisherTest {
 
-	IRatesUpdatedPublisher ratesUpdatedPublisher;
+	IMessagePublisher<Rates> ratesUpdatedPublisher;
 	Rates rates = new Rates();
 	
 	@Autowired
-	public void setRatesUpdatedPublisher(IRatesUpdatedPublisher ratesUpdatedPublisher) {
+	public void setRatesUpdatedPublisher(IMessagePublisher<Rates> ratesUpdatedPublisher) {
 		this.ratesUpdatedPublisher = ratesUpdatedPublisher;
 	}
 

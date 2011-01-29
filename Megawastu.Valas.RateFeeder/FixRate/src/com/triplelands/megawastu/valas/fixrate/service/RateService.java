@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.triplelands.megawastu.valas.fixrate.dao.IRateDao;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
-@Service("rateService")
+@Service
 @Transactional(readOnly=true)
 public class RateService implements IRateService {
 	IRateDao rateDao;

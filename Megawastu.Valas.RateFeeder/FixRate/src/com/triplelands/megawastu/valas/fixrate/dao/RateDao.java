@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
-@Repository("rateDao")
+@Repository
 public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {
 	protected final Log log = LogFactory.getLog(getClass());
 	

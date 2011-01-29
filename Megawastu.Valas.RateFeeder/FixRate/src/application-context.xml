@@ -14,7 +14,7 @@
 		base-package="com.triplelands.megawastu.valas.moneychanger.domain" />
 		
 	<context:component-scan
-		base-package="	com.triplelands.megawastu.valas.fixrate.dao" />
+		base-package="com.triplelands.megawastu.valas.fixrate.dao" />
 		
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -35,17 +35,27 @@
 		<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 			<constructor-arg value="${jms.fixRate.topic}" />
 		</bean>
-			
+		
+		<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+			<constructor-arg value="${jms.ratesUpdate.topic}" />
+		</bean>	
+		
 		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
 			<property name="connectionFactory" ref="connectionFactory" />
-			<property name="destination" ref="fixRateListenerDestination" />
-			<property name="messageListener" ref="fixRateUpdatedListener" />
+			<property name="destination" ref="ratesUpdatedListenerDestination" />
+			<property name="messageListener" ref="logRateUpdatedListener" />
 		</bean>
 		
 		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
 			<property name="connectionFactory" ref="connectionFactory" />
 			<property name="destination" ref="fixRateListenerDestination" />
 			<property name="messageListener" ref="logRateUpdatedListener" />
+		</bean>
+		
+		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+			<property name="connectionFactory" ref="connectionFactory" />
+			<property name="destination" ref="fixRateListenerDestination" />
+			<property name="messageListener" ref="fixRateUpdatedListener" />
 		</bean>
 		
 		<!-- JMS Publisher configuration -->
@@ -63,18 +73,8 @@
 		<property name="fileName" value="${rate.fileName}"></property>
 	</bean>	
 	
-	
-	<!-- Database Config -->
-	<!-- Scans within the base package of the application for @Components to configure as beans -->
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
-	
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="com/dev/sss" />
-		<property name="defaultObject" ref="developmentDataSource" />
-	</bean>
-
 	<!-- fall back datasource if JNDI look up of main datasource fails -->
-	<bean id="developmentDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -86,7 +86,7 @@
 			<value>10</value>
 		</property>
 		<property name="maxActive">
-			<value>0</value>
+			<value>5</value>
 		</property>
 		<property name="maxWait">
 			<value>5000</value>
@@ -98,6 +98,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 </beans>
 
 
