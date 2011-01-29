@@ -46,7 +46,7 @@
 			<property name="messageListener" ref="logRateUpdatedListener" />
 		</bean>
 		
-		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer" d>
 			<property name="connectionFactory" ref="connectionFactory" />
 			<property name="destination" ref="fixRateListenerDestination" />
 			<property name="messageListener" ref="logRateUpdatedListener" />
