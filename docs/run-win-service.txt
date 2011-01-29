@@ -1,0 +1,3 @@
+http://winrun4j.sourceforge.net/
+http://borisinc.wordpress.com/2009/05/31/create-a-windows-service-for-java-using-winrun4j/
+http://borisinc.wordpress.com/category/winrun4j/
