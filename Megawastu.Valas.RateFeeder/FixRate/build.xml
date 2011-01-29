@@ -54,8 +54,6 @@
 	<target name="copy-service-config" depends="init-service">
 		<copy todir="${service.dir}">
 			<fileset dir="${src.dir}">
-				<include name="*.xml" />
-				<include name="*.properties" />
 				<include name="*.ini" />
 			</fileset>
 		</copy>
