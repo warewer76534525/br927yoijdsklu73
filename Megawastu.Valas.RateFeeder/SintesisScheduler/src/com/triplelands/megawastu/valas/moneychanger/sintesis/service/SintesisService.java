@@ -105,8 +105,8 @@ public class SintesisService {
 			
 		}
 		
-		/*log.info("$$$$ sintesis value" + sintesisRates);
-		log.info("$$$$ prev sintesis value" + prevSintesisRates);*/
+		log.info("$$$$ sintesis value" + sintesisRates);
+		log.info("$$$$ prev sintesis value" + prevSintesisRates);
 
 	}
 	
