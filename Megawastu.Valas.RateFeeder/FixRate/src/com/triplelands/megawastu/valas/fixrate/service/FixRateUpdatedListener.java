@@ -28,6 +28,7 @@ public class FixRateUpdatedListener implements MessageListener {
 			rates = (Rates) mapMessage.getObject();
 			fixRateService.update(rates);
 			fixRateService.serialize();
+			log.info("fix rate upated");
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}

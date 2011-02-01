@@ -20,19 +20,27 @@
 		<property name="brokerURL" value="${jms.brokerURL}" />
 	</bean>
 
+	<bean id="ratesUpdateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.ratesUpdate.topic}" />
+	</bean>
+
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="${jms.ratesUpdate.topic}" />
+		<property name="destination" ref="ratesUpdateListenerDestination" />
 		<property name="messageListener" ref="rateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 	</bean>
 
 	<!-- Fix rates publisher -->
  	
+ 	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.fixRate.topic}" />
+	</bean>
+ 	
 	<bean id="snapJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="receiveTimeout" value="10000" />
-		<property name="defaultDestinationName" value="${jms.fixRate.topic}"></property>
+		<property name="defaultDestination" ref="fixRateListenerDestination"></property>
 		<property name="messageConverter" ref="ratesMessageConverter"></property>
 	</bean>
 	

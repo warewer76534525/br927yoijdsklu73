@@ -22,24 +22,20 @@
 
 	<!-- jms listener config -->
 	
-	<!-- 
-	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="${jms.ratesUpdate.topic}" />
-		<property name="messageListener" ref="logRateUpdatedListener" />
+	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.fixRate.topic}" />
 	</bean>
- 	-->
- 	
+	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="${jms.fixRate.topic}" />
+		<property name="destination" ref="fixRateListenerDestination" />
 		<property name="messageListener" ref="logRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 	</bean>
 
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="${jms.fixRate.topic}" />
+		<property name="destination" ref="fixRateListenerDestination" />
 		<property name="messageListener" ref="fixRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 	</bean>

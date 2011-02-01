@@ -15,10 +15,18 @@ public class CurrencySintz {
 			previous = current;	
 		}
 		
+//		current = current.calculateSintesis();
+		
 		if (rate.getAsk() == current.getAsk()) {
-			current = current.calculateSintesis(previous);  
+			current = current.calculateAskSintesis(previous);  
 		} else {
-			current = rate;	
+			current.setAsk(rate.getAsk());	
+		}
+		
+		if (rate.getBid() == current.getBid()) {
+			current = current.calculateBidSintesis(previous);  
+		} else {
+			current.setBid(rate.getBid());	
 		}
 	}
 

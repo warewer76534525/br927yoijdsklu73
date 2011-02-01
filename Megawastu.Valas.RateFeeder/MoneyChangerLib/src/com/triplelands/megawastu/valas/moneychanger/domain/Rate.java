@@ -52,13 +52,17 @@ public class Rate implements Serializable {
 				+ "]";
 	}
 
-	public Rate calculateSintesis(Rate previous) {
+	public Rate calculateAskSintesis(Rate previous) {
 		return new Rate(currency, bid, (this.ask + previous.ask) /2 );
 	}
 
 	public void copyFrom(Rate rate) {
 		bid = rate.bid;
 		ask = rate.ask;
+	}
+
+	public Rate calculateBidSintesis(Rate previous) {
+		return new Rate(currency, (this.bid + previous.bid) /2 , ask);
 	}
 
 }
