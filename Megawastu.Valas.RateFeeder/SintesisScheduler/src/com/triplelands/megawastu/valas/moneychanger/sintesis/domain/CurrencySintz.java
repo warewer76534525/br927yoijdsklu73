@@ -1,4 +1,4 @@
-package com.triplelands.megawastu.valas.moneychanger.snap.domain;
+package com.triplelands.megawastu.valas.moneychanger.sintesis.domain;
 
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
