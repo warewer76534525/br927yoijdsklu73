@@ -14,13 +14,14 @@ namespace Megawastu.Valas.KursProvider.Specs
         {
             ExcelKursReader reader = new ExcelKursReader();
             reader.Open();
-            IList<Kurs> dollarKurs = reader.GetKursInDollar();
-            Assert.IsFalse(dollarKurs.Count == 0);
+            IList<Kurs> allKurs = reader.GetKurs();
+            Assert.IsFalse(allKurs.Count == 0);
 
-            foreach (var kurs in dollarKurs)
+            foreach (var kurs in allKurs)
             {
                 Console.WriteLine("{0} : {1} {2}", kurs.currency, kurs.ask, kurs.bid);
             }
+
             reader.Close();
         }
     }

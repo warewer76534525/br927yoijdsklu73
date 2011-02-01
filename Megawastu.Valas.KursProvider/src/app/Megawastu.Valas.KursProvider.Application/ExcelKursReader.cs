@@ -17,7 +17,7 @@ namespace Megawastu.Valas.KursProvider.Application
         object misValue = System.Reflection.Missing.Value;
         
 
-        public IList<Kurs> GetKursInDollar()
+        public IList<Kurs> GetKurs()
         {    
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
            Range excelRange = xlWorkSheet.UsedRange;
@@ -34,6 +34,11 @@ namespace Megawastu.Valas.KursProvider.Application
             for (int i = 0; i < 19; i++)
             {
                 kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[22 + i, 3]) });
+            }
+
+            for (int i = 0; i < 18; i++)
+            {
+                kursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[45 + i, 3]) });
             }
 
             return kursList;
