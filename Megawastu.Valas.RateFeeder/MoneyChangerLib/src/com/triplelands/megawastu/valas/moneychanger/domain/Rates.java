@@ -13,6 +13,10 @@ public class Rates implements Serializable {
 
 	}
 
+	public Rates(List<Rate> rates) {
+		this.rates = rates; 
+	}
+
 	public List<Rate> getRates() {
 		return rates;
 	}

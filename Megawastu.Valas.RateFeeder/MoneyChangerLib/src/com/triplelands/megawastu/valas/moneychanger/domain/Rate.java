@@ -52,4 +52,8 @@ public class Rate implements Serializable {
 				+ "]";
 	}
 
+	public Rate calculateSintesis(Rate previous) {
+		return new Rate(currency, bid, (this.ask + previous.ask) /2 );
+	}
+
 }
