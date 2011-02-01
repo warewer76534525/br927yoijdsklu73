@@ -25,6 +25,7 @@
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destinationName" value="${jms.ratesUpdate.topic}" />
 		<property name="messageListener" ref="rateUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
 	</bean>
 
 	<bean id="sintesisJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
