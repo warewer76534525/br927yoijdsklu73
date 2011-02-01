@@ -2,10 +2,10 @@ package com.triplelands.megawastu.valas.moneychanger.snap.domain;
 
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
-public class AskCurrencySintz {
+public class CurrencySintz {
 	private Rate current;
 	private Rate previous;
-	public AskCurrencySintz(String currency) {
+	public CurrencySintz(String currency) {
 		
 	}
 
@@ -37,5 +37,4 @@ public class AskCurrencySintz {
 	public double sintesisValue() {
 		return current.getAsk();
 	}
-
 }

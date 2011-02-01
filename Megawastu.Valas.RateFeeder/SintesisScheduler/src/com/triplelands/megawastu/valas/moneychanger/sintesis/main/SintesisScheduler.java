@@ -16,10 +16,6 @@ public class SintesisScheduler extends AbstractService {
 		switch (control) {
 		case SERVICE_CONTROL_STOP:
 		case SERVICE_CONTROL_SHUTDOWN:
-			
-//			for (String name : context.getBeanNamesForType(SimpleMessageListenerContainer.class)) {
-//				context.getBean(name, SimpleMessageListenerContainer.class).stop();
-//			}
 			context.stop();
 			context.close();
 			shutdown = true;

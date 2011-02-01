@@ -14,7 +14,7 @@ public class Rates implements Serializable {
 	}
 
 	public Rates(List<Rate> rates) {
-		this.rates = rates; 
+		this.rates = rates;
 	}
 
 	public List<Rate> getRates() {
@@ -34,31 +34,48 @@ public class Rates implements Serializable {
 	}
 
 	/**
-	 * update rate if contain the parameterize rate
-	 * add rate to list if not exists
+	 * update rate if contain the parameterize rate add rate to list if not
+	 * exists
 	 * 
 	 **/
 	public void update(Rate _rate) {
-		boolean updated =  false;
 		
-		for (Rate rate : rates) {
-			if (rate.getCurrency().equals(_rate.getCurrency())) {
-				rate.setAsk(_rate.getAsk());
-				rate.setBid(_rate.getBid());
-				
-				updated = true;
-			}
-		}
+		Rate rate = this.findRateByCurrency(_rate.getCurrency());
 		
-		//if rate is not updated
-		if (!updated) {
+		if (rate == null) {
 			rates.add(_rate);
+		}
+		else {
+			rate.copyFrom(_rate);
 		}
 	}
 
 	@Override
 	public String toString() {
 		return "Rates [rates=" + rates + "]";
+	}
+
+	public Rate findRateByCurrency(String currency) {
+		for (Rate rate : rates) {
+			if (currency.equals(rate.getCurrency())) {
+				return rate;
+			}
+		}
+
+		return null;
+	}
+
+	public Rates filteredRates(List<String> includeList) {
+		List<Rate> listRates = getRates();
+		List<Rate> filteredList = new ArrayList<Rate>();
+
+		for (Rate rate : listRates) {
+			if (!includeList.contains(rate.getCurrency()))
+				continue;
+			filteredList.add(rate);
+		}
+
+		return new Rates(filteredList);
 	}
 
 }
