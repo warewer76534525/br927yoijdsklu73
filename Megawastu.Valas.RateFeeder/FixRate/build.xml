@@ -56,6 +56,10 @@
 			<fileset dir="${src.dir}">
 				<include name="*.ini" />
 			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
 		</copy>
 	</target>
 
@@ -80,11 +84,6 @@
 		<jar destfile="${service.dir}/fix-rate-service.jar" basedir="${build.dir}">
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
-				<include name="**/*.class" />
-			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="*.xml" />
-				<include name="*.properties" />
 			</fileset>
 		</jar>
 	</target>
@@ -100,6 +99,4 @@
 			<arg line="--WinRun4J:UnregisterService" />
 		</exec>
 	</target>
-
-	<target name="buildHello" depends="compile" />
 </project>
