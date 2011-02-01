@@ -17,15 +17,11 @@ public class SnapService {
 	private List<String> currencyListForSnap = new ArrayList<String>();
 	private Rates rates = new Rates();
 
-	IMessagePublisher<Rates> snapUpdatedPublisher;
+	@Autowired
+	private IMessagePublisher<Rates> snapUpdatedPublisher;
 
 	public SnapService() {
 		log.info("SNAP service created");
-	}
-
-	@Autowired
-	public void setSnapUpdatedPublisher(IMessagePublisher<Rates> snapUpdatedPublisher) {
-		this.snapUpdatedPublisher = snapUpdatedPublisher;
 	}
 
 	public void setCurrencyListForSnap(List<String> currencyListForSnap) {

@@ -12,14 +12,16 @@ import com.triplelands.megawastu.valas.moneychanger.domain.IMessagePublisher;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
 
 @Service
-public class SnapUpdatedPublisher extends JmsGatewaySupport implements IMessagePublisher<Rates> {
+public class SnapUpdatedPublisher extends JmsGatewaySupport implements
+		IMessagePublisher<Rates> {
 	protected Log log = LogFactory.getLog(getClass());
-	
+
 	@Autowired
-	public SnapUpdatedPublisher(@Qualifier("snapJmsTemplate")JmsTemplate jmsTemplate) {
+	public SnapUpdatedPublisher(
+			@Qualifier("snapJmsTemplate") JmsTemplate jmsTemplate) {
 		setJmsTemplate(jmsTemplate);
 	}
-	
+
 	@Override
 	public void publish(Rates rates) {
 		getJmsTemplate().convertAndSend(rates);

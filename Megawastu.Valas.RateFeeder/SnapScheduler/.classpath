@@ -33,5 +33,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/MoneyChangerLib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/ResourceProject/WinRun4J.jar"/>
+	<classpathentry kind="lib" path="/ResourceProject/aopalliance-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -13,12 +13,8 @@ import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
 
 @Component
 public class RateUpdatedListener implements MessageListener {
-	private SnapService snapService;
-
 	@Autowired
-	public void setSnapService(SnapService snapService) {
-		this.snapService = snapService;
-	}
+	private SnapService snapService;
 
 	@Override
 	public void onMessage(Message message) {
@@ -30,6 +26,5 @@ public class RateUpdatedListener implements MessageListener {
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}
-
 	}
 }
