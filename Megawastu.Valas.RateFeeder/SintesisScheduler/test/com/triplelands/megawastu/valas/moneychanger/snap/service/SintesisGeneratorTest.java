@@ -49,13 +49,16 @@ public class SintesisGeneratorTest {
 	
 	@Test
 	public void should_generate_sintesis_value_when_sintesis_rate_is__not_null() {
-		Rate idr = new Rate("IDR", 5, 5);
-		snapService.update(rates);
+		Rates _rates = new Rates();
+		Rate idr = new Rate("IDR", 0, 0);
+		_rates.addRate(idr);
+		snapService.update(_rates);
 		snapService.generateSintesis();
 		
-		
-		rates.update(idr);
-		snapService.update(rates);
+		_rates = new Rates();
+		idr = new Rate("IDR", 5, 5);
+		_rates.addRate(idr);
+		snapService.update(_rates);
 		snapService.generateSintesis();
 	}
 	

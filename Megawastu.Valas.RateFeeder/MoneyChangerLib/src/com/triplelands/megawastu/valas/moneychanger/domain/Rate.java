@@ -65,4 +65,8 @@ public class Rate implements Serializable {
 		return new Rate(currency, (this.bid + previous.bid) /2 , ask);
 	}
 
+	public Rate copy() {
+		return new Rate(currency, bid, ask);
+	}
+
 }

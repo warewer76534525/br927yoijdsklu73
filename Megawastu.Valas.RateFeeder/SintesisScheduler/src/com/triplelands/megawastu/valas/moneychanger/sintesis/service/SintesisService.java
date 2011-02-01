@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.triplelands.megawastu.valas.moneychanger.domain.IMessagePublisher;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
+import com.triplelands.megawastu.valas.moneychanger.sintesis.domain.CurrencySintz;
+import com.triplelands.megawastu.valas.moneychanger.sintesis.domain.CurrencySintzRepository;
 
 public class SintesisService {
 	protected Log log = LogFactory.getLog(getClass());
-	private List<String> currencyListForSintesis = new ArrayList<String>();
+	private List<String> currencyListForSintesis = new ArrayList<String>();	
 	private Rates freshRates = new Rates();
-	private Rates sintesisRates = new Rates();
-	private Rates prevSintesisRates = new Rates();
+
+	@Autowired
+	private CurrencySintzRepository currencySintzRepository;
 	
 	@Autowired
 	private IMessagePublisher<Rates> snapUpdatedPublisher;
@@ -30,67 +33,16 @@ public class SintesisService {
 	}
 
 	public void publish() {
-		snapUpdatedPublisher.publish(sintesisRates);
+		snapUpdatedPublisher.publish(currencySintzRepository.sitesisResults());
 	}
 
 	public void generateSintesis() {
 
 		for (Rate freshRate : freshRates.getRates()) {
-			Rate sintesisRate = sintesisRates.findRateByCurrency(freshRate.getCurrency());
-			Rate prevSintesisRate = prevSintesisRates.findRateByCurrency(freshRate.getCurrency());
-			
-			if (sintesisRate == null) {
-				sintesisRates.update(freshRate);
-			} else {
-				// kalo nilai fresh bid sama dengan nilai sintesis dan prev
-				// sintesis adalah null
-				if (freshRate.getBid() == sintesisRate.getBid()
-						&& prevSintesisRate != null) {
-					double tempBid = (sintesisRate.getBid() + prevSintesisRate
-							.getBid()) / 2;
-					prevSintesisRate.setBid(sintesisRate.getBid());
-					sintesisRate.setBid(tempBid);
-				} else {
-					// update prevsintesis rate dengan nilai sintesis, update
-					// nilai sintesis dengan fresh rate
-					// log.info("set prev dengan nilai sintesis");
-					if (prevSintesisRate == null) {
-						prevSintesisRate = new Rate();
-						prevSintesisRate
-								.setCurrency(sintesisRate.getCurrency());
-					}
-					prevSintesisRate.setBid(sintesisRate.getBid());
-					sintesisRate.setBid(freshRate.getBid());
-
-					prevSintesisRates.update(prevSintesisRate);
-				}
-
-				// kalo nilai fresh ask sama dengan nilai sintesis dan prev
-				// sintesis adalah null
-				if (freshRate.getAsk() == sintesisRate.getAsk()
-						&& prevSintesisRate != null) {
-					double tempAsk = (sintesisRate.getAsk() + prevSintesisRate
-							.getAsk()) / 2;
-					prevSintesisRate.setAsk(sintesisRate.getAsk());
-					sintesisRate.setAsk(tempAsk);
-				} else {
-					// update prevsintesis rate dengan nilai sintesis, update
-					// nilai sintesis dengan fresh rate
-					// log.info("set prev dengan nilai sintesis");
-					if (prevSintesisRate == null) {
-						prevSintesisRate = new Rate();
-						prevSintesisRate
-								.setCurrency(sintesisRate.getCurrency());
-					}
-					prevSintesisRate.setAsk(sintesisRate.getAsk());
-					sintesisRate.setAsk(freshRate.getAsk());
-
-					prevSintesisRates.update(prevSintesisRate);
-				}
-			}
+			CurrencySintz sintz = currencySintzRepository.findByCurrency(freshRate.getCurrency());
+			sintz.freshUpdate(freshRate);
 		}
 
-		log.info("$$$$ sintesis value" + sintesisRates);
-		log.info("$$$$ prev sintesis value" + prevSintesisRates);
+		log.info("$$$$ sintesis value" + currencySintzRepository.sitesisResults());
 	}
 }

@@ -11,8 +11,13 @@ public class CurrencySintz {
 
 	public void freshUpdate(Rate rate) {
 		
+		if (isBeginning()) {
+			current = rate;
+			return;
+		}
+		
 		if (!isBeginning()) {
-			previous = current;	
+			previous = current.copy();
 		}
 		
 //		current = current.calculateSintesis();
@@ -28,6 +33,8 @@ public class CurrencySintz {
 		} else {
 			current.setBid(rate.getBid());	
 		}
+		
+		System.out.println(previous);
 	}
 
 	private boolean isBeginning() {
