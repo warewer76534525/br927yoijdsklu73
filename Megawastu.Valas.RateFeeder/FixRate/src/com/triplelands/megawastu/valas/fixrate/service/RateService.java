@@ -12,13 +12,9 @@ import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 @Service
 @Transactional(readOnly=true)
 public class RateService implements IRateService {
-	IRateDao rateDao;
-	
 	@Autowired
-	public void setRateDao(IRateDao rateDao) {
-		this.rateDao = rateDao;
-	}
-
+	private IRateDao rateDao;
+	
 	@Transactional(readOnly=false)
 	@Override
 	public void save(List<Rate> rates) {

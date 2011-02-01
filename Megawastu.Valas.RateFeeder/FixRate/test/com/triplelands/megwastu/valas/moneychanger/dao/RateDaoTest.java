@@ -17,7 +17,7 @@ import com.triplelands.megawastu.valas.fixrate.dao.IRateDao;
 import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/test-context.xml")
+@ContextConfiguration(locations = "/application-context.xml")
 public class RateDaoTest {
 	IRateDao rateDao;
 	List<Rate> rates = new ArrayList<Rate>();

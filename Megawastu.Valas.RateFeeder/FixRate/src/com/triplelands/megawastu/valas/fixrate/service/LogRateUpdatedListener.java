@@ -16,12 +16,9 @@ import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
 @Component
 public class LogRateUpdatedListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
-	IRateService rateService;
-
+	
 	@Autowired
-	public void setRateService(IRateService rateService) {
-		this.rateService = rateService;
-	}
+	private IRateService rateService;
 
 	@Override
 	public void onMessage(Message message) {

@@ -1,71 +1,56 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/beans	
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 ">
-	
-	<!-- Basic Configuration -->
-	<context:component-scan
-		base-package="com.triplelands.megawastu.valas.fixrate.service" />
-		
-	<context:component-scan
-		base-package="com.triplelands.megawastu.valas.moneychanger.domain" />
-		
-	<context:component-scan
-		base-package="com.triplelands.megawastu.valas.fixrate.dao" />
-		
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:application.properties</value>
-			</list>
-		</property>
-	</bean>		
+
+	<tx:annotation-driven />
+	<context:component-scan base-package="com.triplelands.megawastu.valas" />
+	<context:property-placeholder location="application.properties" />
+	<context:annotation-config />
 
 	<!-- JMS Configuration -->
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="${jms.brokerURL}" />
 	</bean>
+
+	<!-- jms listener config -->
 	
-		<!-- jms listener config -->
-	
-		<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
-			<constructor-arg value="${jms.fixRate.topic}" />
-		</bean>
-		
-		<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
-			<constructor-arg value="${jms.ratesUpdate.topic}" />
-		</bean>	
-		
-		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
-			<property name="connectionFactory" ref="connectionFactory" />
-			<property name="destination" ref="ratesUpdatedListenerDestination" />
-			<property name="messageListener" ref="logRateUpdatedListener" />
-		</bean>
-		
-		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
-			<property name="connectionFactory" ref="connectionFactory" />
-			<property name="destination" ref="fixRateListenerDestination" />
-			<property name="messageListener" ref="logRateUpdatedListener" />
-		</bean>
-		
-		<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
-			<property name="connectionFactory" ref="connectionFactory" />
-			<property name="destination" ref="fixRateListenerDestination" />
-			<property name="messageListener" ref="fixRateUpdatedListener" />
-		</bean>
-		
-		<!-- JMS Publisher configuration -->
-	
+	<!-- 
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="${jms.ratesUpdate.topic}" />
+		<property name="messageListener" ref="logRateUpdatedListener" />
+	</bean>
+ 	-->
+ 	
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="${jms.fixRate.topic}" />
+		<property name="messageListener" ref="logRateUpdatedListener" />
+	</bean>
+
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="${jms.fixRate.topic}" />
+		<property name="messageListener" ref="fixRateUpdatedListener" />
+	</bean>
+
+	<!-- JMS Publisher configuration -->
+
 	<!-- Bean Config -->
-	<bean id="fixRateService" class="com.triplelands.megawastu.valas.fixrate.service.FixRateService">
+	<bean id="fixRateService"
+		class="com.triplelands.megawastu.valas.fixrate.service.FixRateService">
 		<property name="directory" value="${rate.directory}"></property>
 		<property name="fileName" value="${rate.fileName}"></property>
-	</bean>	
-	
+	</bean>
+
 	<!-- fall back datasource if JNDI look up of main datasource fails -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -74,24 +59,12 @@
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-
-		<property name="initialSize">
-			<value>10</value>
-		</property>
-		<property name="maxActive">
-			<value>5</value>
-		</property>
-		<property name="maxWait">
-			<value>5000</value>
-		</property>
-
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="5" />
+		<property name="maxWait" value="5000" />
 	</bean>
 
 	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		autowire="byType" />
 </beans>
-
-

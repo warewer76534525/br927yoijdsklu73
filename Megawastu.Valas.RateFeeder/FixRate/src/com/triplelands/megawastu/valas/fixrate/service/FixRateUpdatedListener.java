@@ -17,12 +17,8 @@ import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
 public class FixRateUpdatedListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
 
-	private IFixRateService fixRateService;
-	
 	@Autowired
-	public void setFixRateService(IFixRateService fixRateService) {
-		this.fixRateService = fixRateService;
-	}
+	private IFixRateService fixRateService;
 
 	@Override
 	public void onMessage(Message message) {

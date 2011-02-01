@@ -11,15 +11,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class FixRateService extends AbstractService {
 	private ClassPathXmlApplicationContext context;
-	
+
 	public int serviceRequest(int control) throws ServiceException {
 		switch (control) {
 		case SERVICE_CONTROL_STOP:
 		case SERVICE_CONTROL_SHUTDOWN:
-			
-//			for (String name : context.getBeanNamesForType(SimpleMessageListenerContainer.class)) {
-//				context.getBean(name, SimpleMessageListenerContainer.class).stop();
-//			}
 			context.stop();
 			context.close();
 			shutdown = true;
@@ -36,8 +32,7 @@ public class FixRateService extends AbstractService {
 			context = new ClassPathXmlApplicationContext(
 					"application-context.xml");
 		} catch (Exception e) {
-			EventLog.report("Fix Rate Service", EventLog.ERROR,
-					e.getMessage());
+			EventLog.report("Fix Rate Service", EventLog.ERROR, e.getMessage());
 			PrintWriter writer;
 			try {
 				writer = new PrintWriter(new File("D:/fixrate.log"));
