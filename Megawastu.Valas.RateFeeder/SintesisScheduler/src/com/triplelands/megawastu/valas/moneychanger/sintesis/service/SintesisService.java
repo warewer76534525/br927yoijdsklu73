@@ -19,39 +19,38 @@ public class SintesisService {
 	private Rates sintesisRates = new Rates();
 	private Rates prevSintesisRates = new Rates();
 
+	@Autowired
 	IMessagePublisher<Rates> snapUpdatedPublisher;
 
-	public SintesisService() {
-		log.info("SNAP service created");
-	}
 
-	@Autowired
+	/*@Autowired
 	public void setSnapUpdatedPublisher(IMessagePublisher<Rates> snapUpdatedPublisher) {
 		this.snapUpdatedPublisher = snapUpdatedPublisher;
-	}
+	}*/
 
 	public void setCurrencyListForSintesis(List<String> currencyListForSnap) {
 		this.currencyListForSintesis = currencyListForSnap;
 	}
 
 	public void update(Rates _rates) {
-		List<Rate> listRates = _rates.getRates();
-		Iterator<Rate> rateIterator = listRates.iterator();
-		while (rateIterator.hasNext()) {
-			Rate rate = rateIterator.next();
-			String currency = rate.getCurrency();
-			// remove rate when the currency is not in snap list
-			if (!currencyListForSintesis.contains(currency)) {
-				rateIterator.remove();
-				log.debug("remove rate: " + rate);
-			}
-		}
+		freshRates = filterCurrencyForSintesis(_rates);
+	}
 
-		freshRates = _rates;
+	private Rates filterCurrencyForSintesis(Rates _rates) {
+		List<Rate> listRates = _rates.getRates();
+		List<Rate> filteredList = new ArrayList<Rate>();
+		
+		for (Rate rate : listRates) {
+			if (!currencyListForSintesis.contains(rate.getCurrency())) 
+				continue;
+			filteredList.add(rate);
+		}
+		
+		return new Rates(filteredList);
 	}
 
 	public void publish() {
-		snapUpdatedPublisher.publish(freshRates);
+		snapUpdatedPublisher.publish(sintesisRates);
 	}
 	
 	public void generateSintesis() {
