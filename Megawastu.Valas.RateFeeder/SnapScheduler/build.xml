@@ -80,7 +80,6 @@
 		<jar destfile="${service.dir}/snap-scheduler-service.jar" basedir="${build.dir}">
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
-				<include name="**/*.class" />
 			</fileset>
 			<fileset dir="${src.dir}">
 				<include name="*.xml" />
@@ -100,6 +99,4 @@
 			<arg line="--WinRun4J:UnregisterService" />
 		</exec>
 	</target>
-
-	<target name="buildHello" depends="compile" />
 </project>
