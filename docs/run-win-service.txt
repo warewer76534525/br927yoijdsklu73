@@ -1,3 +1,8 @@
 http://winrun4j.sourceforge.net/
 http://borisinc.wordpress.com/2009/05/31/create-a-windows-service-for-java-using-winrun4j/
 http://borisinc.wordpress.com/category/winrun4j/
+
+agar active mq dapat dijalankan dari windows service maka kita ahrus membuat folder work di bin/win32
+
+http://activemq.2283324.n4.nabble.com/jira-Created-AMQ-2946-Issues-with-Win32-wrapper-td2716403.html
+http://activemq.2283324.n4.nabble.com/jira-Commented-AMQ-2946-Issues-with-Win32-wrapper-td3075004.html

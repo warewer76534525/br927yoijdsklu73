@@ -20,13 +20,7 @@ public class SintesisService {
 	private Rates prevSintesisRates = new Rates();
 
 	@Autowired
-	IMessagePublisher<Rates> snapUpdatedPublisher;
-
-
-	/*@Autowired
-	public void setSnapUpdatedPublisher(IMessagePublisher<Rates> snapUpdatedPublisher) {
-		this.snapUpdatedPublisher = snapUpdatedPublisher;
-	}*/
+	private IMessagePublisher<Rates> snapUpdatedPublisher;
 
 	public void setCurrencyListForSintesis(List<String> currencyListForSnap) {
 		this.currencyListForSintesis = currencyListForSnap;
