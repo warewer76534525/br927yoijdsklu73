@@ -30,16 +30,18 @@
 	</bean>
  	-->
  	
-	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destinationName" value="${jms.fixRate.topic}" />
 		<property name="messageListener" ref="logRateUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
 	</bean>
 
-	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destinationName" value="${jms.fixRate.topic}" />
 		<property name="messageListener" ref="fixRateUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
 	</bean>
 
 	<!-- JMS Publisher configuration -->
