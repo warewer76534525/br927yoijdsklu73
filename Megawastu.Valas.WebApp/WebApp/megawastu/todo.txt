@@ -1,9 +1,0 @@
-1. Add News Entry
-2. View News
-3. Create User
-4. Delete User
-5. Non Aktifkan User
-6. Login
-7. Single Login (hanya boleh sekali login pada saat yang sama
-8. Monitoring User yang login
-9. Penyempurnaan mobile web based client
