@@ -14,6 +14,7 @@ namespace Megawastu.Valas.KursProvider.Specs
         [Test]
         public void Should_detect_row_and_value_changed()
         {
+            
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
