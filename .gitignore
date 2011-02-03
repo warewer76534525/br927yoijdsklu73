@@ -4,6 +4,7 @@
 
 *.sln.cache
 *.suo
+*.war
 
 bin/
 obj/

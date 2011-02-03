@@ -41,7 +41,7 @@
 		<delete dir="${dependency.build.dir}" />
 		<mkdir dir="${dependency.build.dir}" />
 		<mkdir dir="${build.dir}" />
-		<mkdir dir="${rate.directory}" />
+		<!--<mkdir dir="${rate.directory}" />-->
 		<mkdir dir="${build.dir}" />
 	</target>
 
@@ -63,10 +63,13 @@
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
 			</fileset>
+			<fileset dir="${build.dir}">
+				<include name="**/*.*class" />
+			</fileset>
 		</copy>
 		<war destfile="${dist.dir}/moneychanger.war" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
-				<include name="**/*.*" />
+				<include name="**/**.**" />
 			</fileset>
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
