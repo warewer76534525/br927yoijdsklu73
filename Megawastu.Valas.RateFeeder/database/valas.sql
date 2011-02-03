@@ -16,11 +16,25 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`valas` /*!40100 DEFAULT CHARACTER SET l
 
 USE `valas`;
 
-/*Table structure for table `rates` */
+/*Table structure for table `currency` */
 
-DROP TABLE IF EXISTS `rates`;
+DROP TABLE IF EXISTS `currency`;
 
-CREATE TABLE `rates` (
+CREATE TABLE `currency` (
+  `name` varchar(10) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `currency` */
+
+insert  into `currency`(`name`,`type`) values ('AUD','SNAP'),('JPY','SNAP'),('MYR','SINTESIS');
+
+/*Table structure for table `rates_log` */
+
+DROP TABLE IF EXISTS `rates_log`;
+
+CREATE TABLE `rates_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `currency` varchar(5) NOT NULL,
   `bid` double NOT NULL,
@@ -28,11 +42,9 @@ CREATE TABLE `rates` (
   `timestamp` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `currency_index` (`currency`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7880 DEFAULT CHARSET=latin1;
 
-/*Data for the table `rates` */
-
-insert  into `rates`(`id`,`currency`,`bid`,`ask`,`timestamp`) values (1,'IDR',0,0,'2011-01-18 06:43:01'),(2,'YUI',5,6,'2011-01-18 06:43:01'),(3,'AUD',3,2,'2011-01-18 06:43:01'),(4,'IDR',0,0,'2011-01-18 09:03:57'),(5,'YUI',5,6,'2011-01-18 09:03:57'),(6,'AUD',3,2,'2011-01-18 09:03:57'),(7,'IDR',0,0,'2011-01-19 20:03:09'),(8,'YUI',5,6,'2011-01-19 20:03:09'),(9,'AUD',3,2,'2011-01-19 20:03:09'),(10,'IDR',0,0,'2011-01-19 20:03:27'),(11,'YUI',5,6,'2011-01-19 20:03:27'),(12,'AUD',3,2,'2011-01-19 20:03:27'),(13,'IDR',0,0,'2011-01-19 20:03:47'),(14,'YUI',5,6,'2011-01-19 20:03:47'),(15,'AUD',3,2,'2011-01-19 20:03:47'),(16,'IDR',0,0,'2011-01-19 21:16:15'),(17,'YUI',5,6,'2011-01-19 21:16:15'),(18,'AUD',3,2,'2011-01-19 21:16:15');
+/*Data for the table `rates_log` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

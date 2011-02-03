@@ -49,7 +49,6 @@
 		<property name="fileName" value="${rate.fileName}"></property>
 	</bean>
 
-	<!-- fall back datasource if JNDI look up of main datasource fails -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 
