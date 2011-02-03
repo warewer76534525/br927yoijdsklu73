@@ -13,6 +13,8 @@
 	<!-- Basic Configuration -->
 	<tx:annotation-driven />
 	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger" />
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.sintesis.service" />
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
 	<context:property-placeholder location="application.properties" />
 	<context:annotation-config />
 
@@ -42,17 +44,6 @@
 		<property name="receiveTimeout" value="10000" />
 		<property name="defaultDestination" ref="fixRateListenerDestination" />
 		<property name="messageConverter" ref="ratesMessageConverter" />
-	</bean>
-
-
-	<bean id="sintesisService"
-		class="com.triplelands.megawastu.valas.moneychanger.sintesis.service.SintesisService">
-		<property name="currencyListForSintesis">
-			<list>
-				<value>IDR</value>
-				<value>MYR</value>
-			</list>
-		</property>
 	</bean>
 
 	<!-- Scheduler Config -->
@@ -88,6 +79,23 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- JDBC -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="5" />
+		<property name="maxWait" value="5000" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		autowire="byType" />
 
 </beans>
 

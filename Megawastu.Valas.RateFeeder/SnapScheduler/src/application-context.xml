@@ -10,7 +10,11 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 ">
 	<tx:annotation-driven />
+	
 	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger" />
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
+	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.snap.service" />
+	
 	<context:property-placeholder location="application.properties" />
 	<context:annotation-config />
 	<!-- Basic Configuration -->
@@ -43,16 +47,6 @@
 		<property name="defaultDestination" ref="fixRateListenerDestination"></property>
 		<property name="messageConverter" ref="ratesMessageConverter"></property>
 	</bean>
-	
-	<bean id="snapService"
-		class="com.triplelands.megawastu.valas.moneychanger.snap.service.SnapService">
-		<property name="currencyListForSnap">
-			<list>
-				<value>IDR</value>
-				<value>MYR</value>
-			</list>
-		</property>
-	</bean>
 
 	<!-- Scheduler Config -->
 	<bean name="snapGeneratorJob" class="org.springframework.scheduling.quartz.JobDetailBean">
@@ -83,4 +77,21 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- JDBC -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="5" />
+		<property name="maxWait" value="5000" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		autowire="byType" />
 </beans>

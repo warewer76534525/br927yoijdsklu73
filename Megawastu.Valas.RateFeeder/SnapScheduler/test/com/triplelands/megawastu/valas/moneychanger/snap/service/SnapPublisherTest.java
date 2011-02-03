@@ -32,9 +32,9 @@ public class SnapPublisherTest {
 		Logger.getLogger("org.springframework").setLevel(Level.WARN);
 		BasicConfigurator.configure();
 		
-		Rate idr = new Rate("IDR", 0, 0);
+		Rate idr = new Rate("IDR", 5, 5);
     	Rate aud = new Rate("MYR", 3, 2);
-    	Rate yui = new Rate("YUI", 5, 6);
+    	Rate yui = new Rate("YUI", 2, 7);
     	
     	rates.addRate(yui);
     	rates.addRate(aud);
