@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <project name="master" default="build.library" basedir=".">
+  <property name="db.dir" location="database"/>
+  <property file="${db.dir}/sql.properties" />
   <property name="dist.dir" location="dist"/>
+  <property name="lib.dir" location="ResourceProject"/>
+  
+  <path id="sql.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="mysql.jar" />
+		</fileset>
+	</path>
   
   <target name="build.library">
 	<ant dir="MoneyChangerLib" target="package" inheritAll="false"/>
@@ -29,6 +38,14 @@
   <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap"/>
   
   <target name="init.database">
-	
+	<sql driver="${jdbc.driverClassName}"    
+      classpathref="sql.classpath"         
+      userid="${jdbc.username}"
+      password="${jdbc.password}"
+      print="true"
+      url="jdbc:mysql://localhost/mysql"
+      expandProperties="true">
+		<transaction src="${db.dir}/valas.sql"/>
+	</sql>
   </target>
 </project>

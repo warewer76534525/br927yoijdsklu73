@@ -75,12 +75,24 @@
 		<echo>${name}</echo>
 	</target>
 
-	<target name="deploy" depends="undeploy, package" description="Deploy application">
-		<copy todir="${deploy.path}" preservelastmodified="true">
-			<fileset dir=".">
-				<include name="*.war" />
+	<target name="deploy" depends="package" description="Deploy application">
+		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.*" />
 			</fileset>
 		</copy>
+		<copy todir="${deploy.path}/${name}/WEB-INF/classes/" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
 	</target>
 
 	<target name="undeploy" description="Un-Deploy application">
