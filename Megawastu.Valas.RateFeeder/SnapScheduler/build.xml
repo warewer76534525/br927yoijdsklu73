@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 
 <project name="SnapScheduler">
+	<import file="..\common.xml" />
 	<property name="service.dir" value="${dist.dir}/snap-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
 	<property name="service.name" value="snap-scheduler-service" />
-	
-	<import file="..\common.xml" />
 </project>
