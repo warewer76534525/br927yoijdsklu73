@@ -1,10 +1,23 @@
-<project name="BonaStoco.InternetMessaging" default="install" xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+<project name="Megawastu.Valas.KursProvider" default="install" xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
   <property name="project.config" value="debug"/>
   <property name="deploy.dir" value="${directory::get-current-directory()}"/>
   <property name="solution.dir" value="." />
   <property name="build.base" value="${project::get-name()}" />
   <property name="build.dir" value="${deploy.dir}/${build.base}" />
-  <property name="outputDir" value="${directory::get-current-directory()}/build" />
+  <property name="winservice.name" value="${project::get-name()}.WinService.exe" />
+  <property name="desktop64bit.dir" value="C:\Windows\SysWOW64\config\systemprofile\Desktop" />
+  <property name="desktop32bit.dir" value="C:\Windows\System32\config\systemprofile\Desktop" />
+
+  <property name="Is64BitOperatingSystem" value="false" />
+  <property name="Is64BitProcess" value="false" />
+  <property name="IsWow64Process" value="false" />
+
+  <loadtasks>
+    <fileset>
+      <include name="${tools}\nantcontrib\NAnt.Contrib.Tasks.dll" />
+    </fileset>
+  </loadtasks>
+
   <target name="clean.project">
     <foreach item="Folder" property="foldername">
       <in>
@@ -27,21 +40,76 @@
     <mkdir dir="${build.dir}" unless="${directory::exists(build.dir)}"/>
   </target>
 
-  <!--<target name="copy.to.bonastoco.gui-bin" depends="compile">
-    <copy todir="${bonastoco.gui-bin}" flatten="true" overwrite="true">
-      <fileset basedir="${build.dir}">
-        <include name="${project::get-name()}.Query.dll" />
-        <include name="${project::get-name()}.Query.pdb" />
-        <include name="${project::get-name()}.ViewModel.*" />
-      </fileset>
-    </copy>
-  </target>-->
-
   <target name="compile" depends ="init">
     <exec program="${framework::get-framework-directory(framework::get-target-framework())}\MSBuild.exe"
     commandline="/v:q /p:Configuration=${project.config} /p:OutDir=${build.dir}/"
     workingdir="${solution.dir}" />
   </target>
 
-  <target name="install" depends="compile"/>
+  <target name="DetectOperatingSystemArchitecture" depends="DetectIfWow64Process,DetectIf64BitProcess">
+    <description>
+      This will detect whether the current Operating System is running as a 32-bit or 64-bit Operating System regardless of whether this is a 32-bit or 64-bit process.
+    </description>
+    <property name="Is64BitOperatingSystem" value="${IsWow64Process or Is64BitProcess}" />
+  </target>
+
+  <script language="C#" prefix="MyWin32Calls">
+    <code>
+      <![CDATA[
+			[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+			public static extern bool IsWow64Process(System.IntPtr hProcess, out bool lpSystemInfo);
+ 
+			[Function("IsWow64Process")]
+			public bool IsWow64Process()
+			{
+				bool retVal = false;
+ 
+				IsWow64Process(System.Diagnostics.Process.GetCurrentProcess().Handle, out retVal);
+ 
+				return retVal;
+			}
+    ]]>
+
+
+    </code>
+    <references>
+      <include name="System.dll" />
+    </references>
+  </script>
+
+  <target name="DetectIfWow64Process">
+    <description>
+      Detects whether we are currently in a WoW64 process or not.
+    </description>
+
+    <property name="IsWow64Process" value="${MyWin32Calls::IsWow64Process()}" />
+    <echo message="Setting the [IsWow64Process] property to ${IsWow64Process}." />
+  </target>
+
+  <target name="DetectIf64BitProcess">
+    <description>
+      Detects whether we are currently in a 32-bit or 64-bit process (not necessarily what the OS is running). Note that as of the time of this writing, this will ALWAYS return false because NAnt is compiled to run in 32-bit mode only.
+    </description>
+
+    <!-- This can return x86, x64, AMD64, or IA64 as of the time of this writing. This works for a 32-bit process in a 64-bit OS because the OS makes the 64-bitness transparent to the process in this environment variable. -->
+    <property name="Is64BitProcess" value="${environment::get-variable('PROCESSOR_ARCHITECTURE')!='x86'}" />
+    <echo message="Setting the [Is64BitProcess] property to ${Is64BitProcess}." />
+  </target>
+
+  <target name="prepare.service" depends="DetectOperatingSystemArchitecture">
+    <choose>
+      <when test="${Is64BitOperatingSystem}">
+        <mkdir dir="${desktop64bit.dir}" unless="${directory::exists(desktop64bit.dir)}"/>
+      </when>
+      <otherwise>
+        <mkdir dir="${desktop32bit.dir}" unless="${directory::exists(desktop32bit.dir)}"/>
+      </otherwise>
+    </choose>
+  </target>
+
+  <target name="install.service" depends="compile, prepare.service">
+    <exec program="${build.dir}/${winservice.name}"
+        commandline="install"
+        workingdir="${build.dir}" />
+  </target>
 </project>
