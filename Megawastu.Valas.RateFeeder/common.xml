@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="common">
+<project>
 	<property name="dist.dir" location="." />
 	<property name="build.dir" value="bin" />
 	<property name="lib.dir" value="../ResourceProject" />

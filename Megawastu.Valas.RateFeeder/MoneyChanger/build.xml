@@ -1,80 +1,81 @@
 <?xml version="1.0"?>
 
 <project name="moneychanger" basedir=".">
+	<import file="..\common.xml" />
+
 	<property file="build.properties" />
 	<property file="src/scheduller.properties" />
 
-	<property name="src.dir" value="src" />
-	<property name="web.dir" value="WebContent" />
-	<property name="build.dir" value="${web.dir}/WEB-INF/classes" />
 	<property name="name" value="moneychanger" />
+
+
+	<property name="web.dir" value="WebContent" />
+	<property name="webinf.dir" value="WebContent/WEB-INF" />
+
+	<property name="service.dir" value="${dist.dir}/war" />
+	<property name="service.lib.dir" value="WebContent/WEB-INF/lib" />
+	<property name="service.name" value="${name}" />
 
 	<property name="dependency.project" value="../MoneyChangerLib" />
 	<property name="dependency.build.dir" value="${dependency.project}/build" />
 	<property name="dependency.src.dir" value="${dependency.project}/src" />
-	
+
 	<path id="master-classpath">
 		<fileset dir="${web.dir}/WEB-INF/lib">
 			<include name="*.jar" />
 		</fileset>
-		<!-- We need the servlet API classes: -->
-		<!--  * for Tomcat 5/6 use servlet-api.jar -->
-		<!--  * for other app servers - check the docs -->
 		<fileset dir="${appserver.lib}">
 			<include name="servlet*.jar" />
 		</fileset>
 		<pathelement path="${build.dir}" />
 	</path>
 
-	<target name="compile-dep" description="Compile project dependency">
-		<delete dir="${dependency.build.dir}"></delete>
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete file="${web.dir}/WEB-INF/lib/MoneyChangerLib.jar" />
+		<delete file="${dist.dir}/moneychanger.war" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${dist.dir}" />
+		<delete dir="${dependency.build.dir}" />
 		<mkdir dir="${dependency.build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${rate.directory}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="compile-dep" description="Compile project dependency">
 		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
 			<src path="${dependency.src.dir}" />
 			<classpath refid="master-classpath" />
 		</javac>
 	</target>
 
-	<target name="jar-dep" depends="compile-dep" description="Compile project dependency">
+	<target name="package-dep" depends="init, compile-dep" description="Compile project dependency">
 		<delete file="${web.dir}/WEB-INF/lib/MoneyChangerLib.jar" />
 		<jar destfile="${web.dir}/WEB-INF/lib/MoneyChangerLib.jar" basedir="${dependency.build.dir}" includes="**/*.class" />
 	</target>
 
-	<target name="build" depends="jar-dep" description="Compile main source tree java files">
-		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
-			<src path="${src.dir}" />
-			<classpath refid="master-classpath" />
-		</javac>
-	</target>
 
-	<target name="deploy" depends="build" description="Deploy application">
-		<mkdir dir="${rate.directory}" />
-		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
-			<fileset dir="${web.dir}">
-				<include name="**/*.*" />
-			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="**/*.*" />
-			</fileset>
-		</copy>
-		<copy todir="${deploy.path}/${name}/WEB-INF/classes/" preservelastmodified="true">
+	<target name="package" depends="package-dep, compile" description="Package service project">
+		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
 			</fileset>
 		</copy>
-	</target>
-
-	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
-		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
-	</target>
-
-	<target name="deploywar" depends="build" description="Deploy application as a WAR file">
-		<war destfile="${name}.war" webxml="${web.dir}/WEB-INF/web.xml">
+		<war destfile="${dist.dir}/moneychanger.war" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
 				<include name="**/*.*" />
 			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
 		</war>
+		<echo>${name}</echo>
+	</target>
+
+	<target name="deploy" depends="undeploy, package" description="Deploy application">
 		<copy todir="${deploy.path}" preservelastmodified="true">
 			<fileset dir=".">
 				<include name="*.war" />
@@ -82,22 +83,17 @@
 		</copy>
 	</target>
 
-	<target name="clean" description="Clean output directories">
-		<echo>delete directory ${build.dir}</echo>
-		<delete>			
-			<fileset dir="${build.dir}">
-				<include name="**/*.class" />
-			</fileset>
-		</delete>
-	</target>
-
 	<target name="undeploy" description="Un-Deploy application">
 		<delete>
 			<fileset dir="${deploy.path}/${name}">
 				<include name="**/*.*" />
 			</fileset>
+			<fileset file="${deploy.path}/${name}.war">
+				<include name="**/*.*" />
+			</fileset>
 		</delete>
 	</target>
+
 	<!-- ============================================================== -->
 	<!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
 	<!-- ============================================================== -->
@@ -110,15 +106,14 @@
 		</fileset>
 	</path>
 
-	<taskdef name="install" classname="org.apache.catalina.ant.InstallTask">
-		<classpath refid="catalina-ant-classpath" />
-	</taskdef>
 	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
 		<classpath refid="catalina-ant-classpath" />
 	</taskdef>
+
 	<taskdef name="list" classname="org.apache.catalina.ant.ListTask">
 		<classpath refid="catalina-ant-classpath" />
 	</taskdef>
+
 	<taskdef name="start" classname="org.apache.catalina.ant.StartTask">
 		<classpath refid="catalina-ant-classpath" />
 	</taskdef>
@@ -127,7 +122,7 @@
 	</taskdef>
 
 	<target name="install" description="Install application in Tomcat">
-		<install url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" war="${name}" />
+		<install url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/moneychanger" war="moneychanger.war" />
 	</target>
 
 	<target name="reload" description="Reload application in Tomcat">
@@ -135,7 +130,8 @@
 	</target>
 
 	<target name="remove" description="Remove application in Tomcat">
-		<delete dir="${deploy.path}/${name}"></delete>
+		<delete dir="${deploy.path}/${name}">
+		</delete>
 	</target>
 
 	<target name="start" description="Start Tomcat application">
@@ -166,40 +162,4 @@
 
 	<!-- End Tomcat tasks -->
 
-	<!-- Begin Test Task -->
-
-	<property name="test.dir" value="test" />
-
-	<target name="buildtests" description="Compile test tree java files">
-		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.5" target="1.5" debug="true" deprecation="false" optimize="false" failonerror="true">
-			<src path="${test.dir}" />
-			<classpath refid="master-classpath" />
-		</javac>
-	</target>
-
-	<target name="tests" depends="build, buildtests" description="Run tests">
-		<junit printsummary="on" fork="false" haltonfailure="false" failureproperty="tests.failed" showoutput="true">
-			<classpath refid="master-classpath" />
-			<formatter type="brief" usefile="false" />
-
-			<batchtest>
-				<fileset dir="${build.dir}">
-					<include name="**/*Tests.*" />
-				</fileset>
-			</batchtest>
-
-		</junit>
-
-		<fail if="tests.failed">
-	            tests.failed=${tests.failed}
-	            ***********************************************************
-	            ***********************************************************
-	            ****  One or more tests failed!  Check the output ...  ****
-	            ***********************************************************
-	            ***********************************************************
-	        </fail>
-	</target>
-
-	<!-- End Test Task -->
 </project>
