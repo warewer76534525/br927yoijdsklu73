@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project name="master" default="build.library" basedir=".">
+  <property name="dist.dir" location="dist"/>
+  
+  <target name="build.library">
+	<ant dir="MoneyChangerLib" target="package" inheritAll="false"/>
+  </target>
+  
+  <target name="build.fixrate" depends="build.library">
+	<ant dir="FixRate" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.sintesis" depends="build.library">
+	<ant dir="SintesisScheduler" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.snap" depends="build.library">
+	<ant dir="SnapScheduler" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="clean.dist">
+	<delete dir="${dist.dir}"/>
+  </target>
+  
+  <target name="init.dist">
+	<mkdir dir="${dist.dir}"/>
+  </target>
+  
+  <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap"/>
+</project>

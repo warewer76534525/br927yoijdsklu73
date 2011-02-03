@@ -1,18 +1,14 @@
 <?xml version="1.0"?>
 
-<project name="SnapScheduler" basedir="../">
-	<property name="project.dir" value="${basedir}/SnapScheduler" />
-	<property name="build.dir" value="${project.dir}/build" />
-	<property name="service.dir" value="${project.dir}/service" />
+<project name="SnapScheduler">
+	<property name="dist.dir" location="." />
+	<property name="build.dir" value="bin" />
+	<property name="service.dir" value="${dist.dir}/snap-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
-	<property name="lib.dir" value="${basedir}/ResourceProject" />
-	<property name="src.dir" value="${project.dir}/src" />
-	<property name="tools.dir" value="${base.dir}/../tools" />
+	<property name="lib.dir" value="../ResourceProject" />
+	<property name="src.dir" value="src" />
+	<property name="tools.dir" value="../tools" />
 	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
-
-	<property name="dependency.project" value="${basedir}/MoneyChangerLib" />
-	<property name="dependency.build.dir" value="${dependency.project}/build" />
-	<property name="dependency.src.dir" value="${dependency.project}/src" />
 
 	<path id="master-classpath">
 		<fileset dir="${lib.dir}">
@@ -21,20 +17,15 @@
 		<pathelement path="${build.dir}" />
 	</path>
 
-	<target name="compile-dep" description="Compile project dependency">
-		<mkdir dir="${dependency.build.dir}" />
-		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
-			<src path="${dependency.src.dir}" />
-			<classpath refid="master-classpath" />
-		</javac>
+	<target name="clean">
+		<delete dir="${build.dir}" />
 	</target>
 
-	<target name="jar-dep" depends="compile-dep" description="Compile project dependency">
-		<delete file="${lib.dir}/MoneyChangerLib.jar" />
-		<jar destfile="${lib.dir}/MoneyChangerLib.jar" basedir="${dependency.build.dir}" includes="**/*.class" />
+	<target name="init" depends="clean">
+		<mkdir dir="${build.dir}" />
 	</target>
 
-	<target name="compile" depends="jar-dep" description="Compile main source tree java files">
+	<target name="compile" depends="init" description="Compile main source tree java files">
 		<mkdir dir="${build.dir}" />
 		<javac destdir="${build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
 			<src path="${src.dir}" />
@@ -56,6 +47,10 @@
 			<fileset dir="${src.dir}">
 				<include name="*.ini" />
 			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
 		</copy>
 	</target>
 
@@ -76,19 +71,15 @@
 		</copy>
 	</target>
 
-	<target name="package-service" depends="compile, copy-service-libs" description="Package service project">
+	<target name="package" depends="compile, copy-service-libs" description="Package service project">
 		<jar destfile="${service.dir}/snap-scheduler-service.jar" basedir="${build.dir}">
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="*.xml" />
-				<include name="*.properties" />
-			</fileset>
 		</jar>
 	</target>
 
-	<target name="install.service" depends="package-service">
+	<target name="install.service" depends="package">
 		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
 			<arg line="--WinRun4J:RegisterService" />
 		</exec>
