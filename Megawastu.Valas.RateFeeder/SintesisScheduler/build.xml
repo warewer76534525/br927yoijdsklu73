@@ -1,93 +1,9 @@
 <?xml version="1.0"?>
 
 <project name="SintesisScheduler">
-	<property name="dist.dir" location="." />
-	<property name="build.dir" value="bin" />
 	<property name="service.dir" value="${dist.dir}/sintesis-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
-	<property name="lib.dir" value="../ResourceProject" />
-	<property name="src.dir" value="src" />
-	<property name="tools.dir" value="../tools" />
-	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
-
-	<path id="master-classpath">
-		<fileset dir="${lib.dir}">
-			<include name="*.jar" />
-		</fileset>
-		<pathelement path="${build.dir}" />
-	</path>
-
-	<target name="clean">
-		<delete dir="${build.dir}" />
-	</target>
-
-	<target name="init" depends="clean">
-		<mkdir dir="${build.dir}" />
-	</target>
-
-	<target name="compile" depends="init" description="Compile main source tree java files">
-		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
-			<src path="${src.dir}" />
-			<classpath refid="master-classpath" />
-		</javac>
-	</target>
-
-	<target name="clean-service">
-		<delete dir="${service.dir}" />
-	</target>
-
-	<target name="init-service" depends="clean-service">
-		<mkdir dir="${service.dir}" />
-		<mkdir dir="${service.lib.dir}" />
-	</target>
-
-	<target name="copy-service-config" depends="init-service">
-		<copy todir="${service.dir}">
-			<fileset dir="${src.dir}">
-				<include name="*.ini" />
-			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="*.xml" />
-				<include name="*.properties" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="copy-service-tools" depends="copy-service-config">
-		<copy todir="${service.dir}">
-			<fileset dir="${winrun4j.dir}">
-				<include name="*.exe" />
-				<include name="*.jar" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="copy-service-libs" depends="copy-service-tools">
-		<copy todir="${service.lib.dir}">
-			<fileset dir="${lib.dir}">
-				<include name="*.jar" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="package" depends="compile, copy-service-libs" description="Package service project">
-		<jar destfile="${service.dir}/sintesis-scheduler-service.jar" basedir="${build.dir}">
-			<fileset dir="${build.dir}">
-				<include name="**/*.class" />
-			</fileset>
-		</jar>
-	</target>
-
-	<target name="install.service" depends="package">
-		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
-			<arg line="--WinRun4J:RegisterService" />
-		</exec>
-	</target>
-
-	<target name="uninstall.service">
-		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
-			<arg line="--WinRun4J:UnregisterService" />
-		</exec>
-	</target>
+	<property name="service.name" value="sintesis-scheduler-service" />
+	
+	<import file="..\common.xml"/>
 </project>

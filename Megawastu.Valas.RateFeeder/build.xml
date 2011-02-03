@@ -27,4 +27,8 @@
   </target>
   
   <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap"/>
+  
+  <target name="init.database">
+	
+  </target>
 </project>
