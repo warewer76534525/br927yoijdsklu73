@@ -12,20 +12,20 @@ namespace Megawastu.Valas.KursProvider.WinService
         static void Main(string[] args)
         {
 
-            RunConfiguration cfg = RunnerConfigurator.New(x =>   //1
+            RunConfiguration cfg = RunnerConfigurator.New(x =>
             {
-                x.ConfigureService<KursProviderService>(s =>               //2
+                x.ConfigureService<KursProviderService>(s =>               
                 {
-                    s.Named("tc");                                //3
-                    s.HowToBuildService(name => new KursProviderService());  //4
-                    s.WhenStarted(tc => tc.Start());              //5
-                    s.WhenStopped(tc => tc.Stop());               //6
+                    s.Named("tc");                                
+                    s.HowToBuildService(name => new KursProviderService());  
+                    s.WhenStarted(tc => tc.Start());              
+                    s.WhenStopped(tc => tc.Stop());               
                 });
-                x.RunAsLocalSystem();                            //7
+                x.RunAsLocalSystem();                            
 
-                x.SetDescription("Kurs Provider Service");        //8
-                x.SetDisplayName("Kurs Provider Service");                       //9
-                x.SetServiceName("Kurs Provider Service");                       //10
+                x.SetDescription("Kurs Provider Service");       
+                x.SetDisplayName("Kurs Provider Service");       
+                x.SetServiceName("Kurs Provider Service");       
             });
             Runner.Host(cfg, args);
             

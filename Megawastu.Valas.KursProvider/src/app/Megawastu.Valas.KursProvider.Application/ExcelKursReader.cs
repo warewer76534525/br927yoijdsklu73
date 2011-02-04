@@ -9,7 +9,8 @@ namespace Megawastu.Valas.KursProvider.Application
 {
     public class ExcelKursReader
     {
-        string excelPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ratesource.xls");
+        //string excelPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ratesource.xls");
+        string excelPath = KursProviderConfig.EXCEL_RATE_SOURCE_LOCATION;
 
         Excel.Application xlApp = new Excel.ApplicationClass();
         Excel.Workbook xlWorkBook;

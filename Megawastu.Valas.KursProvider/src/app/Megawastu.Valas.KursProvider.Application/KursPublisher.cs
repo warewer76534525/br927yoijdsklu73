@@ -8,11 +8,12 @@ namespace Megawastu.Valas.KursProvider.Application
     public class KursPublisher
     {
         WebClient webClient = new WebClient();
-        static readonly string MONEY_CHANGER_ENDPOINT = "http://192.168.1.1:8080/moneychanger/rest/rates";
+        static readonly string MONEY_CHANGER_ENDPOINT = KursProviderConfig.MONEY_CHANGER_REST_URL;
 
         public void Publish(IList<Kurs> dollarKurs)
         {
             webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            System.Console.WriteLine(dollarKurs.ToString());
             webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(new Rates { rates = dollarKurs }));
         }
 

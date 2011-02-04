@@ -7,10 +7,10 @@ namespace Megawastu.Valas.KursProvider.Application
 {
     public class KursExcelProvider
     {
+        ExcelKursReader reader = new ExcelKursReader();
+
         public void Start()
         {
-
-            ExcelKursReader reader = new ExcelKursReader();
             KursPublisher publisher = new KursPublisher();
 
             reader.Open();
@@ -33,7 +33,12 @@ namespace Megawastu.Valas.KursProvider.Application
 
         public void Stop()
         {
-            
+            reader.Close();
+        }
+
+        ~KursExcelProvider()
+        {
+            reader.Close();
         }
     }
 }
