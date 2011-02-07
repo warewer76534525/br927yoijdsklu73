@@ -52,6 +52,8 @@ CREATE TABLE `rates_log` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
+DROP TABLE IF EXISTS `mwp_news`;
+
 CREATE TABLE `mwp_news` (
   `id` int(11) NOT NULL auto_increment,
   `headline` varchar(200) NOT NULL,
@@ -75,6 +77,8 @@ INSERT INTO `mwp_news` VALUES (2, 'testing aplikasi yang kedua untuk news', 'tes
 -- Table structure for table `mwp_session`
 -- 
 
+DROP TABLE IF EXISTS `mwp_session`;
+
 CREATE TABLE `mwp_session` (
   `id` int(11) NOT NULL auto_increment,
   `auth` int(11) NOT NULL,
@@ -95,6 +99,7 @@ INSERT INTO `mwp_session` VALUES (3, 1, '2011-02-02 11:20:36', '127.0.0.1', 'Moz
 -- 
 -- Table structure for table `mwp_users`
 -- 
+DROP TABLE IF EXISTS `mwp_users`;
 
 CREATE TABLE `mwp_users` (
   `id` int(11) NOT NULL auto_increment,

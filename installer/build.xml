@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="master" basedir=".">
+  <property name="db.dir" location="sql"/>
+  <property file="${db.dir}/sql.properties" />
+  <property name="bin.dir" location="bin"/>
+  <property name="fixrate-service.dir" location="${bin.dir}/fixrate-service"/>
+  <property name="sintesis-service.dir" location="${bin.dir}/sintesis-service"/>
+  <property name="snap-service.dir" location="${bin.dir}/snap-service"/>
+  <property name="lib.dir" value="lib" />
+  
+  <path id="sql.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="mysql.jar" />
+		</fileset>
+  </path>
+  
+  <target name="install.fixrate-service">
+		<exec dir="${fixrate-service.dir}" executable="${fixrate-service.dir}/service.exe">
+			<arg line="--WinRun4J:RegisterService" />
+		</exec>
+  </target>
+
+  <target name="install.sintesis-service">
+		<exec dir="${sintesis-service.dir}" executable="${sintesis-service.dir}/service.exe">
+			<arg line="--WinRun4J:RegisterService" />
+		</exec>
+  </target>
+  
+  <target name="install.snap-service">
+		<exec dir="${snap-service.dir}" executable="${snap-service.dir}/service.exe">
+			<arg line="--WinRun4J:RegisterService" />
+		</exec>
+  </target>
+  
+  <target name="install.all.service" depends="install.fixrate-service, install.sintesis-service, install.snap-service"/>
+  
+  <target name="uninstall.fixrate-service">
+		<exec dir="${fixrate-service.dir}" executable="${fixrate-service.dir}/service.exe">
+			<arg line="--WinRun4J:UnregisterService" />
+		</exec>
+  </target>
+  
+  <target name="uninstall.sintesis-service">
+		<exec dir="${sintesis-service.dir}" executable="${sintesis-service.dir}/service.exe">
+			<arg line="--WinRun4J:UnregisterService" />
+		</exec>
+  </target>
+  
+  <target name="uninstall.snap-service">
+		<exec dir="${snap-service.dir}" executable="${snap-service.dir}/service.exe">
+			<arg line="--WinRun4J:UnregisterService" />
+		</exec>
+  </target>
+  
+  <target name="uninstall.all.service" depends="uninstall.snap-service, uninstall.sintesis-service, uninstall.fixrate-service"/>
+  
+  <target name="init.database">
+	<sql driver="${jdbc.driverClassName}"    
+      classpathref="sql.classpath"         
+      userid="${jdbc.username}"
+      password="${jdbc.password}"
+      print="true"
+      url="jdbc:mysql://localhost/mysql"
+      expandProperties="true">
+		<transaction src="${db.dir}/valas.sql"/>
+	</sql>
+  </target>
+</project>

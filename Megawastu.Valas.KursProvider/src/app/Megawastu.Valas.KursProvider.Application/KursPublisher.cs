@@ -10,11 +10,10 @@ namespace Megawastu.Valas.KursProvider.Application
         WebClient webClient = new WebClient();
         static readonly string MONEY_CHANGER_ENDPOINT = KursProviderConfig.MONEY_CHANGER_REST_URL;
 
-        public void Publish(IList<Kurs> dollarKurs)
+        public void Publish(Rates rates)
         {
             webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
-            System.Console.WriteLine(dollarKurs.ToString());
-            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(new Rates { rates = dollarKurs }));
+            webClient.UploadString(MONEY_CHANGER_ENDPOINT, Serialize(rates));
         }
 
         private string Serialize(Rates dollarKurs)

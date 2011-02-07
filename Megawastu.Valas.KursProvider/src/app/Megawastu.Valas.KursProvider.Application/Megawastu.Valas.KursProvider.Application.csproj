@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelKiller.cs" />
     <Compile Include="ExcelKursReader.cs" />
     <Compile Include="KursExcelProvider.cs" />
     <Compile Include="KursProviderConfig.cs" />

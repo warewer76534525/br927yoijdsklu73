@@ -7,18 +7,25 @@ namespace Megawastu.Valas.KursProvider.WinService
     class KursProviderService
     {
         KursExcelProvider kursExcelProvider = new KursExcelProvider();
+        ExcelKiller excelKiller = new ExcelKiller();
+
         public void Start()
         {
-            new Thread(() =>
+            Thread thread = new Thread(() =>
             {
                 
                 kursExcelProvider.Start();
-            }).Start();
+            });
+            
+            thread.IsBackground = true;
+
+            thread.Start();
         }
 
         public void Stop()
         {
             kursExcelProvider.Stop();
+            excelKiller.KillExcelProcessForThisApp();
         }
     }
 }

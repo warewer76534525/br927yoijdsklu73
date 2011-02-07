@@ -23,9 +23,9 @@ namespace Megawastu.Valas.KursProvider.WinService
                 });
                 x.RunAsLocalSystem();                            
 
-                x.SetDescription("Kurs Provider Service");       
-                x.SetDisplayName("Kurs Provider Service");       
-                x.SetServiceName("Kurs Provider Service");       
+                x.SetDescription("Megawastu Kurs Provider Service");
+                x.SetDisplayName("Megawastu Kurs Provider Service");
+                x.SetServiceName("Megawastu Kurs Provider Service");
             });
             Runner.Host(cfg, args);
             
