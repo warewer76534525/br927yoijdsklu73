@@ -34,12 +34,12 @@ namespace Megawastu.Valas.KursProvider.Application
 
             for (int i = 0; i < 19; i++)
             {
-                kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[22 + i, 3]) });
+                kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3]) });
             }
 
             for (int i = 0; i < 18; i++)
             {
-                kursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = Convert.ToDouble(valueArray[22 + i, 2]), bid = Convert.ToDouble(valueArray[45 + i, 3]) });
+                kursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[45 + i, 3]) });
             }
 
             return kursList;
@@ -52,6 +52,11 @@ namespace Megawastu.Valas.KursProvider.Application
 
             xlWorkBook = xlApp.Workbooks.Open(excelPath, 0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, true, 0, true, 1, 0);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+        }
+
+        private double ConvertToDoubleTwoDecimal(object number) 
+        {
+            return double.Parse(Convert.ToDouble(number).ToString("####0.00"));
         }
 
         public void Close()
