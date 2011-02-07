@@ -11,7 +11,7 @@ obj/
 build/
 /Megawastu.Valas.RateFeeder/MoneyChanger/WebContent/WEB-INF/lib/MoneyChangerLib.jar
 service/
-dis/
+dist/
 *-service/
 /Megawastu.Valas.RateFeeder/MoneyChanger/moneychanger.war
 /Megawastu.Valas.RateFeeder/MoneyChanger/build1.xml
