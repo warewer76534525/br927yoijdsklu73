@@ -14,16 +14,19 @@ namespace Megawastu.Valas.KursProvider.Specs
         {
             KursPublisher publisher = new KursPublisher();
 
-            publisher.Publish(new List<Kurs> 
+            publisher.Publish(new Rates
+            {
+                dollarRates = new List<Kurs> 
                 { 
                     new Kurs{ currency = "IDR", ask = 8.867, bid = 8.999 }, 
                     new Kurs{ currency = "EUR", ask = 8.867, bid = 8.999 }, 
                     new Kurs{ currency = "AUD", ask = 8.867, bid = 8.999 }, 
-                });
+                }
+            });
         }
 
         [Test]
-        public void Should_convert_to_json_string() 
+        public void Should_convert_to_json_string()
         {
             string json = JsonConvert.SerializeObject(new List<Kurs> 
             { 

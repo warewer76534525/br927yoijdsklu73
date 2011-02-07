@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using Excel = Microsoft.Office.Interop.Excel;
 using Megawastu.Valas.KursProvider.ViewModel;
-using System.IO;
 using Microsoft.Office.Interop.Excel;
 
 namespace Megawastu.Valas.KursProvider.Application
 {
     public class ExcelKursReader
     {
-        //string excelPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ratesource.xls");
         string excelPath = KursProviderConfig.EXCEL_RATE_SOURCE_LOCATION;
 
         Excel.Application xlApp = new Excel.ApplicationClass();
@@ -18,31 +16,34 @@ namespace Megawastu.Valas.KursProvider.Application
         object misValue = System.Reflection.Missing.Value;
         
 
-        public IList<Kurs> GetKurs()
+        public Rates GetAllRates()
         {    
             //xlWorkSheet.Change += new Excel.DocEvents_ChangeEventHandler(xlWorkSheet_Change);
            Range excelRange = xlWorkSheet.UsedRange;
             object[,] valueArray = (object[,])excelRange.get_Value(
                 XlRangeValueDataType.xlRangeValueDefault);
-            
-            return ConvertToKurs(valueArray);
+
+            return ConvertToRates(valueArray);
         }
 
-        private IList<Kurs> ConvertToKurs(object[,] valueArray)
+        private Rates ConvertToRates(object[,] valueArray)
         {
-            IList<Kurs> kursList = new List<Kurs>();
+            IList<Kurs> dollarKursList = new List<Kurs>();
 
             for (int i = 0; i < 19; i++)
             {
-                kursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3]) });
+                dollarKursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3]) });
             }
+
+
+            IList<Kurs> idrKursList = new List<Kurs>();
 
             for (int i = 0; i < 18; i++)
             {
-                kursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[45 + i, 3]) });
+                idrKursList.Add(new Kurs { currency = valueArray[44 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[44 + i, 3]) });
             }
 
-            return kursList;
+            return new Rates { dollarRates = dollarKursList, idrRates = idrKursList };
         }
 
         public void Open()

@@ -8,19 +8,22 @@ namespace Megawastu.Valas.KursProvider.Application
     public class KursExcelProvider
     {
         ExcelKursReader reader = new ExcelKursReader();
+        private volatile bool running = false;
 
         public void Start()
         {
             KursPublisher publisher = new KursPublisher();
+            
+            running = true;
 
             reader.Open();
-            // TODO can be paralalize
-            while (true)
+
+            while (running)
             {
                 try
                 {
-                    IList<Kurs> dollarKurs = reader.GetKurs();
-                    publisher.Publish(dollarKurs);
+                    Rates rates = reader.GetAllRates();
+                    publisher.Publish(rates);
 
                     Thread.Sleep(2000); // TODO atur sleep -> bisa diganti menjadi real times
                 }
@@ -29,16 +32,18 @@ namespace Megawastu.Valas.KursProvider.Application
                     Console.WriteLine(e.Message);
                 }
             }
+
+            reader.Close();
         }
 
         public void Stop()
         {
-            reader.Close();
+            running = false;
         }
 
-        ~KursExcelProvider()
-        {
-            reader.Close();
-        }
+        //~KursExcelProvider()
+        //{
+        //    reader.Close();
+        //}
     }
 }
