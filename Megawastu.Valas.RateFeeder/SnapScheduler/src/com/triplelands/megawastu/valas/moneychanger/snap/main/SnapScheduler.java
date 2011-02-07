@@ -32,10 +32,6 @@ public class SnapScheduler extends AbstractService {
 	@Override
 	public int serviceMain(String[] arg0) throws ServiceException {
 		try {
-			//set property configurer
-			URL url = Loader.getResource("log4j.properties");
-			PropertyConfigurator.configure(url);
-			
 			context = new ClassPathXmlApplicationContext(
 					"application-context.xml");
 		} catch (Exception e) {
