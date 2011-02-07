@@ -16,7 +16,7 @@ namespace Megawastu.Valas.KursProvider.Specs
 
             publisher.Publish(new Rates
             {
-                dollarRates = new List<Kurs> 
+                rates = new List<Kurs> 
                 { 
                     new Kurs{ currency = "IDR", ask = 8.867, bid = 8.999 }, 
                     new Kurs{ currency = "EUR", ask = 8.867, bid = 8.999 }, 

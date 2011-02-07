@@ -15,9 +15,9 @@ namespace Megawastu.Valas.KursProvider.Specs
             ExcelKursReader reader = new ExcelKursReader();
             reader.Open();
             Rates allKurs = reader.GetAllRates();
-            Assert.IsFalse(allKurs.idrRates.Count == 0);
+            Assert.IsFalse(allKurs.rates.Count == 0);
 
-            foreach (var kurs in allKurs.idrRates)
+            foreach (var kurs in allKurs.rates)
             {
                 Console.WriteLine("{0} : {1} {2}", kurs.currency, kurs.ask, kurs.bid);
             }

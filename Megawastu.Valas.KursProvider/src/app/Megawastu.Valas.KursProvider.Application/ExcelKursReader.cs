@@ -36,14 +36,12 @@ namespace Megawastu.Valas.KursProvider.Application
             }
 
 
-            IList<Kurs> idrKursList = new List<Kurs>();
-
             for (int i = 0; i < 18; i++)
             {
-                idrKursList.Add(new Kurs { currency = valueArray[44 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[44 + i, 3]) });
+                dollarKursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[45 + i, 3]) });
             }
 
-            return new Rates { dollarRates = dollarKursList, idrRates = idrKursList };
+            return new Rates { rates = dollarKursList};
         }
 
         public void Open()
