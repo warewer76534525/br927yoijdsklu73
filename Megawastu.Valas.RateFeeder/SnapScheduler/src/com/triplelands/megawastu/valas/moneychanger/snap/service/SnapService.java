@@ -61,6 +61,7 @@ public class SnapService {
 	}
 
 	public void publish() {
+		log.info("publish snap rates"+ rates);
 		snapUpdatedPublisher.publish(rates);
 	}
 

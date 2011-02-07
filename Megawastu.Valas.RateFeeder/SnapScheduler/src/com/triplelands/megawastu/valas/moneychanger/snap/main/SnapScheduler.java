@@ -3,7 +3,10 @@ package com.triplelands.megawastu.valas.moneychanger.snap.main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.net.URL;
 
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.helpers.Loader;
 import org.boris.winrun4j.AbstractService;
 import org.boris.winrun4j.EventLog;
 import org.boris.winrun4j.ServiceException;
@@ -29,6 +32,10 @@ public class SnapScheduler extends AbstractService {
 	@Override
 	public int serviceMain(String[] arg0) throws ServiceException {
 		try {
+			//set property configurer
+			URL url = Loader.getResource("log4j.properties");
+			PropertyConfigurator.configure(url);
+			
 			context = new ClassPathXmlApplicationContext(
 					"application-context.xml");
 		} catch (Exception e) {

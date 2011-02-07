@@ -29,8 +29,7 @@ public class FixRateService extends AbstractService {
 	@Override
 	public int serviceMain(String[] arg0) throws ServiceException {
 		try {
-			context = new ClassPathXmlApplicationContext(
-					"application-context.xml");
+			context = new ClassPathXmlApplicationContext("application-context.xml");
 		} catch (Exception e) {
 			EventLog.report("Fix Rate Service", EventLog.ERROR, e.getMessage());
 			PrintWriter writer;

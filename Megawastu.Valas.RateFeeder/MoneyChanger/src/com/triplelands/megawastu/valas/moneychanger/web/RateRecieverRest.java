@@ -37,6 +37,7 @@ public class RateRecieverRest {
 	@ResponseStatus(CREATED)
 	public void recieveRates(@RequestBody Rates rates,
 			HttpServletResponse response) {
+		log.info("rates: " + rates);
 		ratesUpdatedPublisher.publish(rates);
 	}
 
