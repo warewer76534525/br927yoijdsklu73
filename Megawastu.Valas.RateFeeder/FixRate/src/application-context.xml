@@ -48,7 +48,40 @@
 		<property name="directory" value="${rate.directory}"></property>
 		<property name="fileName" value="${rate.fileName}"></property>
 	</bean>
+	
+	
+	<!-- Scheduler CONFIGURATION -->
+	<bean name="endOfDayJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.triplelands.megawastu.valas.fixrate.scheduler.EndOfDayJob" />
 
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="fixRateService" value-ref="fixRateService" />
+			</map>
+		</property>
+
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="endOfDayJob" />
+		<property name="cronExpression" value="0 0 5 * * ? *" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="endOfDayJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 
@@ -64,4 +97,5 @@
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		autowire="byType" />
+		
 </beans>

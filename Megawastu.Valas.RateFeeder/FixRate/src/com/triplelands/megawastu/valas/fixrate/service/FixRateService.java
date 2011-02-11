@@ -45,6 +45,7 @@ public class FixRateService implements IFixRateService {
 			fixRates.update(fixRate);
 		}
 	}
+	
 
 	@Override
 	public void serialize() {
@@ -65,6 +66,12 @@ public class FixRateService implements IFixRateService {
 			}
 		}
 		log.info("serialize: " + ratesJson);
+	}
+
+	@Override
+	public void reset() {
+		log.info("Reset FixRate");
+		fixRates.reset();
 	}
 
 }

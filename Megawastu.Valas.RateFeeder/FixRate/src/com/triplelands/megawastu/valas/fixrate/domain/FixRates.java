@@ -8,6 +8,8 @@ import java.util.List;
 public class FixRates implements Serializable {
 
 	private List<FixRate> rates = new ArrayList<FixRate>();
+	//private boolean stale;
+	
 
 	public FixRates() {
 
@@ -39,7 +41,6 @@ public class FixRates implements Serializable {
 	 * 
 	 **/
 	public void update(FixRate _rate) {
-		
 		FixRate rate = this.findRateByCurrency(_rate.getCurrency());
 		
 		if (rate == null) {
@@ -64,6 +65,9 @@ public class FixRates implements Serializable {
 
 		return null;
 	}
-
+	
+	public void reset() {
+		rates = new ArrayList<FixRate>();
+	}
 
 }
