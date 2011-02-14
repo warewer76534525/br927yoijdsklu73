@@ -20,12 +20,16 @@
 		<property name="brokerURL" value="${jms.brokerURL}" />
 	</bean>
 
-	<!-- jms listener config -->
+	<!-- jms destination config -->
 	
 	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.fixRate.topic}" />
 	</bean>
+	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.stale.topic}" />
+	</bean>
 	
+	<!-- jms listener config -->
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destination" ref="fixRateListenerDestination" />
@@ -39,9 +43,29 @@
 		<property name="messageListener" ref="fixRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 	</bean>
-
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="fixRateListenerDestination" />
+		<property name="messageListener" ref="staleFixRateUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="staleDestination" />
+		<property name="messageListener" ref="staleUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
+	</bean>
 	<!-- JMS Publisher configuration -->
-
+ 	
+	<bean id="staleJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="staleDestination"></property>
+		<property name="messageConverter" ref="serializableMessageConverter"></property>
+	</bean>
+	
 	<!-- Bean Config -->
 	<bean id="fixRateService"
 		class="com.triplelands.megawastu.valas.fixrate.service.FixRateService">
@@ -65,7 +89,7 @@
 
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="endOfDayJob" />
-		<property name="cronExpression" value="0 0 5 * * ? *" />
+		<property name="cronExpression" value="${endofday.cron}" />
 	</bean>
 
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -82,6 +106,14 @@
 		</property>
 	</bean>
 	
+	<bean id="stalenessTimeoutManager" class="com.triplelands.megawastu.valas.fixrate.scheduler.StalenessTimeoutManager" init-method="start" >
+		<constructor-arg >
+			<value>${stale.timeout.interval}</value>
+		</constructor-arg>
+	</bean>
+
+		
+	<!-- Database Information -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 
@@ -97,5 +129,6 @@
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		autowire="byType" />
-		
+	
+	
 </beans>

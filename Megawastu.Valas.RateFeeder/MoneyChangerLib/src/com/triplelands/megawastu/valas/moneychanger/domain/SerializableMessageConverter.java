@@ -1,5 +1,7 @@
 package com.triplelands.megawastu.valas.moneychanger.domain;
 
+import java.io.Serializable;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.ObjectMessage;
@@ -9,7 +11,7 @@ import org.springframework.jms.support.converter.MessageConversionException;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.stereotype.Component;
 @Component
-public class RatesMessageConverter implements MessageConverter {
+public class SerializableMessageConverter implements MessageConverter {
 
 	@Override
 	public Object fromMessage(Message message) throws JMSException,
@@ -22,8 +24,8 @@ public class RatesMessageConverter implements MessageConverter {
 	public Message toMessage(Object object, Session session)
 			throws JMSException, MessageConversionException {
 		Message message = null;
-		Rates rates = (Rates) object;
-		message = session.createObjectMessage(rates);
+		Serializable serializable = (Serializable) object;
+		message = session.createObjectMessage(serializable);
 		
 		return message;
 	}

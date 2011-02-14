@@ -22,7 +22,7 @@
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="receiveTimeout" value="10000" />
 		<property name="defaultDestination" ref="ratesUpdatedListenerDestination" />
-		<property name="messageConverter" ref="ratesMessageConverter" />
+		<property name="messageConverter" ref="serializableMessageConverter" />
 	</bean>
 
 </beans>

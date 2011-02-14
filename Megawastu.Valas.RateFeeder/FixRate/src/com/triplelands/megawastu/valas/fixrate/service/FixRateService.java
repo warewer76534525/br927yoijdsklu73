@@ -74,4 +74,14 @@ public class FixRateService implements IFixRateService {
 		fixRates.reset();
 	}
 
+	@Override
+	public void stale() {
+		fixRates.stale();
+	}
+
+	@Override
+	public void notStale() {
+		fixRates.notStale();
+	}
+
 }

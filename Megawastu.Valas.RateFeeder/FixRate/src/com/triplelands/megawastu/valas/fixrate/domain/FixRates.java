@@ -8,7 +8,7 @@ import java.util.List;
 public class FixRates implements Serializable {
 
 	private List<FixRate> rates = new ArrayList<FixRate>();
-	//private boolean stale;
+	private boolean stale;
 	
 
 	public FixRates() {
@@ -69,5 +69,16 @@ public class FixRates implements Serializable {
 	public void reset() {
 		rates = new ArrayList<FixRate>();
 	}
+	
+	public boolean isStale() {
+		return stale;
+	}
 
+	public void stale() {
+		stale = true;
+	}
+	
+	public void notStale() {
+		stale = false;
+	}
 }
