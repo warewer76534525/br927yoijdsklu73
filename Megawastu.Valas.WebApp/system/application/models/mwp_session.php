@@ -2,7 +2,7 @@
 
 class mwp_session extends Model {
 
-	var $table = 'mwp_session';	// nama tabel pada database
+	var $table = 'mwp_sessions';	// nama tabel pada database
 
 	function mwp_session()	//konstructor
 	{
@@ -16,12 +16,21 @@ class mwp_session extends Model {
 
 	function get($id)	// meretrieve satu record yang di pilih pada tabel
 	{
-		return $this->db->getwhere($this->table, array('id'=>$id));
+		$this->db->where('session_id', $id);
+		$this->db->where('user_data !=', '');
+		return $this->db->get($this->table);
 	}
 
-	function get_from_auth($auth)	// meretrieve satu record yang di pilih pada tabel
+	function get_all_login()
 	{
-		return $this->db->getwhere($this->table, array('auth'=>$auth));
+		$this->db->where('user_data !=', '');
+		return $this->db->get($this->table);
+	}
+
+	function get_like($auth)	// meretrieve satu record yang di pilih pada tabel
+	{
+		$this->db->like('user_data', $auth); 
+		return $this->db->get($this->table);
 	}
 
 	function insert($data)	// menginsert data ke tabel

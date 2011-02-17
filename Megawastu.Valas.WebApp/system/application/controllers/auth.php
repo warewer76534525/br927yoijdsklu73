@@ -57,27 +57,18 @@ class auth extends MY_Controller {
 
 				//load all library and model needed
 				$this->load->model('mwp_session');
-				$this->load->library('user_agent');
-				$log = $this->mwp_session->get_from_auth($result[0]['id'])->result_array();
+				$log = $this->mwp_session->get_like($result[0]['username'])->result_array();
 
-				if(count($log) == 0){ //jika ternyata belum login
+				//create session
+				$this->session->set_userdata('logged_id', $result[0]['id']);
+				$this->session->set_userdata('logged_auth', $result[0]['username']);
 
-					//insert into session database
-					$session['auth'] = $result[0]['id'];
-					$session['date'] = mdate('%Y%m%d%H%i%s', now());
-					$session['ip_address'] = $this->input->ip_address();
-					$session['user_agent'] = $this->agent->agent_string();
-					$this->mwp_session->insert($session);
-
-					//create session
-					$this->session->set_userdata('logged_id', $result[0]['id']);
-					$this->session->set_userdata('logged_auth', $result[0]['username']);
-
-					redirect('main', true);
-
-				}else{ //sudah login
-					$this->session->set_flashdata('message', 'You already login from '.$log[0]['ip_address']);
+				if(count($log) != 0){ //jika ternyata login di tempat berbeda
+					$this->mwp_session->delete(array('session_id' => $log[0]['session_id']));
 				}
+					
+				redirect('main', true);
+				
 			}else{
 				$this->session->set_flashdata('message', 'Invalid password!');
 			}
@@ -89,14 +80,17 @@ class auth extends MY_Controller {
 
 	function logout(){
 		//cleaning from database
-		$this->load->model('mwp_session');
-		$this->mwp_session->delete(array('auth' => $this->session->userdata('logged_id')));
+		//$this->load->model('mwp_session');
+		//$this->mwp_session->delete(array('auth' => $this->session->userdata('logged_id')));
 		
 		//cleaning from session
-		$array_items = array('logged_id' => '', 'logged_auth' => '');
-		$this->session->unset_userdata($array_items);
+		//$array_items = array('logged_id' => '', 'logged_auth' => '');
+		//$this->session->unset_userdata($array_items);
 
-		redirect('main', true);
+		//redirect('main', true);
+
+		$this->session->sess_destroy();
+		redirect('main');
 	}
 }
 

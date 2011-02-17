@@ -28,12 +28,7 @@ class monitor extends MY_Controller {
 	/* fungsi ini menampilkan semua record yang terdapat pada model */
 	function view_all() {
 		$model = $this->model;
-		$data = $this->$model->get_all()->result_array();
-		
-		$content_data = array(
-			'data' => $data,
-			'users' => $this->mwp_users->get_users(),
-		);
+		$content_data['user'] = $this->$model->get_all_login()->result_array();
 		
 		$data = array(
 			'application' => 'MWP',

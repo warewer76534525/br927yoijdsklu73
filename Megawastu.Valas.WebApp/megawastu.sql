@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Feb 02, 2011 at 08:32 PM
+-- Generation Time: Feb 16, 2011 at 08:58 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -39,23 +39,22 @@ INSERT INTO `mwp_news` VALUES (2, 'testing aplikasi yang kedua untuk news', 'tes
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `mwp_session`
+-- Table structure for table `mwp_sessions`
 -- 
 
-CREATE TABLE `mwp_session` (
-  `id` int(11) NOT NULL auto_increment,
-  `auth` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `ip_address` varchar(15) NOT NULL,
-  `user_agent` varchar(200) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+CREATE TABLE `mwp_sessions` (
+  `session_id` varchar(40) NOT NULL default '0',
+  `ip_address` varchar(16) NOT NULL default '0',
+  `user_agent` varchar(50) NOT NULL,
+  `last_activity` int(10) unsigned NOT NULL default '0',
+  `user_data` text NOT NULL,
+  PRIMARY KEY  (`session_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
--- Dumping data for table `mwp_session`
+-- Dumping data for table `mwp_sessions`
 -- 
 
-INSERT INTO `mwp_session` VALUES (3, 1, '2011-02-02 11:20:36', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:2.0b9) Gecko/20100101 Firefox/4.0b9');
 
 -- --------------------------------------------------------
 
@@ -69,9 +68,10 @@ CREATE TABLE `mwp_users` (
   `password` varchar(200) NOT NULL,
   `status` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- 
 -- Dumping data for table `mwp_users`
 -- 
 
+INSERT INTO `mwp_users` VALUES (3, 'jogi', '21232f297a57a5a743894a0e4a801fc3', 1);

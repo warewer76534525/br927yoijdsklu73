@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 
 <project name="SintesisScheduler">
+	<property name="service.name" value="sintesis-scheduler-service" />
+	<property name="main.class" value="com.triplelands.megawastu.valas.moneychanger.sintesis.main.Main" />
 	<import file="..\common.xml" />
 
 	<property name="service.dir" value="${dist.dir}/sintesis-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
-	<property name="service.name" value="sintesis-scheduler-service" />
-
-
 </project>

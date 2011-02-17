@@ -15,6 +15,16 @@
 		<pathelement path="${build.dir}" />
 	</path>
 	
+	<pathconvert property="manifest.classpath" pathsep=" ">
+		<path refid="master-classpath"/>
+		<mapper>
+			<chainedmapper>
+				<flattenmapper/>
+				<globmapper from="*.jar" to="libs/*.jar"/>
+			</chainedmapper>
+		</mapper>
+	</pathconvert>
+
 	<target name="clean">
 		<delete dir="${build.dir}" />
 	</target>
@@ -70,10 +80,16 @@
 	</target>
 
 	<target name="package" depends="compile, copy-service-libs" description="Package service project">
-		<jar destfile="${service.dir}/fix-rate-service.jar" basedir="${build.dir}">
+		<jar destfile="${service.dir}/${service.name}.jar" basedir="${build.dir}">
+			<!--
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
+			-->
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}"/>
+				<attribute name="Class-Path" value=". ${manifest.classpath}"/>
+        </manifest>
 		</jar>
 	</target>
 
