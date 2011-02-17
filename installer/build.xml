@@ -61,8 +61,23 @@
       password="${jdbc.password}"
       print="true"
       url="jdbc:mysql://localhost/mysql"
-      expandProperties="true">
-		<transaction src="${db.dir}/valas.sql"/>
+      >
+		<transaction src="${db.dir}/valas_ddl.sql"/>
+		<transaction src="${db.dir}/valas_dml.sql"/>
+		<transaction src="${db.dir}/megawastu_web_ddl.sql"/>
+		<transaction src="${db.dir}/megawastu_web_dml.sql"/>
+	</sql>
+  </target>
+  
+  <target name="clean.database">
+	<sql driver="${jdbc.driverClassName}"    
+      classpathref="sql.classpath"         
+      userid="${jdbc.username}"
+      password="${jdbc.password}"
+      print="true"
+      url="jdbc:mysql://localhost/mysql"
+      >
+		<transaction src="${db.dir}/valas_clean.sql"/>
 	</sql>
   </target>
 </project>

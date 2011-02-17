@@ -1,0 +1,1 @@
+DROP database IF EXISTS `valas`;

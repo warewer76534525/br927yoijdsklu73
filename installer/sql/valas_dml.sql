@@ -18,7 +18,7 @@ USE `valas`;
 
 /*Data for the table `currency` */
 
-insert  into `currency`(`name`,`type`) values ('AUD','SNAP'),('AUDIDR','SNAP'),('CAD','SNAP'),('CADIDR','SNAP'),('CHF','SNAP'),('CHFIDR','SNAP'),('CNY','SNAP'),('CNYIDR','SNAP'),('EURIDR','SNAP'),('GBP','SNAP'),('GBPIDR','SNAP'),('HKD','SNAP'),('HKDIDR','SNAP'),('INR','SNAP'),('INRIDR','SNAP'),('JPY','SNAP'),('JPYIDR','SNAP'),('KRW','SNAP'),('KRWIDR','SNAP'),('MYR','SINTESIS'),('MYRIDR','SNAP'),('NZD','SNAP'),('NZDIDR','SNAP'),('PHP','SNAP'),('PHPIDR','SNAP'),('SAR','SNAP'),('SARIDR','SNAP'),('SGD','SNAP'),('SGDIDR','SNAP'),('THB','SNAP'),('THBIDR','SNAP'),('TWD','SNAP'),('TWDIDR','SNAP'),('XAU','SNAP'),('XAUIDR','SNAP');
+insert  into `currency`(`name`,`type`) values ('AUD','SNAP'),('AUDIDR','SNAP'),('CAD','SNAP'),('CADIDR','SNAP'),('CHF','SNAP'),('CHFIDR','SNAP'),('CNY','SINTESIS'),('CNYIDR','SINTESIS'),('EURIDR','SNAP'),('GBP','SNAP'),('GBPIDR','SNAP'),('HKD','SINTESIS'),('HKDIDR','SINTESIS'),('IDR','SINTESIS'),('INR','SINTESIS'),('INRIDR','SINTESIS'),('JPY','SNAP'),('JPYIDR','SNAP'),('KRW','SINTESIS'),('KRWIDR','SINTESIS'),('MYR','SINTESIS'),('MYRIDR','SNAP'),('NZD','SNAP'),('NZDIDR','SNAP'),('PHP','SINTESIS'),('PHPIDR','SINTESIS'),('SAR','SINTESIS'),('SARIDR','SINTESIS'),('SGD','SNAP'),('SGDIDR','SNAP'),('THB','SINTESIS'),('THBIDR','SINTESIS'),('TWD','SNAP'),('TWDIDR','SNAP'),('XAU','SNAP'),('XAUIDR','SNAP');
 
 /*Data for the table `rates_log` */
 
