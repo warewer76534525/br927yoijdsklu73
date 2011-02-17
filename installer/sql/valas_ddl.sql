@@ -26,10 +26,6 @@ CREATE TABLE `currency` (
   PRIMARY KEY (`name`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `currency` */
-
-insert  into `currency`(`name`,`type`) values ('AUD','SNAP'),('AUDIDR','SNAP'),('CAD','SNAP'),('CADIDR','SNAP'),('CHF','SNAP'),('CHFIDR','SNAP'),('CNY','SNAP'),('CNYIDR','SNAP'),('EURIDR','SNAP'),('GBP','SNAP'),('GBPIDR','SNAP'),('HKD','SNAP'),('HKDIDR','SNAP'),('INR','SNAP'),('INRIDR','SNAP'),('JPY','SNAP'),('JPYIDR','SNAP'),('KRW','SNAP'),('KRWIDR','SNAP'),('MYR','SINTESIS'),('MYRIDR','SNAP'),('NZD','SNAP'),('NZDIDR','SNAP'),('PHP','SNAP'),('PHPIDR','SNAP'),('SAR','SNAP'),('SARIDR','SNAP'),('SGD','SNAP'),('SGDIDR','SNAP'),('THB','SNAP'),('THBIDR','SNAP'),('TWD','SNAP'),('TWDIDR','SNAP'),('XAU','SNAP'),('XAUIDR','SNAP');
-
 /*Table structure for table `rates_log` */
 
 DROP TABLE IF EXISTS `rates_log`;
@@ -42,9 +38,7 @@ CREATE TABLE `rates_log` (
   `timestamp` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `currency_index` (`currency`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `rates_log` */
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
