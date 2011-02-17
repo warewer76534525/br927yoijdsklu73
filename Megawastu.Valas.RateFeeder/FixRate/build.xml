@@ -2,9 +2,10 @@
 
 <project name="FixRate">
 	<property name="service.name" value="fix-rate-service" />
+	<property name="main.class" value="com.triplelands.megawastu.valas.fixrate.main.Main" />
 	<import file="..\common.xml" />
 	<property name="service.dir" value="${dist.dir}/fixrate-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
-	
+
 
 </project>
