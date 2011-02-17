@@ -1,0 +1,42 @@
+table {
+  font-size: 150%;
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+}
+
+.lightheader{
+	background-color: #1FC899;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.light {
+	background-color: #e7f9ea;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.light:hover{
+	background-color: #c8d6fb;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.menu{
+	font-family: "Courier New", Courier, mono;
+	font-size: 150%;
+	color: #333333;
+	
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.menu:hover {
+	font-family: "Courier New", Courier, mono;
+	font-size: 150%;
+	color: #1FC899;
+	
+	text-decoration: none;
+	font-weight: bold;
+}
