@@ -10,7 +10,6 @@ bin/
 obj/
 build/
 /Megawastu.Valas.RateFeeder/MoneyChanger/WebContent/WEB-INF/lib/MoneyChangerLib.jar
-service/
 dist/
 *-service/
 /Megawastu.Valas.RateFeeder/MoneyChanger/moneychanger.war
