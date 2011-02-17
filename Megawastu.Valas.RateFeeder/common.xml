@@ -70,7 +70,7 @@
 	</target>
 
 	<target name="package" depends="compile, copy-service-libs" description="Package service project">
-		<jar destfile="${service.dir}/fix-rate-service.jar" basedir="${build.dir}">
+		<jar destfile="${service.dir}/${service.name}.jar" basedir="${build.dir}">
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
