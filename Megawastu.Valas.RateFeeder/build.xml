@@ -4,6 +4,7 @@
   <property file="${db.dir}/sql.properties" />
   <property name="dist.dir" location="dist"/>
   <property name="lib.dir" location="ResourceProject"/>
+  <property name="installer.dir" location="..\installer\bin"/>
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -40,6 +41,12 @@
   </target>
   
   <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap, build.ratefeeder"/>
+  
+  <target name="create.installer" depends="build.all.service">
+	<copy todir="${installer.dir}">
+		<fileset dir="${dist.dir}"/>
+	</copy>
+  </target>
   
   <target name="init.database">
 	<sql driver="${jdbc.driverClassName}"    

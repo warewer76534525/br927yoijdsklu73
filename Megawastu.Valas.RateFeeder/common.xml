@@ -81,9 +81,11 @@
 
 	<target name="package" depends="compile, copy-service-libs" description="Package service project">
 		<jar destfile="${service.dir}/${service.name}.jar" basedir="${build.dir}">
+			<!--
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
+			-->
 			<manifest>
 				<attribute name="Main-Class" value="${main.class}"/>
 				<attribute name="Class-Path" value=". ${manifest.classpath}"/>

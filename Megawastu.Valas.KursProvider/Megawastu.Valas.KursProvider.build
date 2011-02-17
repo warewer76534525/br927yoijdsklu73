@@ -112,4 +112,16 @@
         commandline="install"
         workingdir="${build.dir}" />
   </target>
+
+  <target name="create.installer" depends="compile">
+    <copy todir="..\installer\bin\Megawastu.Valas.KursProvider">
+      <fileset basedir="${build.dir}">
+        <include name="*.*" />
+        <exclude name="*.pdb" />
+        <exclude name="*.Specs.*" />
+        <exclude name="*nunit*" />
+        <exclude name="*.xls" />
+      </fileset>
+    </copy>
+  </target>
 </project>

@@ -6,6 +6,4 @@
 	<import file="..\common.xml" />
 	<property name="service.dir" value="${dist.dir}/fixrate-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
-
-
 </project>
