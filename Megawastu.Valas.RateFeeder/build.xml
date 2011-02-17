@@ -49,7 +49,8 @@
       print="true"
       url="jdbc:mysql://localhost/mysql"
       expandProperties="true">
-		<transaction src="${db.dir}/valas.sql"/>
+		<transaction src="${db.dir}/valas_ddl.sql"/>
+		<transaction src="${db.dir}/valas_dml.sql"/>
 	</sql>
   </target>
 </project>

@@ -1,0 +1,3 @@
+- Ganti database info: WebApps, FixRate, SnapService, SintesisService
+- Ganti path json FixRate
+- Cek Log4j c:/logs
