@@ -1,6 +1,6 @@
 <?php
-$con = mysql_connect('localhost', 'root', 'root');
-$db = mysql_select_db('megawastu', $con);
+$con = mysql_connect('localhost', 'valas', 'valas');
+$db = mysql_select_db('valas', $con);
 
 $result = mysql_query("select headline, type, date from mwp_news");
 
