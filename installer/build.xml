@@ -9,6 +9,8 @@
   <property name="lib.dir" value="lib" />
   <property name="web.home.dir" value="C:\appserv\www\megawastu" />
   <property name="web.src.dir" value="${bin.dir}\megawastu" />
+  <property name="rest.deploy.dir" value="C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps" />
+  <property name="rest.src.file" value="${bin.dir}\moneychanger.war" />
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -60,6 +62,10 @@
 	  <copy todir="${web.home.dir}">
 		<fileset dir="${web.src.dir}"/>
 	  </copy>
+  </target>
+  
+  <target name="install.rest">
+	  <copy file="${rest.src.file}" todir="${rest.deploy.dir}"/>
   </target>
   
   <target name="init.database">

@@ -1,5 +1,3 @@
-USE `valas`;
-
 DROP TABLE IF EXISTS `mwp_news`;
 
 CREATE TABLE `mwp_news` (
