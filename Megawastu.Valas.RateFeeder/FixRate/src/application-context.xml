@@ -1,4 +1,4 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+\<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
@@ -106,7 +106,7 @@
 		</property>
 	</bean>
 	
-	<bean id="stalenessTimeoutManager" class="com.triplelands.megawastu.valas.fixrate.scheduler.StalenessTimeoutManager" init-method="start" >
+	<bean id="stalenessTimeoutManager" class="com.triplelands.megawastu.valas.fixrate.scheduler.StalenessTimeoutManager" init-method="start" destroy-method="shutdown" >
 		<constructor-arg >
 			<value>${stale.timeout.interval}</value>
 		</constructor-arg>

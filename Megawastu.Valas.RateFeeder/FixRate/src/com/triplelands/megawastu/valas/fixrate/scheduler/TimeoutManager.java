@@ -24,6 +24,10 @@ public class TimeoutManager {
 		currentTimeoutTimer = createTimeoutTimer();
 	}
 	
+	public void shutdown() {
+		currentTimeoutTimer.cancel();
+	}
+	
 	private Timer createTimeoutTimer() {
 		Timer tmr = new Timer(false);
 		
