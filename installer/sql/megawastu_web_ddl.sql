@@ -1,5 +1,3 @@
-USE `valas`;
-
 DROP TABLE IF EXISTS `mwp_news`;
 
 CREATE TABLE `mwp_news` (
@@ -12,16 +10,15 @@ CREATE TABLE `mwp_news` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-
 DROP TABLE IF EXISTS `mwp_sessions`;
 
 CREATE TABLE `mwp_sessions` (
-  `session_id` varchar(40) NOT NULL default '0',
-  `ip_address` varchar(16) NOT NULL default '0',
-  `user_agent` varchar(50) NOT NULL,
-  `last_activity` int(10) unsigned NOT NULL default '0',
-  `user_data` text NOT NULL DEFAULT '',
-  PRIMARY KEY  (`session_id`)
+`session_id` varchar(40) NOT NULL default '0',
+`ip_address` varchar(16) NOT NULL default '0',
+`user_agent` varchar(50) NOT NULL,
+`last_activity` int(10) unsigned NOT NULL default '0',
+`user_data` text NOT NULL DEFAULT '',
+PRIMARY KEY (`session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `mwp_users`;
