@@ -68,6 +68,29 @@
 	  <copy file="${rest.src.file}" todir="${rest.deploy.dir}"/>
   </target>
   
+  <macrodef name="service">
+        <attribute name="service"/>
+        <attribute name="action"/>
+        <sequential>
+            <exec executable="cmd.exe">
+                <arg line="/c net @{action} '@{service}'"/>
+            </exec>
+         </sequential>
+  </macrodef>
+
+  <target name="start.services">
+    <service action="start" service="FixRateService"/>
+	<service action="start" service="SintesisSchedulerService"/>
+	<service action="start" service="SnapSchedulerService"/>
+  </target>
+	
+  <target name="stop.services">
+    <service action="stop" service="FixRateService"/>
+	<service action="stop" service="SintesisSchedulerService"/>
+	<service action="stop" service="SnapSchedulerService"/>
+  </target>
+  
+  
   <target name="init.database">
 	<sql driver="${jdbc.driverClassName}"    
       classpathref="sql.classpath"         
