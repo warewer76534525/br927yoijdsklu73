@@ -7,6 +7,8 @@
   <property name="sintesis-service.dir" location="${bin.dir}/sintesis-service"/>
   <property name="snap-service.dir" location="${bin.dir}/snap-service"/>
   <property name="lib.dir" value="lib" />
+  <property name="web.home.dir" value="C:\appserv\www\megawastu" />
+  <property name="web.src.dir" value="${bin.dir}\megawastu" />
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -53,6 +55,12 @@
   </target>
   
   <target name="uninstall.all.service" depends="uninstall.snap-service, uninstall.sintesis-service, uninstall.fixrate-service"/>
+  
+  <target name="install.web">
+	  <copy todir="${web.home.dir}">
+		<fileset dir="${web.src.dir}"/>
+	  </copy>
+  </target>
   
   <target name="init.database">
 	<sql driver="${jdbc.driverClassName}"    
