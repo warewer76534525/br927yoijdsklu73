@@ -1,3 +1,20 @@
-- Ganti database info: WebApps, FixRate, SnapService, SintesisService
-- Ganti path json FixRate
-- Cek Log4j c:/logs
+1. Instalasi semua sofware  yg dibutuhkan. Sesuaikan installer dengan  tipe os (32 vs 64)
+	a. Kurs Provider
+		i. Window installer dan service pack
+		ii. .NET Framework 4.0 atau 3.5
+	b. Rate Feeder server
+		i. Java
+		ii. Xampp or App serv 
+		iii. Tomcat
+		iv. ActiveMQ
+
+1. Perubahan nama database, password, dsb. valas. Ganti database info: WebApps, FixRate, SnapService, SintesisService
+2. Jangan lupa uninstall dulu semua service yang sudah berjalan di server megawastu
+3. Test rest http://localhost:8080/moneychanger/rest/rates 
+4. Web megawastu : http://localhost/megawastu/ 
+5. ActiveMQ test : http://localhost:8161/admin/ 
+6. Nama path tidak boleh terbalik di windows.. Model linux.. Url
+7. Set fix rate path utk write json directory
+8. Create direktori untuk win service excel. Harus buat direktori di desktop dsb..
+9. Log jangan lupa di set khusus untuk error di deployment
+10. Cek Log4j c:/logs
