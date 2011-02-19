@@ -1,3 +1,13 @@
+1. Instalasi semua sofware  yg dibutuhkan. Sesuaikan installer dengan  tipe os (32 vs 64)
+	a. Kurs Provider
+		i. Window installer dan service pack
+		ii. .NET Framework 4.0 atau 3.5
+	b. Rate Feeder server
+		i. Java
+		ii. Xampp or App serv 
+		iii. Tomcat
+		iv. ActiveMQ
+
 1. Perubahan nama database, password, dsb. valas. Ganti database info: WebApps, FixRate, SnapService, SintesisService
 2. Jangan lupa uninstall dulu semua service yang sudah berjalan di server megawastu
 3. Test rest http://localhost:8080/moneychanger/rest/rates 
