@@ -35,6 +35,8 @@
 		<property name="destination" ref="fixRateListenerDestination" />
 		<property name="messageListener" ref="logRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="logRateUpdatedClient"></property>
 	</bean>
 
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -42,6 +44,8 @@
 		<property name="destination" ref="fixRateListenerDestination" />
 		<property name="messageListener" ref="fixRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="fixRateUpdatedClient"></property>
 	</bean>
 	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -58,6 +62,8 @@
 		<property name="destination" ref="staleDestination" />
 		<property name="messageListener" ref="staleUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="staleUpdatedClient"></property>
 	</bean>
 	<!-- JMS Publisher configuration -->
  	
@@ -113,7 +119,13 @@
 			<value>${stale.timeout.interval}</value>
 		</constructor-arg>
 	</bean>
-
+	
+	<bean id="jmsTransactionManager"
+		class="org.springframework.jms.connection.JmsTransactionManager">
+		<property name="connectionFactory">
+			<ref bean="connectionFactory" />
+		</property>
+	</bean>
 		
 	<!-- Database Information -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
 
@@ -21,6 +22,7 @@ public class FixRateUpdatedListener implements MessageListener {
 	private IFixRateService fixRateService;
 
 	@Override
+	@Transactional
 	public void onMessage(Message message) {
 		ObjectMessage mapMessage = (ObjectMessage) message;
 		Rates rates;
@@ -28,10 +30,8 @@ public class FixRateUpdatedListener implements MessageListener {
 			rates = (Rates) mapMessage.getObject();
 			fixRateService.update(rates);
 			fixRateService.serialize();
-			log.info("fix rate upated");
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}
-
 	}
 }
