@@ -1,4 +1,4 @@
-\<beans xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
@@ -49,6 +49,8 @@
 		<property name="destination" ref="fixRateListenerDestination" />
 		<property name="messageListener" ref="staleFixRateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="staleFixRateUpdatedClient"></property>
 	</bean>
 	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
