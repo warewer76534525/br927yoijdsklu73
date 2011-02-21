@@ -17,4 +17,4 @@
 7. Set fix rate path utk write json directory
 8. Create direktori untuk win service excel. Harus buat direktori di desktop dsb..
 9. Log jangan lupa di set khusus untuk error di deployment
-10. Cek Log4j c:/logs
+10.Cek Log4j c:/logs
