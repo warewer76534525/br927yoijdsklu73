@@ -1,6 +1,6 @@
 <?php
-$con = mysql_connect('localhost', 'root', 'root');
-$db = mysql_select_db('megawastu', $con);
+$con = mysql_connect('localhost', 'valas', 'valas');
+$db = mysql_select_db('valas', $con);
 
 $result = mysql_query("select headline, type, date from mwp_news");
 
@@ -8,9 +8,9 @@ $result = mysql_query("select headline, type, date from mwp_news");
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<title>Megawastu Kurs | News</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script src="js/jquery-1.4.4.js"></script>
+	<title>Megawastu | Valuta Asing</title>
+	<link rel="stylesheet" type="text/css" href="../assets/styles/mobile_style.css" />
+	<script src="../assets/scripts/jquery-1.4.4.js"></script>
     </head>
     <body>
 		<div id="menu">
