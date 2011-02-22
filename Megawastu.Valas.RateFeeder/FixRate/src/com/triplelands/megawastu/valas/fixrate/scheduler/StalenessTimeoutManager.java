@@ -68,4 +68,8 @@ public class StalenessTimeoutManager {
 	public void start() {
 		timeoutManager.start();
 	}
+	
+	public void shutdown() {
+		timeoutManager.shutdown();
+	}
 }

@@ -33,6 +33,8 @@
 		<property name="destination" ref="ratesUpdateListenerDestination" />
 		<property name="messageListener" ref="rateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="rateUpdatedSnapClient"></property>
 	</bean>
 
 	<!-- Fix rates publisher -->

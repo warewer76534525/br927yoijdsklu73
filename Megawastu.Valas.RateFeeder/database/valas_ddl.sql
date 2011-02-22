@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `rates_log`;
 
 CREATE TABLE `rates_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `currency` varchar(5) NOT NULL,
+  `currency` varchar(10) NOT NULL,
   `bid` double NOT NULL,
   `ask` double NOT NULL,
   `timestamp` datetime NOT NULL,

@@ -7,6 +7,10 @@
   <property name="sintesis-service.dir" location="${bin.dir}/sintesis-service"/>
   <property name="snap-service.dir" location="${bin.dir}/snap-service"/>
   <property name="lib.dir" value="lib" />
+  <property name="web.home.dir" value="C:\appserv\www\megawastu" />
+  <property name="web.src.dir" value="${bin.dir}\megawastu" />
+  <property name="rest.deploy.dir" value="C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps" />
+  <property name="rest.src.file" value="${bin.dir}\moneychanger.war" />
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -54,6 +58,39 @@
   
   <target name="uninstall.all.service" depends="uninstall.snap-service, uninstall.sintesis-service, uninstall.fixrate-service"/>
   
+  <target name="install.web">
+	  <copy todir="${web.home.dir}">
+		<fileset dir="${web.src.dir}"/>
+	  </copy>
+  </target>
+  
+  <target name="install.rest">
+	  <copy file="${rest.src.file}" todir="${rest.deploy.dir}"/>
+  </target>
+  
+  <macrodef name="service">
+        <attribute name="service"/>
+        <attribute name="action"/>
+        <sequential>
+            <exec executable="cmd.exe">
+                <arg line="/c net @{action} '@{service}'"/>
+            </exec>
+         </sequential>
+  </macrodef>
+
+  <target name="start.services">
+    <service action="start" service="FixRateService"/>
+	<service action="start" service="SintesisSchedulerService"/>
+	<service action="start" service="SnapSchedulerService"/>
+  </target>
+	
+  <target name="stop.services">
+    <service action="stop" service="FixRateService"/>
+	<service action="stop" service="SintesisSchedulerService"/>
+	<service action="stop" service="SnapSchedulerService"/>
+  </target>
+  
+  
   <target name="init.database">
 	<sql driver="${jdbc.driverClassName}"    
       classpathref="sql.classpath"         
@@ -61,8 +98,25 @@
       password="${jdbc.password}"
       print="true"
       url="jdbc:mysql://localhost/mysql"
-      expandProperties="true">
-		<transaction src="${db.dir}/valas.sql"/>
+      >
+		<transaction src="${db.dir}/valas_ddl.sql"/>
+		<transaction src="${db.dir}/valas_dml.sql"/>
+		<transaction src="${db.dir}/valas_user.sql"/>
+		<transaction src="${db.dir}/megawastu_web_ddl.sql"/>
+		<transaction src="${db.dir}/megawastu_web_dml.sql"/>
+	</sql>
+  </target>
+  
+  <target name="clean.database">
+	<sql driver="${jdbc.driverClassName}"    
+      classpathref="sql.classpath"         
+      userid="${jdbc.username}"
+      password="${jdbc.password}"
+      print="true"
+      url="jdbc:mysql://localhost/mysql"
+      >
+		<transaction src="${db.dir}/valas_clean.sql"/>
+		<transaction src="${db.dir}/valas_clean.sql"/>
 	</sql>
   </target>
 </project>
