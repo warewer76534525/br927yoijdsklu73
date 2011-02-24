@@ -12,6 +12,15 @@
 2. Jangan lupa uninstall dulu semua service yang sudah berjalan di server megawastu
 3. Test rest http://localhost:8080/moneychanger/rest/rates 
 4. Web megawastu : http://localhost/megawastu/ 
+
+untuk administrator 
+username : admin 
+password : admin 
+untuk user biasa 
+username : jogi 
+password : jogi 
+
+
 5. ActiveMQ test : http://localhost:8161/admin/ 
 6. Nama path tidak boleh terbalik di windows.. Model linux.. Url
 7. Set fix rate path utk write json directory

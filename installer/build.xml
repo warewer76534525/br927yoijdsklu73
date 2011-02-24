@@ -36,7 +36,7 @@
 		</exec>
   </target>
   
-  <target name="install.all.service" depends="install.fixrate-service, install.sintesis-service, install.snap-service"/>
+  <target name="install.all.service" depends="install.fixrate-service, install.sintesis-service, install.snap-service, install.web, install.rest"/>
   
   <target name="uninstall.fixrate-service">
 		<exec dir="${fixrate-service.dir}" executable="${fixrate-service.dir}/service.exe">

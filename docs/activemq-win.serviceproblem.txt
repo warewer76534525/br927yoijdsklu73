@@ -1,0 +1,5 @@
+http://activemq.2283324.n4.nabble.com/jira-Commented-AMQ-2946-Issues-with-Win32-wrapper-td3075004.html
+
+had this same problem on Windows Server 2008 when running as a service. It seems to be related to a problem in determing or creating the temp folder that Jetty needs. The "work" folder is one of the locations that Jetty looks for, so I resolved this problem by creating a "work" folder here: 
+
+{amq-home}/bin/win32 

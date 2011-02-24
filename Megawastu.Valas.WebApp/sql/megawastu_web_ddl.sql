@@ -28,5 +28,6 @@ CREATE TABLE `mwp_users` (
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
   `status` tinyint(4) NOT NULL default '0',
+  `group` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
