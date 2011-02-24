@@ -101,7 +101,7 @@
       >
 		<transaction src="${db.dir}/valas_ddl.sql"/>
 		<transaction src="${db.dir}/valas_dml.sql"/>
-		<transaction src="${db.dir}/valas_user.sql"/>
+		<!--<transaction src="${db.dir}/valas_user.sql"/>-->
 		<transaction src="${db.dir}/megawastu_web_ddl.sql"/>
 		<transaction src="${db.dir}/megawastu_web_dml.sql"/>
 	</sql>
@@ -116,7 +116,7 @@
       url="jdbc:mysql://localhost/mysql"
       >
 		<transaction src="${db.dir}/valas_clean.sql"/>
-		<transaction src="${db.dir}/valas_clean.sql"/>
+		<!--<transaction src="${db.dir}/valas_clean.sql"/>-->
 	</sql>
   </target>
 </project>
