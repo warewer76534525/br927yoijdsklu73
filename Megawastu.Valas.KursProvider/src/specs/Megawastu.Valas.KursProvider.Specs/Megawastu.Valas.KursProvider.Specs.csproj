@@ -41,6 +41,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\tools\nunit\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\..\external-libs\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,13 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelloJob.cs" />
+    <Compile Include="When_create_date_scheduler.cs" />
+    <Compile Include="When_create_scheduler_quartz.cs" />
     <Compile Include="When_detect_change_in_excel.cs" />
     <Compile Include="When_excel_process_still_exist.cs" />
+    <Compile Include="When_list_all_holiday.cs" />
     <Compile Include="When_reading_excel_faster.cs" />
     <Compile Include="When_reading_excel_file.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="When_retrieve_list_of_kurs.cs" />
+    <Compile Include="When_try_to_stop_execution.cs" />
     <Compile Include="When_upload_kurs_to_endpoint.cs" />
+    <Compile Include="When_using_one_stop_timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

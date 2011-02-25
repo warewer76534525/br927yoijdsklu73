@@ -1,0 +1,12 @@
+1. agar active mq dapat dijalankan dari windows service maka kita ahrus membuat folder work di bin/win32
+2. agar dapat di acess dari windows service maka harus ditambahkan folder
+
+For 64-bit (x64), create this folder:
+C:\Windows\SysWOW64\config\systemprofile\Desktop
+
+For 32-bit (x86), create this folder:
+C:\Windows\System32\config\systemprofile\Desktop
+
+Personally, I had the problem on a VISTA x86 system. I created the folder as described in the 32-bit option above, and it solved my problem.
+
+The windows service, if running under the systemprofile, needs the Desktop folder. This folder was automatically created on XP and older Windows Server versions, but not for Vista and Windows 2008 Server.

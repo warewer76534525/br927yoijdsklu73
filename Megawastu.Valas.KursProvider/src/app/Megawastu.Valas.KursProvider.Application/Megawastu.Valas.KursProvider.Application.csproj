@@ -38,6 +38,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\external-libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\..\external-libs\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -47,8 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateJob.cs" />
+    <Compile Include="DateScheduler.cs" />
     <Compile Include="ExcelKiller.cs" />
     <Compile Include="ExcelKursReader.cs" />
+    <Compile Include="HolidayCalendar.cs" />
+    <Compile Include="HolidayPauseTimer.cs" />
+    <Compile Include="Holidays.cs" />
     <Compile Include="KursExcelProvider.cs" />
     <Compile Include="KursProviderConfig.cs" />
     <Compile Include="KursPublisher.cs" />

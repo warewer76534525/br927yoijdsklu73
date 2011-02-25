@@ -10,7 +10,7 @@ namespace Megawastu.Valas.KursProvider.Application
     {
         string excelPath = KursProviderConfig.EXCEL_RATE_SOURCE_LOCATION;
 
-        Excel.Application xlApp = new Excel.ApplicationClass();
+        Excel.Application xlApp;
         Excel.Workbook xlWorkBook;
         Excel.Worksheet xlWorkSheet;
         object misValue = System.Reflection.Missing.Value;
@@ -48,7 +48,7 @@ namespace Megawastu.Valas.KursProvider.Application
         {
             //xlApp.Visible = true;
             //xlApp.UserControl = true;
-
+            xlApp = new Excel.ApplicationClass();
             xlWorkBook = xlApp.Workbooks.Open(excelPath, 0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, true, 0, true, 1, 0);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
         }

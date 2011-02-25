@@ -23,6 +23,19 @@ namespace Megawastu.Valas.KursProvider.Specs
             }
 
             reader.Close();
+
+            // test open again
+
+            reader.Open();
+            allKurs = reader.GetAllRates();
+            Assert.IsFalse(allKurs.rates.Count == 0);
+
+            foreach (var kurs in allKurs.rates)
+            {
+                Console.WriteLine("{0} : {1} {2}", kurs.currency, kurs.ask, kurs.bid);
+            }
+
+            reader.Close();
         }
     }
 }
