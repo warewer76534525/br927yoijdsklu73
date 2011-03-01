@@ -1,11 +1,13 @@
+<?php $basurl = base_url(); ?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/mobile_style.css" />
+<?php ?>
 <script src="<?php echo base_url()?>assets/scripts/jquery-1.4.4.js"></script>
 <script>
 $(document).ready(function() {
 	initTable();
 	setInterval(function () {
 		$.ajax({
-			url: "http://localhost/megawastu_new/assets/json/kurs.json",
+			url: "<?php echo $basurl; ?>assets/json/kurs.json",
 			cache: false,
 			dataType: "json",
 			success: updateTableRow
@@ -63,40 +65,40 @@ $(document).ready(function() {
 		$('#currency-' + $currency).html($currency);
 		
 		if($ask > $lastAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#ask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#ask-' + $currency);
 		}
 		if($ask < $lastAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#ask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#ask-' + $currency);
 		}
 		if($highAsk > $lastHighAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#highask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#highask-' + $currency);
 		}
 		if($highAsk < $lastHighAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#highask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#highask-' + $currency);
 		}
 		if($lowAsk > $lastLowAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#lowask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#lowask-' + $currency);
 		}
 		if($lowAsk < $lastLowAsk){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#lowask-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#lowask-' + $currency);
 		}
 		if($bid > $lastBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#bid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#bid-' + $currency);
 		}
 		if($bid < $lastBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#bid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#bid-' + $currency);
 		}
 		if($highBid > $lastHighBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#highbid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#highbid-' + $currency);
 		}
 		if($highBid < $lastHighBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#highbid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#highbid-' + $currency);
 		}
 		if($lowBid > $lastLowBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/blue.png'>").appendTo('#lowbid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/blue.png'>").appendTo('#lowbid-' + $currency);
 		}
 		if($lowBid < $lastLowBid){
-			$("<img src='http://localhost/megawastu_new/assets/img/red.png'>").appendTo('#lowbid-' + $currency);
+			$("<img src='<?php echo $basurl; ?>assets/img/red.png'>").appendTo('#lowbid-' + $currency);
 		}
 	}
 	

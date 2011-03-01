@@ -22,9 +22,7 @@ class users extends CI_Controller {
 			}
 		}
 
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		
 
 		//load the model
 		$this->load->model('mwp_users');
@@ -32,6 +30,10 @@ class users extends CI_Controller {
 
 	function index()
 	{ 
+		if($this->session->userdata('logged_group') == 0){
+			redirect('home', true);
+		}
+
 		$data = $this->mwp_users->get_all()->result_array();
 		$this->load->helper('string');
 		
@@ -51,6 +53,10 @@ class users extends CI_Controller {
 
 	function add()
 	{
+		if($this->session->userdata('logged_group') == 0){
+			redirect('home', true);
+		}
+
 		$data = array (
 			'menu' => $this->load->view('nav/home_menu', '', true),
 			'submenu' => $this->load->view('nav/users', '', true),
@@ -82,6 +88,10 @@ class users extends CI_Controller {
 
 	function update($id="")
 	{
+		if($this->session->userdata('logged_group') == 0){
+			redirect('home', true);
+		}
+
 		if($id == ""){
 			redirect('users');
 		}
@@ -126,11 +136,46 @@ class users extends CI_Controller {
 
 	function delete($id)
 	{
+		if($this->session->userdata('logged_group') == 0){
+			redirect('home', true);
+		}
+
 		$id = decode_for_uri($id);
 
 		$this->mwp_users->delete(array('id' => $id));
 		
 		redirect('users');
+	}
+
+	function change_password()
+	{
+		if($this->input->post("__submit")){
+			if($this->input->post('new_password') != $this->input->post('con_password')){
+				$this->session->set_flashdata('error', 'new password not match!');
+				redirect('users/change_password');
+			}
+
+			$result = $this->mwp_users->get($this->session->userdata('logged_id'))->result_array();
+			if($result[0]['password'] != md5($this->input->post('cur_password'))){
+				$this->session->set_flashdata('error', 'wrong current password!');
+				redirect('users/change_password');
+			}
+
+			$data['password'] = md5($this->input->post('new_password'));
+			$this->mwp_users->update($data, array('id' => $this->session->userdata('logged_id')));
+			$this->session->set_flashdata('error', 'successful to change password');
+			redirect('users/change_password');
+		}
+
+		$data = array (
+			'menu' => $this->load->view('nav/home_menu', '', true),
+			'submenu' => $this->load->view('nav/users', '', true),
+			'page' => 'Change Password',
+			'content' => $this->load->view('content/users/change_password', '', true),
+			);
+
+		$this->load->view('layout/default', $data);
+		
 	}
 
 }
