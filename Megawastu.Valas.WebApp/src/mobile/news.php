@@ -1,8 +1,9 @@
+<?php $class = array('1'=>"class = red", '2' => "class = black", '3' => 'class = blue') ?>
 <?php
 $con = mysql_connect('localhost', 'valas', 'valas');
 $db = mysql_select_db('valas', $con);
 
-$result = mysql_query("select headline, type, date from mwp_news");
+$result = mysql_query("select headline, type, date from mwp_news order by date desc");
 
 ?>
 <!DOCTYPE html>
@@ -34,15 +35,19 @@ $result = mysql_query("select headline, type, date from mwp_news");
 			<TR class = 'light'>
 				<TD width = '20%'><?php echo $hasil['date']; ?></TD>
 				<TD width = '20%'><?php 
-					if($hasil['date'] ==  1) echo "Breaking News";
-					else if($hasil['date'] == 2) echo "Regular News";
+					if($hasil['type'] ==  1) echo "Breaking News";
+					else if($hasil['type'] == 2) echo "Regular News";
 					else echo "Pengumuman";
 				?></TD>
-				<TD><a href='#'><?php echo $hasil['headline']; ?></a></TD>
+				<TD><a href='#' <?php echo $class[$hasil['type']]?>><?php echo $hasil['headline']; ?></a></TD>
 			</TR>
 			<?php } ?>
 
 			</TABLE>
-		</span>
+		</span><br>
+		<div><b>LEGEND</b></div><br>
+		<img src="../assets/img/red_legend.png"> <b>Breaking News</b><br>
+		<img src="../assets/img/blue_legend.png"> <b>Pengumuman</b><br>
+		<img src="../assets/img/black_legend.png"> <b>Regular News</b><br>
     </body>
 </html>
