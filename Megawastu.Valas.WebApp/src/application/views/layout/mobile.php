@@ -8,7 +8,7 @@
 		<div id="menu">
 			<?php echo anchor('mobile/kurs/usd', 'KURS USD', array('class'=>'menu'))?> |
 			<?php echo anchor('mobile/kurs/idr', 'KURS IDR', array('class'=>'menu'))?> |  
-			<?php echo anchor('#', 'CHART', array('class'=>'menu'))?> | 
+			<?php echo anchor('mobile/graphs', 'GRAPH', array('class'=>'menu'))?> | 
 			<?php echo anchor('mobile/news', 'NEWS', array('class'=>'menu'))?>
 		</div>
 		<br>
