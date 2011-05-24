@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.triplelands.megawastu.valas.moneychanger.domain.IMessagePublisher;
-import com.triplelands.megawastu.valas.moneychanger.domain.Rate;
-import com.triplelands.megawastu.valas.moneychanger.domain.Rates;
+import com.mgwvalas.moneychanger.domain.IMessagePublisher;
+import com.mgwvalas.moneychanger.domain.Rate;
+import com.mgwvalas.moneychanger.domain.Rates;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:test-context.xml")

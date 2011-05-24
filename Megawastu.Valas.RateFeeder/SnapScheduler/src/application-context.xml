@@ -11,9 +11,7 @@
 ">
 	<tx:annotation-driven />
 	
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger" />
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.snap.service" />
+	<context:component-scan base-package="com.mgwvalas.snap,com.mgwvalas.moneychanger" />
 	
 	<context:property-placeholder location="application.properties" />
 	<context:annotation-config />
@@ -53,7 +51,7 @@
 	<!-- Scheduler Config -->
 	<bean name="snapGeneratorJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.triplelands.megawastu.valas.moneychanger.snap.scheduler.SnapGeneratorJob" />
+			value="com.mgwvalas.snap.scheduler.SnapGeneratorJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="snapService" value-ref="snapService" />
