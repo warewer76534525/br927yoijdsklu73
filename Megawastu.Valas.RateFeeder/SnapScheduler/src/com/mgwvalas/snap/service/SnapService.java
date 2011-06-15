@@ -22,6 +22,7 @@ public class SnapService {
 	
 	private List<String> currencyListForSnap = new ArrayList<String>();
 	private Rates rates = new Rates();
+	private boolean _stale = true;
 
 	@Autowired
 	ICurrencyDao currencyDao;
@@ -67,6 +68,18 @@ public class SnapService {
 
 	public List<String> getCurrencyListForSnap() {
 		return currencyListForSnap;
+	}
+
+	public void stale() {
+		_stale = true;
+	}
+
+	public void notStale() {
+		_stale = false;
+	}
+
+	public boolean isStale() {
+		return _stale;
 	}
 
 }

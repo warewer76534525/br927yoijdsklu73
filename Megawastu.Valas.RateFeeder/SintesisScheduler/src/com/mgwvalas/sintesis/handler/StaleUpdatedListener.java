@@ -1,4 +1,4 @@
-package com.mgwvalas.fixrate.service;
+package com.mgwvalas.sintesis.handler;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -10,28 +10,33 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.mgwvalas.moneychanger.domain.Rates;
+import com.mgwvalas.moneychanger.message.IStaleEvent;
+import com.mgwvalas.sintesis.service.SintesisService;
 
 @Component
-public class FixRateUpdatedListener implements MessageListener {
+public class StaleUpdatedListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
 
 	@Autowired
-	private IFixRateService fixRateService;
+	private SintesisService sintesisService;
 
 	@Override
-	@Transactional
 	public void onMessage(Message message) {
 		ObjectMessage mapMessage = (ObjectMessage) message;
-		Rates rates;
+		IStaleEvent staleEvent;
 		try {
-			rates = (Rates) mapMessage.getObject();
-			fixRateService.update(rates);
-			fixRateService.serialize();
+			staleEvent = (IStaleEvent) mapMessage.getObject();
+			
+			log.info("Incoming Stale event: " + staleEvent.isStale());
+			if (staleEvent.isStale()) {
+				sintesisService.stale();
+			} else {
+				sintesisService.notStale();
+			}
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}
+
 	}
 }

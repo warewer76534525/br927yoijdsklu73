@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mgwvalas.moneychanger.domain.IMessagePublisher;
 import com.mgwvalas.moneychanger.domain.Rate;
 import com.mgwvalas.moneychanger.domain.Rates;
 
@@ -18,13 +18,9 @@ import com.mgwvalas.moneychanger.domain.Rates;
 @ContextConfiguration(locations = "classpath:test-context.xml")
 public class RatesUpdatedPublisherTest {
 
-	IMessagePublisher<Rates> ratesUpdatedPublisher;
-	Rates rates = new Rates();
-	
 	@Autowired
-	public void setRatesUpdatedPublisher(IMessagePublisher<Rates> ratesUpdatedPublisher) {
-		this.ratesUpdatedPublisher = ratesUpdatedPublisher;
-	}
+	JmsTemplate kursJmsTemplate;
+	Rates rates = new Rates();
 
 	@Before
 	public void setUp() {
@@ -32,7 +28,7 @@ public class RatesUpdatedPublisherTest {
 		Logger.getLogger("org.springframework").setLevel(Level.WARN);
 		BasicConfigurator.configure();
 		
-		Rate idr = new Rate("IDR", 0, 0);
+		Rate idr = new Rate("IDR", 1000, 1000);
     	Rate aud = new Rate("AUD", 3, 2);
     	Rate yui = new Rate("YUI", 5, 6);
     	
@@ -43,7 +39,7 @@ public class RatesUpdatedPublisherTest {
 
 	@Test
 	public void should_publish_rates_message_to_topic() {
-		ratesUpdatedPublisher.publish(rates);
+		kursJmsTemplate.convertAndSend(rates);
 	}
 
 }

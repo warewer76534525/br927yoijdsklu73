@@ -22,6 +22,7 @@ public class SintesisService {
 	protected Log log = LogFactory.getLog(getClass());
 	private List<String> currencyListForSintesis = new ArrayList<String>();
 	private Rates freshRates = new Rates();
+	private boolean _stale = true;
 
 	@Autowired
 	private CurrencySintzRepository currencySintzRepository;
@@ -58,12 +59,24 @@ public class SintesisService {
 			sintz.freshUpdate(freshRate);
 		}
 
-		log.info("$$$$ sintesis value"
+		log.info("$$$$ generate sintesis value"
 				+ currencySintzRepository.sitesisResults());
 	}
 
 	public List<String> getCurrencyListForSintesis() {
 		return currencyListForSintesis;
+	}
+
+	public void stale() {
+		_stale = true;
+	}
+
+	public void notStale() {
+		_stale = false;
+	}
+	
+	public boolean isStale() {
+		return _stale;
 	}
 
 }

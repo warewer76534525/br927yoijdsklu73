@@ -21,20 +21,34 @@
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="${jms.brokerURL}" />
 	</bean>
-
-	<bean id="ratesUpdateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
+	
+	<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.ratesUpdate.topic}" />
 	</bean>
 
-	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="ratesUpdateListenerDestination" />
+		<property name="destination" ref="ratesUpdatedListenerDestination" />
 		<property name="messageListener" ref="rateUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="rateUpdatedSnapClient"></property>
 	</bean>
-
+	
+	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.stale.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="staleDestination" />
+		<property name="messageListener" ref="staleUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="snapStaleUpdatedClient"></property>
+	</bean>
+	
 	<!-- Fix rates publisher -->
  	
  	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
@@ -47,6 +61,7 @@
 		<property name="defaultDestination" ref="fixRateListenerDestination"></property>
 		<property name="messageConverter" ref="serializableMessageConverter"></property>
 	</bean>
+	
 
 	<!-- Scheduler Config -->
 	<bean name="snapGeneratorJob" class="org.springframework.scheduling.quartz.JobDetailBean">
@@ -64,7 +79,7 @@
 		<property name="repeatInterval" value="${quartz.interval}" />
 		<property name="startDelay" value="1000" />
 	</bean>
-
+	
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 			<list>

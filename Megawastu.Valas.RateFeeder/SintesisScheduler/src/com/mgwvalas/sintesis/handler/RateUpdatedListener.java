@@ -1,4 +1,4 @@
-package com.mgwvalas.sintesis.service;
+package com.mgwvalas.sintesis.handler;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -12,6 +12,7 @@ import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
 
 import com.mgwvalas.moneychanger.domain.Rates;
+import com.mgwvalas.sintesis.service.SintesisService;
 
 @Component
 public class RateUpdatedListener implements MessageListener {

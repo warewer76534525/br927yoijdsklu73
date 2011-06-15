@@ -32,6 +32,9 @@
 	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.stale.topic}" />
 	</bean>
+	<bean id="kursUpdatedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.ratesUpdate.topic}" />
+	</bean>
 	
 	<!-- jms listener config -->
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -54,11 +57,11 @@
 	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="fixRateListenerDestination" />
-		<property name="messageListener" ref="staleFixRateUpdatedListener" />
+		<property name="destination" ref="kursUpdatedDestination" />
+		<property name="messageListener" ref="staleKursUpdatedListener" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="staleFixRateUpdatedClient"></property>
+		<property name="clientId" value="staleKursUpdatedClient"></property>
 	</bean>
 	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">

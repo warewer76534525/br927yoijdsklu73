@@ -7,7 +7,7 @@
 
 	<!-- Scans within the base package of the application for @Components to 
 		configure as beans -->
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger" />
+	<context:component-scan base-package="com.mgwvalas.moneychanger" />
 	<context:property-placeholder location="application.properties" />
 
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">

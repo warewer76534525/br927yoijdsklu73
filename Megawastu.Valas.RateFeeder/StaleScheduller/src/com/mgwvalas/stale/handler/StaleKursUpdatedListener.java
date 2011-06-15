@@ -1,4 +1,4 @@
-package com.mgwvalas.fixrate.service;
+package com.mgwvalas.stale.handler;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -8,10 +8,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mgwvalas.fixrate.scheduler.StalenessTimeoutManager;
+import com.mgwvalas.stale.scheduler.StalenessTimeoutManager;
 
 @Component
-public class StaleFixRateUpdatedListener implements MessageListener {
+public class StaleKursUpdatedListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
@@ -19,7 +19,7 @@ public class StaleFixRateUpdatedListener implements MessageListener {
 	
 	@Override
 	public void onMessage(Message message) {
-		log.info("stale fixrate updated listener");
+		log.info("Not stall anymore");
 		stalenessTimeoutManager.reset();
 	}
 }

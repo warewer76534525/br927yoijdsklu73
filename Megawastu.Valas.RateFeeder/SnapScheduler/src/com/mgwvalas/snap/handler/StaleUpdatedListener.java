@@ -1,4 +1,4 @@
-package com.mgwvalas.fixrate.service;
+package com.mgwvalas.snap.handler;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -12,13 +12,14 @@ import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
 
 import com.mgwvalas.moneychanger.message.IStaleEvent;
+import com.mgwvalas.snap.service.SnapService;
 
 @Component
 public class StaleUpdatedListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
 
 	@Autowired
-	private IFixRateService fixRateService;
+	private SnapService snapService;
 
 	@Override
 	public void onMessage(Message message) {
@@ -29,11 +30,10 @@ public class StaleUpdatedListener implements MessageListener {
 			
 			log.info("Incoming Stale event: " + staleEvent.isStale());
 			if (staleEvent.isStale()) {
-				fixRateService.stale();
+				snapService.stale();
 			} else {
-				fixRateService.notStale();
+				snapService.notStale();
 			}
-			fixRateService.serialize();
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}

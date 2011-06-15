@@ -34,6 +34,20 @@
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="rateUpdatedSintesisClient"></property>
 	</bean>
+	
+	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.stale.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="staleDestination" />
+		<property name="messageListener" ref="staleUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="sintesisStaleUpdatedClient"></property>
+	</bean>
+	
 
 	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.fixRate.topic}" />
@@ -65,7 +79,7 @@
 		<property name="repeatInterval" value="${quartz.sintesis.interval}" />
 		<property name="startDelay" value="1000" />
 	</bean>
-
+	
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 			<list>
