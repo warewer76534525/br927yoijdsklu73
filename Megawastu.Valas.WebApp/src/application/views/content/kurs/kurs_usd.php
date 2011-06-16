@@ -40,11 +40,16 @@ $(document).ready(function() {
 			}
 		});
 		updateStaleStatus(data.stale);
+		updateHolidayStatus(data.isHoliday);
 	}
 
 	function updateStaleStatus($stale){
-		if($stale == "true") $('#staleness').html("<font color='red'><b>SERVER ISSUE: DATA NOT ACTUAL</b></font>");
+		if($stale == true) $('#staleness').html("<font color='red'><b>SERVER ISSUE: DATA NOT ACTUAL</b></font>");
 		else $('#staleness').html('&nbsp');
+	}
+	
+	function updateHolidayStatus($isHoliday){
+		if($isHoliday == true) $('#staleness').html("<font color='red'><b>HOLIDAY</b></font>");
 	}
 	
 	function updateRowValue($currency, $ask, $bid, $highAsk, $highBid, $lowAsk, $lowBid) {
