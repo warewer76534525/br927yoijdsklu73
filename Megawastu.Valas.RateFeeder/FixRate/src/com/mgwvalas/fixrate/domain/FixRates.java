@@ -9,7 +9,7 @@ public class FixRates implements Serializable {
 
 	private List<FixRate> rates = new ArrayList<FixRate>();
 	private boolean stale;
-	
+	private boolean isHoliday;
 
 	public FixRates() {
 
@@ -80,5 +80,17 @@ public class FixRates implements Serializable {
 	
 	public void notStale() {
 		stale = false;
+	}
+	
+	public void holyday() {
+		isHoliday = true;
+	}
+	
+	public void notHolyday() {
+		isHoliday = false;
+	}
+	
+	public boolean isHoliday() {
+		return isHoliday;
 	}
 }

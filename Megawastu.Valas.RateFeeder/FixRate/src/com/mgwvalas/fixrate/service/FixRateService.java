@@ -20,6 +20,7 @@ public class FixRateService implements IFixRateService {
 	private FixRates fixRates = new FixRates();
 	private String directory;
 	private String fileName;
+	private boolean holidayWriteFlag = false;
 
 	public FixRates getRates() {
 		return fixRates;
@@ -52,7 +53,12 @@ public class FixRateService implements IFixRateService {
 		Gson gson = new Gson();
 		String ratesJson = "";
 		FileWriter fout = null;
-
+		
+		if (fixRates.isHoliday() &&  !holidayWriteFlag) {
+			holidayWriteFlag = true;
+			return;
+		}
+		
 		ratesJson = gson.toJson(fixRates);
 		try {
 			fout = new FileWriter(new File(directory, fileName));
@@ -84,4 +90,19 @@ public class FixRateService implements IFixRateService {
 		fixRates.notStale();
 	}
 
+	@Override
+	public void holyday() {
+		fixRates.holyday();
+	}
+
+	@Override
+	public void notHolyday() {
+		if (holidayWriteFlag) {
+			holidayWriteFlag = false;
+		}
+		
+		fixRates.notHolyday();
+	}
+	
+	
 }
