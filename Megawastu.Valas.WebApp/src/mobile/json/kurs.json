@@ -1,8 +1,0 @@
-{"rates":[
-{"currency":"YUI","bid":8.5,"ask":4.3,"lowBid":2.5,"highBid":5.9,"lowAsk":4.1,"highAsk":7.8},
-{"currency":"MYR","bid":5.6,"ask":4.3,"lowBid":3.2,"highBid":3.1,"lowAsk":3.2,"highAsk":2.2},
-{"currency":"IDR","bid":6.7,"ask":5.8,"lowBid":5.2,"highBid":8.7,"lowAsk":5.8,"highAsk":5.1},
-{"currency":"MYRIDR","bid":6.7,"ask":5.8,"lowBid":5.2,"highBid":8.7,"lowAsk":5.8,"highAsk":5.1},
-{"currency":"AUDIDR","bid":8.7,"ask":3.8,"lowBid":4.8,"highBid":2.2,"lowAsk":9.1,"highAsk":8.1}
-],
-"stale":"true"}
