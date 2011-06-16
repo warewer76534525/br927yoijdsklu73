@@ -21,7 +21,7 @@ public class SintesisGeneratorJob extends QuartzJobBean {
 		Map dataMap = context.getJobDetail().getJobDataMap();
 		SintesisService snapService = (SintesisService) dataMap.get("sintesisService");
 		
-		if (!snapService.isStale()) {
+		if (!snapService.isStale() && !snapService.isHoliday()) {
 			snapService.generateSintesis();
 			snapService.publish();
 		} else {

@@ -82,11 +82,11 @@ public class FixRates implements Serializable {
 		stale = false;
 	}
 	
-	public void holyday() {
+	public void holiday() {
 		isHoliday = true;
 	}
 	
-	public void notHolyday() {
+	public void notHoliday() {
 		isHoliday = false;
 	}
 	

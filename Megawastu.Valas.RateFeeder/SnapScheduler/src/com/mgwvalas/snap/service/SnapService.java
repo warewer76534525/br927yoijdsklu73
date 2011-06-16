@@ -23,6 +23,7 @@ public class SnapService {
 	private List<String> currencyListForSnap = new ArrayList<String>();
 	private Rates rates = new Rates();
 	private boolean _stale = true;
+	private boolean _holiday = false;
 
 	@Autowired
 	ICurrencyDao currencyDao;
@@ -80,6 +81,18 @@ public class SnapService {
 
 	public boolean isStale() {
 		return _stale;
+	}
+
+	public void holiday() {
+		_holiday = true;
+	}
+
+	public void notHoliday() {
+		_holiday = false;
+	}
+
+	public boolean isHoliday() {
+		return _holiday;
 	}
 
 }

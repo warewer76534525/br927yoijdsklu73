@@ -49,6 +49,19 @@
 		<property name="clientId" value="snapStaleUpdatedClient"></property>
 	</bean>
 	
+	<bean id="holidayDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.holiday.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="holidayDestination" />
+		<property name="messageListener" ref="holidayListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="snapHolidayListener"></property>
+	</bean>
+	
 	<!-- Fix rates publisher -->
  	
  	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">

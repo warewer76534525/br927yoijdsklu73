@@ -1,4 +1,4 @@
-package com.mgwvalas.fixrate.handler;
+package com.mgwvalas.snap.handler;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -11,24 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
 
-import com.mgwvalas.fixrate.service.IRateService;
-import com.mgwvalas.moneychanger.domain.Rates;
+import com.mgwvalas.moneychanger.message.HolidayEvent;
+import com.mgwvalas.snap.service.SnapService;
 
 @Component
-public class LogRateUpdatedListener implements MessageListener {
+public class HolidayListener implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
-	
+
 	@Autowired
-	private IRateService rateService;
+	private SnapService snapService;
 
 	@Override
 	public void onMessage(Message message) {
 		ObjectMessage mapMessage = (ObjectMessage) message;
-		Rates rates;
+		HolidayEvent holidayEvent;
 		try {
-			rates = (Rates) mapMessage.getObject();
+			holidayEvent = (HolidayEvent) mapMessage.getObject();
 			
-			rateService.save(rates.getRates());
+			log.info("Incoming Holiday event: " + holidayEvent.isHoliday());
+			if (holidayEvent.isHoliday()) {
+				snapService.holiday();
+			} else {
+				snapService.notHoliday();
+			}
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}

@@ -63,6 +63,20 @@
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="staleUpdatedClient"></property>
 	</bean>
+	
+	<bean id="holidayDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.holiday.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="holidayDestination" />
+		<property name="messageListener" ref="holidayListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="fixRateHolidayListener"></property>
+	</bean>
+	
 	<!-- JMS Publisher configuration -->
  	
 	<bean id="staleJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
@@ -91,25 +105,9 @@
 			</map>
 		</property>
 	</bean>
-	<bean name="holidayCheckerJob" class="org.springframework.scheduling.quartz.JobDetailBean">
-		<property name="jobClass"
-			value="com.mgwvalas.fixrate.scheduler.HolidayCheckerJob" />
-
-		<property name="jobDataAsMap">
-			<map>
-				<entry key="fixRateService" value-ref="fixRateService" />
-				<entry key="holidayList" value="${holiday.list}" />
-			</map>
-		</property>
-	</bean>
-
+	
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="endOfDayJob" />
-		<property name="cronExpression" value="${endofday.cron}" />
-	</bean>
-	
-	<bean id="holidayTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-		<property name="jobDetail" ref="holidayCheckerJob" />
 		<property name="cronExpression" value="${endofday.cron}" />
 	</bean>
 
@@ -117,14 +115,12 @@
 		<property name="jobDetails">
 			<list>
 				<ref bean="endOfDayJob" />
-				<ref bean="holidayCheckerJob" />
 			</list>
 		</property>
 
 		<property name="triggers">
 			<list>
 				<ref bean="cronTrigger" />
-				<ref bean="holidayTrigger" />
 			</list>
 		</property>
 	</bean>

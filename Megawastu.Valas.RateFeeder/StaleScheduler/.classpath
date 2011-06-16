@@ -35,5 +35,6 @@
 	<classpathentry kind="lib" path="/ResourceProject/slf4j-log4j12-1.5.10.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/aopalliance-1.0.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MoneyChangerLib"/>
+	<classpathentry kind="lib" path="/ResourceProject/WinRun4J.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -25,7 +25,7 @@ namespace Megawastu.Valas.KursProvider.Application
                     Rates rates = reader.GetAllRates();
                     publisher.Publish(rates);
 
-                    Thread.Sleep(2000); // TODO atur sleep -> bisa diganti menjadi real times
+                    Thread.Sleep(5000); // TODO atur sleep -> bisa diganti menjadi real times
                 }
                 catch (Exception e)
                 {

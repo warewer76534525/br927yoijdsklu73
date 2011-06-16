@@ -34,7 +34,7 @@ public class CurrencySintz {
 			current.setBid(rate.getBid());	
 		}
 		
-		System.out.println(previous);
+		//System.out.println(previous);
 	}
 
 	private boolean isBeginning() {

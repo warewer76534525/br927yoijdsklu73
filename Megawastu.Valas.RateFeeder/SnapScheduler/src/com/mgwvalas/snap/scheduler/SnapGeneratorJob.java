@@ -20,7 +20,7 @@ public class SnapGeneratorJob extends QuartzJobBean {
 		Map dataMap = context.getJobDetail().getJobDataMap();
 		SnapService snapService = (SnapService) dataMap.get("snapService");
 
-		if (!snapService.isStale()) {
+		if (!snapService.isStale() && !snapService.isHoliday()) {
 			snapService.publish();
 		} else {
 			//log.info("Snap Stale");

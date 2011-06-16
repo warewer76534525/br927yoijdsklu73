@@ -8,6 +8,6 @@ public interface IFixRateService {
 	void reset();
 	void stale();
 	void notStale();
-	void holyday();
-	void notHolyday();
+	void holiday();
+	void notHoliday();
 }

@@ -23,6 +23,7 @@ public class SintesisService {
 	private List<String> currencyListForSintesis = new ArrayList<String>();
 	private Rates freshRates = new Rates();
 	private boolean _stale = true;
+	private boolean _holiday = false;
 
 	@Autowired
 	private CurrencySintzRepository currencySintzRepository;
@@ -32,6 +33,7 @@ public class SintesisService {
 
 	@Autowired
 	private ICurrencyDao currencyDao;
+	
 
 	public void setCurrencyListForSintesis(List<String> currencyListForSnap) {
 		this.currencyListForSintesis = currencyListForSnap;
@@ -77,6 +79,18 @@ public class SintesisService {
 	
 	public boolean isStale() {
 		return _stale;
+	}
+
+	public void holiday() {
+		_holiday = true;
+	}
+
+	public void notHoliday() {
+		_holiday = false;
+	}
+	
+	public boolean isHoliday() {
+		return _holiday;
 	}
 
 }

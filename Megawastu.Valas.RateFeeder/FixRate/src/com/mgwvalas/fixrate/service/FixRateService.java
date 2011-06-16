@@ -54,9 +54,10 @@ public class FixRateService implements IFixRateService {
 		String ratesJson = "";
 		FileWriter fout = null;
 		
-		if (fixRates.isHoliday() &&  !holidayWriteFlag) {
-			holidayWriteFlag = true;
+		if (fixRates.isHoliday() && holidayWriteFlag) {
 			return;
+		} else if (fixRates.isHoliday() && !holidayWriteFlag) {
+			holidayWriteFlag = true;
 		}
 		
 		ratesJson = gson.toJson(fixRates);
@@ -71,7 +72,7 @@ public class FixRateService implements IFixRateService {
 			} catch (Exception e) {
 			}
 		}
-		log.info("serialize: " + ratesJson);
+		log.info("serialize fixrate, when holiday: " + fixRates.isHoliday() + ", write flag: " + holidayWriteFlag);
 	}
 
 	@Override
@@ -91,17 +92,17 @@ public class FixRateService implements IFixRateService {
 	}
 
 	@Override
-	public void holyday() {
-		fixRates.holyday();
+	public void holiday() {
+		fixRates.holiday();
 	}
 
 	@Override
-	public void notHolyday() {
+	public void notHoliday() {
 		if (holidayWriteFlag) {
 			holidayWriteFlag = false;
 		}
 		
-		fixRates.notHolyday();
+		fixRates.notHoliday();
 	}
 	
 	

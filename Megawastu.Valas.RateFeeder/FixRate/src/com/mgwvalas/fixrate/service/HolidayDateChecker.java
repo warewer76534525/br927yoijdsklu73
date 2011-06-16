@@ -1,4 +1,4 @@
-package com.mgwvalas.moneychanger.service;
+package com.mgwvalas.fixrate.service;
 
 import java.text.DateFormat;
 import java.text.ParseException;

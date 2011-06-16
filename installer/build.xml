@@ -6,10 +6,11 @@
   <property name="fixrate-service.dir" location="${bin.dir}/fixrate-service"/>
   <property name="sintesis-service.dir" location="${bin.dir}/sintesis-service"/>
   <property name="snap-service.dir" location="${bin.dir}/snap-service"/>
+  <property name="stale-service.dir" location="${bin.dir}/stale-service"/>
   <property name="lib.dir" value="lib" />
   <property name="web.home.dir" value="C:\appserv\www\megawastu" />
   <property name="web.src.dir" value="${bin.dir}\megawastu" />
-  <property name="rest.deploy.dir" value="C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps" />
+  <property name="rest.deploy.dir" value="C:\appserv\tomcat7\webapps" />
   <property name="rest.src.file" value="${bin.dir}\moneychanger.war" />
   
   <path id="sql.classpath">
@@ -36,7 +37,13 @@
 		</exec>
   </target>
   
-  <target name="install.all.service" depends="install.fixrate-service, install.sintesis-service, install.snap-service, install.web, install.rest"/>
+  <target name="install.stale-service">
+		<exec dir="${stale-service.dir}" executable="${stale-service.dir}/service.exe">
+			<arg line="--WinRun4J:RegisterService" />
+		</exec>
+  </target>
+  
+  <target name="install.services" depends="install.fixrate-service, install.sintesis-service, install.snap-service, install.stale-service, install.rest"/>
   
   <target name="uninstall.fixrate-service">
 		<exec dir="${fixrate-service.dir}" executable="${fixrate-service.dir}/service.exe">
@@ -56,7 +63,13 @@
 		</exec>
   </target>
   
-  <target name="uninstall.all.service" depends="uninstall.snap-service, uninstall.sintesis-service, uninstall.fixrate-service"/>
+  <target name="uninstall.stale-service">
+		<exec dir="${stale-service.dir}" executable="${stale-service.dir}/service.exe">
+			<arg line="--WinRun4J:UnregisterService" />
+		</exec>
+  </target>
+  
+  <target name="uninstall.services" depends="uninstall.stale-service, uninstall.snap-service, uninstall.sintesis-service, uninstall.fixrate-service"/>
   
   <target name="install.web">
 	  <copy todir="${web.home.dir}">
@@ -82,12 +95,14 @@
     <service action="start" service="FixRateService"/>
 	<service action="start" service="SintesisSchedulerService"/>
 	<service action="start" service="SnapSchedulerService"/>
+	<service action="start" service="StaleSchedulerService"/>
   </target>
 	
   <target name="stop.services">
     <service action="stop" service="FixRateService"/>
 	<service action="stop" service="SintesisSchedulerService"/>
 	<service action="stop" service="SnapSchedulerService"/>
+	<service action="stop" service="StaleSchedulerService"/>
   </target>
   
   

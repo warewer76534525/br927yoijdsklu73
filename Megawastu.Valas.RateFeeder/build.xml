@@ -28,6 +28,10 @@
 	<ant dir="SnapScheduler" target="package" inheritAll="true"/>
   </target>
   
+  <target name="build.stale" depends="build.library">
+	<ant dir="StaleScheduler" target="package" inheritAll="true"/>
+  </target>
+  
   <target name="build.ratefeeder" depends="build.library">
 	<ant dir="MoneyChanger" target="package" inheritAll="true"/>
   </target>
@@ -40,7 +44,7 @@
 	<mkdir dir="${dist.dir}"/>
   </target>
   
-  <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap, build.ratefeeder"/>
+  <target name="build.all.service" depends="init.dist, build.fixrate, build.sintesis, build.snap, build.stale, build.ratefeeder"/>
   
   <target name="create.installer" depends="build.all.service">
 	<copy todir="${installer.dir}">

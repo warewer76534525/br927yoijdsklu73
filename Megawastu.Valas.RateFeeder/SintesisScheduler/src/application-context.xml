@@ -48,7 +48,19 @@
 		<property name="clientId" value="sintesisStaleUpdatedClient"></property>
 	</bean>
 	
-
+	<bean id="holidayDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.holiday.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="holidayDestination" />
+		<property name="messageListener" ref="holidayListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="sintesisHolidayListener"></property>
+	</bean>
+	
 	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.fixRate.topic}" />
 	</bean>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project name="StaleScheduler">
+	<property name="service.name" value="stale-scheduler-service" />
+	<property name="main.class" value="com.mgwvalas.stale.main.Main" />
+	<import file="..\common.xml" />
+
+	<property name="service.dir" value="${dist.dir}/stale-service" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
+</project>
