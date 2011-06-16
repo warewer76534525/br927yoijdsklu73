@@ -27,7 +27,6 @@
 	<classpathentry kind="lib" path="/ResourceProject/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/lombok.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/MoneyChangerLib.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/mysql.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.aop.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.asm.jar"/>

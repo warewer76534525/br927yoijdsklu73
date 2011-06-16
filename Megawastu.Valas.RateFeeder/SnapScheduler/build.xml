@@ -2,7 +2,7 @@
 
 <project name="SnapScheduler">
 	<property name="service.name" value="snap-scheduler-service" />
-	<property name="main.class" value="com.triplelands.megawastu.valas.moneychanger.snap.main.Main" />
+	<property name="main.class" value="com.mgwvalas.snap.main.Main" />
 	<import file="..\common.xml" />
 	<property name="service.dir" value="${dist.dir}/snap-service" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />

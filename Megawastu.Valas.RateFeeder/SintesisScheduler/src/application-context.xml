@@ -12,9 +12,7 @@
 
 	<!-- Basic Configuration -->
 	<tx:annotation-driven />
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger" />
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.sintesis.service" />
-	<context:component-scan base-package="com.triplelands.megawastu.valas.moneychanger.dao" />
+	<context:component-scan base-package="com.mgwvalas.sintesis, com.mgwvalas.moneychanger" />
 	<context:property-placeholder location="application.properties" />
 	<context:annotation-config />
 
@@ -36,7 +34,33 @@
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="rateUpdatedSintesisClient"></property>
 	</bean>
-
+	
+	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.stale.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="staleDestination" />
+		<property name="messageListener" ref="staleUpdatedListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="sintesisStaleUpdatedClient"></property>
+	</bean>
+	
+	<bean id="holidayDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.holiday.topic}" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="holidayDestination" />
+		<property name="messageListener" ref="holidayListener" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="sintesisHolidayListener"></property>
+	</bean>
+	
 	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.fixRate.topic}" />
 	</bean>
@@ -52,7 +76,7 @@
 
 	<bean name="sintesisGeneratorJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.triplelands.megawastu.valas.moneychanger.sintesis.scheduler.SintesisGeneratorJob" />
+			value="com.mgwvalas.sintesis.scheduler.SintesisGeneratorJob" />
 
 		<property name="jobDataAsMap">
 			<map>
@@ -67,7 +91,7 @@
 		<property name="repeatInterval" value="${quartz.sintesis.interval}" />
 		<property name="startDelay" value="1000" />
 	</bean>
-
+	
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 			<list>

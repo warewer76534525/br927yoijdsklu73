@@ -2,7 +2,7 @@
 
 <project name="SintesisScheduler">
 	<property name="service.name" value="sintesis-scheduler-service" />
-	<property name="main.class" value="com.triplelands.megawastu.valas.moneychanger.sintesis.main.Main" />
+	<property name="main.class" value="com.mgwvalas.sintesis.main.Main" />
 	<import file="..\common.xml" />
 
 	<property name="service.dir" value="${dist.dir}/sintesis-service" />
