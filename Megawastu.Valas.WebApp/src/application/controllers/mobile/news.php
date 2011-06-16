@@ -32,21 +32,17 @@ class news extends CI_Controller {
 
 		$data = array (
 			'page' => "News",
+			'title' => "News",
 			'content' => $this->load->view('content/mobile/news', $result, true),
 			);
 
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/mobile/list', $data);
 	}
 
 	function view($id=""){
 		$result = $this->db->get_where('mwp_news', array('id' => decode_for_uri($id)))->result_array();
 
-		$data = array (
-			'page' => "View News",
-			'content' => $this->load->view('content/mobile/view_news', $result[0], true),
-			);
-
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/mobile/view', $result[0]);
 	}
 }
 

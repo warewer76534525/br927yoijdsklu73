@@ -33,6 +33,7 @@
 */
 
 $route['default_controller'] = "home";
+$route['mobile'] = "mobile/kurs";
 
 
 /* End of file routes.php */

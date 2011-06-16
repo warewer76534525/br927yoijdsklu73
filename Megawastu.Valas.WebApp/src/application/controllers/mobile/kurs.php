@@ -32,18 +32,20 @@ class kurs extends CI_Controller {
 	{
 		$data = array (
 			'page' => "Kurs USD",
+			'title' => "Kurs USD",
 			'content' => $this->load->view('content/mobile/usd', '', true),
 			);
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/m', $data);
 	}
 
 	function idr()
 	{ 
 		$data = array (
 			'page' => "Kurs IDR",
+			'title' => "Kurs IDR",
 			'content' => $this->load->view('content/mobile/idr', '', true),
 			);
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/m', $data);
 	}
 }
 

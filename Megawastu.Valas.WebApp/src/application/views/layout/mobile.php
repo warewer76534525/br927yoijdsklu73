@@ -1,3 +1,4 @@
+<?php if(!isset($submenu)) {$submenu = "";}?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,6 +11,9 @@
 			<?php echo anchor('mobile/kurs/idr', 'KURS IDR', array('class'=>'menu'))?> |  
 			<?php echo anchor('mobile/graphs', 'GRAPH', array('class'=>'menu'))?> | 
 			<?php echo anchor('mobile/news', 'NEWS', array('class'=>'menu'))?>
+		</div>
+		<div id="menu">
+			<?php echo $submenu; ?>
 		</div>
 		<br>
 		<?php echo $content; ?>

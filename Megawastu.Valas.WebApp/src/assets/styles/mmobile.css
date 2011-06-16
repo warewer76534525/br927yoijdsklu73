@@ -1,0 +1,17 @@
+.lightheader{
+	background-color: #1FC899;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.light {
+	background-color: #e7f9ea;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.light:hover{
+	background-color: #c8d6fb;
+	text-decoration: none;
+	font-weight: bold;
+}

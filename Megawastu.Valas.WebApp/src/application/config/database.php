@@ -42,9 +42,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'valas';
-$db['default']['password'] = 'valas';
-$db['default']['database'] = 'valas';
+$db['default']['username'] = 'triplel1_valas';
+$db['default']['password'] = 'valas1234';
+$db['default']['database'] = 'triplel1_valas';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

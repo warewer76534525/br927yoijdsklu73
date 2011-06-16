@@ -17,12 +17,12 @@
 			"<table id='kursTable' border = '0' cellspacing='1' cellpadding='2'>" +
 				"<tr class = 'lightheader'>" +
 					"<td><b><font color='#FFFFFF'>CURRENCY</FONT></b>" +
-					"<td width='15%'><b><font color='#FFFFFF'>ASK</FONT></b></td>" +
-					"<td width='15%'><b><font color='#FFFFFF'>HIGH ASK</FONT></b></td>" +
-					"<td width='15%'><b><font color='#FFFFFF'>LOW ASK</FONT></b></td>" +
-					"<td width='15%'><b><font color='#FFFFFF'>BID</FONT></b></td>" +
-					"<td width='15%'><b><font color='#FFFFFF'>HIGH BID</FONT></b></td>" +
-					"<td width='15%'><b><font color='#FFFFFF'>LOW BID</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>ASK</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>HIGH ASK</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>LOW ASK</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>BID</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>HIGH BID</FONT></b></td>" +
+					"<td><b><font color='#FFFFFF'>LOW BID</FONT></b></td>" +
 					"</td>" +
 				"</tr>" +
 			"</table>");

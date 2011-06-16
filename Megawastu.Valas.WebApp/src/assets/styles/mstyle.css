@@ -1,0 +1,110 @@
+body {
+  font-size: 11px;
+  font-family: Verdana, Arial;
+  color: #393939;
+  font-weight: normal;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+div.alerts_notice {
+  color: red;
+}
+
+div.alerts_error {
+  color: red;
+}
+
+div.errorbox {
+  padding: 5px;
+  border: 2px solid red;
+}
+
+div.errormsg {
+  color: red;
+  margin-top: 3px;
+}
+
+div.venue_special {
+  font-size: 12px;
+  width: 260px;
+  color: white;
+  background-color: #4cb8df;
+  border: 1px #358aa9 solid;
+  padding: 10px;
+}
+
+div.downloadapp {
+  background-color: #4cb8df;
+  border: 3px #2773b6 solid;
+  padding: 10px;
+}
+
+div.ul {
+  margin: 0 0 1px 0;
+}
+
+table.user_badges tr td {
+  padding: 0 5px 5px 0;
+}
+
+table.result_block tr td {
+  padding: 10px 10px 10px 10px;
+  background-color: #EEEEEE;
+  border: 1px solid #CCCCCC;
+}
+
+hr {
+  color: #333;
+  height: 1px;
+}
+
+a {
+  color: #000;
+}
+
+img {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  font-size: 11px;
+  font-family: Verdana, Arial;
+  color: #393939;
+  font-weight: normal;
+}
+
+table#rounded {
+  width: 100%;
+  background-color: #eee;
+  border: 2px solid #ccc;
+  font-size: 11px;
+  font-family: Verdana, Arial;
+  padding: 4px;
+}
+
+table#rounded td {
+  border: 2px solid #ccc;
+}
+
+form.logout {
+  display: inline;
+}
+
+/* =OAuth */
+#oAuth {background: #eee; padding: 1px 10px 5px;}
+#oAuth h2 {font-size: 15px; line-height: 100%; margin-bottom: -5px;}
+#oAuth h2 a {text-decoration: none;}
+#oAuth h3 {font-size: 11px;}
+#oAuth hr {display: none;}
+#oAuth blockquote {font-style: italic; margin-left: 10px;}
+#oAuth #oAuthUser {line-height: 30px;}
+#oAuth #oAuthUser img {float: left; height: 30px; padding-right: 10px; width: 30px;}
+#oAuth #oAuthBtns {margin-top: 5px; padding: 5px 0;}
