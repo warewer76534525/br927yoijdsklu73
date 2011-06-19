@@ -40,6 +40,8 @@
 			});
 			updateStaleStatus(data.stale);
 			updateHolidayStatus(data.isHoliday);
+			$('#loading').html('&nbsp');
+			
 		}
 
 		function updateStaleStatus($stale){
@@ -123,3 +125,4 @@
 <div id='staleness'>&nbsp</div>
 <br/>
 <span id='kurs'></span>
+<span id='loading'>loading data...</span>

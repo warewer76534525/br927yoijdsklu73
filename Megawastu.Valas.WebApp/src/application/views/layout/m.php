@@ -8,7 +8,7 @@
     <title>Megawastu Valas Mobile</title>
 </head> 
 <body> 
-    <div> <?php echo anchor('mobile', 'KURS USD')?> |  <?php echo anchor('mobile/kurs/idr', 'KURS IDR')?> | <?php echo anchor('mobile/graph', 'GRAPH')?> | <?php echo anchor('mobile/news', 'NEWS')?></div> 
+    <div> <?php echo anchor('mobile', 'KURS USD')?> |  <?php echo anchor('mobile/kurs/idr', 'KURS IDR')?> | <?php echo anchor('mobile/graphs', 'GRAPH')?> | <?php echo anchor('mobile/news', 'NEWS')?></div> 
     <hr /> 
 
     <div id="lift__noticesContainer__"></div> 

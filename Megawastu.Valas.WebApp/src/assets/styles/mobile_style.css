@@ -1,10 +1,3 @@
-table {
-  font-size: 150%;
-  width: 100%;
-  height: 100%;
-  line-height: 100%;
-}
-
 .lightheader{
 	background-color: #1FC899;
 	text-decoration: none;
@@ -22,7 +15,6 @@ table {
 	text-decoration: none;
 	font-weight: bold;
 }
-
 a.menu{
 	font-family: "Courier New", Courier, mono;
 	font-size: 150%;

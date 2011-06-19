@@ -26,7 +26,7 @@ class news extends CI_Controller {
 	function index()
 	{ 
 
-		$this->db->select('id, date, headline, type');
+		$this->db->select('id, date, headline, type, content');
 		$this->db->order_by('date', 'desc');
 		$result['news'] = $this->db->get('mwp_news', 10, 0)->result_array();
 
@@ -36,7 +36,7 @@ class news extends CI_Controller {
 			'content' => $this->load->view('content/mobile/news', $result, true),
 			);
 
-		$this->load->view('layout/mobile/list', $data);
+		$this->load->view('layout/m', $data);
 	}
 
 	function view($id=""){

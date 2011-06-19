@@ -55,12 +55,12 @@ class graphs extends CI_Controller {
 
 		$data = array (
 			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/m_graph', $content_menu, true),
-			'page' => "View Graph",
+			'page' => $this->load->view('nav/mgraph', $content_menu, true),
+			'pages' => "View Graph",
 			'content' => "Choose currency and time first!",
 			);
 
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/m', $data);
 	}
 
 	function process(){
@@ -136,12 +136,12 @@ class graphs extends CI_Controller {
 
 		$data = array (
 			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/m_graph', $content_menu, true),
-			'page' => "View Graph",
+			'page' => $this->load->view('nav/mgraph', $content_menu, true),
+			'pages' => "View Graph",
 			'content' => $this->load->view('content/graph/test', $content_data, true),
 			);
 
-		$this->load->view('layout/mobile', $data);
+		$this->load->view('layout/m', $data);
 	}
 
 }

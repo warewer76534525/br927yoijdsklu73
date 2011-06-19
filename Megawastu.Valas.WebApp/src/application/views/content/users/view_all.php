@@ -15,7 +15,7 @@
 	<td><?php echo $data[$i]['username']; ?></td>
 	<td><?php echo $status[$data[$i]['status']]; ?></td>
 	<td><?php echo $group[$data[$i]['group']]; ?></td>
-	<td><?php echo anchor('users/update/'.encode_for_uri($data[$i]['id']), 'edit')?> | <?php echo anchor('users/delete/'.encode_for_uri($data[$i]['id']), 'delete', array('onclick' => 'return confirmDelete();'))?> </td>
+	<td><?php echo anchor('users/update/'.encode_for_uri($data[$i]['id']), 'edit')?><?php //echo anchor('users/delete/'.encode_for_uri($data[$i]['id']), 'delete', array('onclick' => 'return confirmDelete();'))?> </td>
 </tr>
 <?php } ?>
 </table>

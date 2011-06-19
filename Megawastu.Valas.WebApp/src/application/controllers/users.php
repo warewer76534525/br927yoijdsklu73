@@ -134,7 +134,7 @@ class users extends CI_Controller {
 		redirect('users', true);
 	}
 
-	function delete($id)
+	/*function delete($id)
 	{
 		if($this->session->userdata('logged_group') == 0){
 			redirect('home', true);
@@ -145,7 +145,7 @@ class users extends CI_Controller {
 		$this->mwp_users->delete(array('id' => $id));
 		
 		redirect('users');
-	}
+	}*/
 
 	function change_password()
 	{
