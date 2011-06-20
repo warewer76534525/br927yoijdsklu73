@@ -9,7 +9,7 @@ class jpgraph{
 		require_once ('./assets/jpgraph/jpgraph_date.php');
 	}
 	
-	function create($start, $end, $bid, $ask, $date, $time_align="day")
+	function create($start, $end, $bid, $ask, $date, $time_align="day", $maxs=100, $mins=0)
 	{
 		// Create the new graph
 		$graph = new Graph(540,300);
@@ -19,7 +19,7 @@ class jpgraph{
 		$graph->SetMargin(40,40,30,130);
 		 
 		// Fix the Y-scale to go between [0,100] and use date for the x-axis
-		$graph->SetScale('datlin',0,100);
+		$graph->SetScale('datlin',$mins,$maxs);
 		$graph->title->Set("Kurs Chart");
 		 
 		// Set the angle for the labels to 90 degrees
