@@ -117,6 +117,12 @@ class graphs extends CI_Controller {
 			}
 		}
 
+		$maxs = max(max($bid), max($ask));
+		$maxs = ceil($maxs);
+		
+		$mins = min(min($bid), min($ask));
+		$mins = floor($mins);
+
 		$content_menu = array(
 			'currency' => $this->mwp_currency->get_list(),
 			'choose_curr' => $curr,
@@ -125,7 +131,7 @@ class graphs extends CI_Controller {
 			);
 
 		if(count($curr_data) != 0){
-			$graph_result = $this->jpgraph->create($start, $end, $bid, $ask, $date, $timescale);
+			$graph_result = $this->jpgraph->create($start, $end, $bid, $ask, $date, $timescale, $maxs, $mins);
 		}else{
 			$graph_result = "Data not available";
 		}
