@@ -112,6 +112,12 @@
         commandline="install"
         workingdir="${build.dir}" />
   </target>
+  
+  <target name="uninstall.service">
+    <exec program="${build.dir}/${winservice.name}"
+        commandline="uninstall"
+        workingdir="${build.dir}" />
+  </target>
 
   <target name="create.installer" depends="compile">
     <copy todir="..\installer\bin\Megawastu.Valas.KursProvider">

@@ -1,12 +1,16 @@
 ﻿
 using System;
+using NLog;
+
 namespace Megawastu.Valas.KursProvider.Application
 {
     public class HolidayPauseTimer
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public event Action OnHolidayStart;
         public event Action OnHolidayEnd;
-        private HolidayCalendar _holidayCalendar = new HolidayCalendar();
+        private HolidayCalendar _holidayCalendar = HolidayCalandarFactory.GetInstance();
         private bool inHoliday = false;
         private DateScheduler _dateScheduler = new DateScheduler();
 
@@ -37,7 +41,17 @@ namespace Megawastu.Valas.KursProvider.Application
 
         public void Start()
         {
-            ScheduleNextHoliday(_holidayCalendar.NextHoliday);
+            Logger.Info("Start Holiday Timer");
+            if (_holidayCalendar.IsNowHoliday()) {
+                Logger.Info("Now Is Holiday, Stop Publisher");
+                ScheduleEndingHoliday(_holidayCalendar.NextHoliday);
+                inHoliday = true;
+                OnHolidayStart();
+            }
+            else
+            {
+                ScheduleNextHoliday(_holidayCalendar.NextHoliday);   
+            }
         }
     }
 }

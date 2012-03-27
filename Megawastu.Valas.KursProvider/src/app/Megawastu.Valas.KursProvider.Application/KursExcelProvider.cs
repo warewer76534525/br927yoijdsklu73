@@ -3,19 +3,20 @@ using Megawastu.Valas.KursProvider.ViewModel;
 using System.Collections.Generic;
 using System.Threading;
 using System;
+using NLog;
+
 namespace Megawastu.Valas.KursProvider.Application
 {
     public class KursExcelProvider
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         ExcelKursReader reader = new ExcelKursReader();
-        private volatile bool running = false;
+        private volatile bool running = true;
 
         public void Start()
         {
             KursPublisher publisher = new KursPublisher();
             
-            running = true;
-
             reader.Open();
 
             while (running)
@@ -24,6 +25,7 @@ namespace Megawastu.Valas.KursProvider.Application
                 {
                     Rates rates = reader.GetAllRates();
                     publisher.Publish(rates);
+                    Logger.Info("Publish rate {0}", rates);
 
                     Thread.Sleep(5000); // TODO atur sleep -> bisa diganti menjadi real times
                 }

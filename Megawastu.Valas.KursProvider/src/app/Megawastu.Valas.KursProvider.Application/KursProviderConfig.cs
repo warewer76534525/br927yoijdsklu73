@@ -8,11 +8,14 @@ namespace Megawastu.Valas.KursProvider.Application
     {
         public static string MONEY_CHANGER_REST_URL { get; private set; }
         public static string EXCEL_RATE_SOURCE_LOCATION { get; set; }
+        public static string HOLIDAY_DATE_LIST { get; set; }
 
         static KursProviderConfig()
         {
             MONEY_CHANGER_REST_URL = ConfigurationManager.AppSettings["rest_location"];
             EXCEL_RATE_SOURCE_LOCATION = ConfigurationManager.AppSettings["excel_location"];
+            HOLIDAY_DATE_LIST = ConfigurationManager.AppSettings["holiday_date"];
         }
     }
 }
+

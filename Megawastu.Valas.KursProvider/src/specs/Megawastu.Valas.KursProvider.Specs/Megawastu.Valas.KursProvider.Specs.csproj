@@ -57,7 +57,9 @@
     <Compile Include="When_create_scheduler_quartz.cs" />
     <Compile Include="When_detect_change_in_excel.cs" />
     <Compile Include="When_excel_process_still_exist.cs" />
+    <Compile Include="When_instansiate_holiday_from_factory.cs" />
     <Compile Include="When_list_all_holiday.cs" />
+    <Compile Include="When_meet_holiday_at_startup.cs" />
     <Compile Include="When_reading_excel_faster.cs" />
     <Compile Include="When_reading_excel_file.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

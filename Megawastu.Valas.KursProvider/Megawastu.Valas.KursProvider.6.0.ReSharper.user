@@ -1,0 +1,150 @@
+<Configuration>
+  <UnitTestSessions>
+    <Session>
+      <Name>Session #1</Name>
+      <Elements>
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup.Should_pause_the_kurs_provider" ParentId="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" MethodName="Should_pause_the_kurs_provider" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory.Should_register_holiday_from_configuration" ParentId="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" MethodName="Should_register_holiday_from_configuration" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+      </Elements>
+    </Session>
+  </UnitTestSessions>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.manifest" caret="0" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursProviderConfig.cs" caret="640" fromTop="15" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="394" fromTop="15" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_create_date_scheduler.cs" caret="341" fromTop="10" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="353" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateScheduler.cs" caret="1048" fromTop="10" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="696" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateJob.cs" caret="349" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="674" fromTop="1" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="1064" fromTop="15" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1093" fromTop="28" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="308" fromTop="5" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="229" fromTop="9" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2439" fromTop="12" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="284" fromTop="5" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1711" fromTop="11" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="717" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="708" fromTop="8" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="118" fromTop="2" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="431" fromTop="14" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="302" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="543" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="335" fromTop="7" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="642" fromTop="6" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="826" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="1149" fromTop="14" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="48" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="392" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="1485" fromTop="14" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="629" fromTop="9" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="376" fromTop="5" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="308" fromTop="5" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="774" fromTop="6" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="914" fromTop="11" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="1107" fromTop="18" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1683" fromTop="15" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1567" fromTop="16" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="696" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="215" fromTop="9" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1093" fromTop="13" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="281" fromTop="10" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="924" fromTop="19" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="699" fromTop="14" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="817" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1261" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="540" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="423" fromTop="7" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="284" fromTop="5" />
+    </RecentEdits>
+  </RecentFiles>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="var" priority="95" />
+      <Item value="public" priority="223" />
+      <Item value="static" priority="31" />
+      <Item value="_holidayCalendar" priority="96" />
+      <Item value="new" priority="191" />
+      <Item value="HolidayCalendar" priority="57" />
+      <Item value="null" priority="58" />
+      <Item value="return" priority="31" />
+      <Item value="KursProviderConfig`0" priority="31" />
+      <Item value="foreach" priority="31" />
+      <Item value="void" priority="95" />
+      <Item value="Test" priority="31" />
+      <Item value="HolidayCalendar`0" priority="31" />
+      <Item value="holidayses" priority="65" />
+      <Item value="holidays" priority="31" />
+      <Item value="IList" priority="31" />
+      <Item value="Holidays`0" priority="31" />
+      <Item value="List&lt;Holidays&gt;" priority="28" />
+      <Item value="HolidayCalandarFactory`0" priority="31" />
+      <Item value="if" priority="31" />
+      <Item value="TestFixture" priority="31" />
+      <Item value="holidayPauseTimer" priority="32" />
+      <Item value="HolidayPauseTimer" priority="28" />
+      <Item value="Console`0" priority="63" />
+      <Item value="SetUp" priority="31" />
+      <Item value="else" priority="31" />
+      <Item value="Logger" priority="31" />
+      <Item value="Thread" priority="57" />
+      <Item value="rates" priority="31" />
+      <Item value="true" priority="31" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Megawastu.Valas.KursProvider.Application.KursProviderConfig">
+      <Item value="HOLIDAY_DATE_LIST" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="Split`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Convert">
+      <Item value="ToInt32`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.HolidayCalendar">
+      <Item value="RegisterHoliday`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Megawastu.Valas.KursProvider.Application.HolidayCalandarFactory">
+      <Item value="GetInstance`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="Add`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="WriteLine`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.HolidayPauseTimer">
+      <Item value="Start`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Threading.Thread">
+      <Item value="Sleep`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NLog.Logger">
+      <Item value="Info`1" priority="134" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>

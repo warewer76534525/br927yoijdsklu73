@@ -6,7 +6,7 @@ namespace Megawastu.Valas.KursProvider.Application
 {
     public class HolidayCalendar
     {
-        private IList<Holidays> _holidays = new List<Holidays>();
+        private readonly IList<Holidays> _holidays = new List<Holidays>();
 
         public HolidayCalendar()
         {
@@ -14,7 +14,12 @@ namespace Megawastu.Valas.KursProvider.Application
             RegisterHoliday(new Holidays { Day = 25, Month = 12 }); 
         }
 
-        private void RegisterHoliday(Holidays holidays)
+        public HolidayCalendar(IList<Holidays> holidays)
+        {
+            _holidays = holidays;
+        }
+
+        public void RegisterHoliday(Holidays holidays)
         {
             _holidays.Add(holidays);
         }
@@ -33,6 +38,11 @@ namespace Megawastu.Valas.KursProvider.Application
 
                 return new DateTime(DateTime.Now.Year, nextHoliday.Month, nextHoliday.Day).ToUniversalTime();
             }
+        }
+
+        public bool IsNowHoliday()
+        {
+            return _holidays.Where(x => x.Month >= DateTime.Now.Month && x.Day >= DateTime.Now.Day).FirstOrDefault() != null;
         }
     }
 }
