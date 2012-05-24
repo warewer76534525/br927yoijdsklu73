@@ -9,41 +9,45 @@ namespace Megawastu.Valas.KursProvider.WinService
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        readonly KursExcelProvider kursExcelProvider = new KursExcelProvider();
-        readonly ExcelKiller excelKiller = new ExcelKiller();
-        readonly HolidayPauseTimer holidayPauseTimer = new HolidayPauseTimer();
+        readonly KursExcelProvider _kursExcelProvider = new KursExcelProvider();
+        readonly ExcelKiller _excelKiller = new ExcelKiller();
+        readonly HolidayPauseTimer _holidayPauseTimer = new HolidayPauseTimer();
+        private Thread _thread;
 
         public void Start()
         {
-            var thread = new Thread(() =>
+            _thread = new Thread(() =>
             {
                 Logger.Info("Start The tread");
-                holidayPauseTimer.Start();
-                kursExcelProvider.Start();
+                _holidayPauseTimer.Start();
+                _kursExcelProvider.Start();
             });
 
-            holidayPauseTimer.OnHolidayStart += holidayPauseTimer_OnHolidayStart;
-            holidayPauseTimer.OnHolidayEnd += holidayPauseTimer_OnHolidayEnd;
+            _holidayPauseTimer.OnHolidayStart += holidayPauseTimer_OnHolidayStart;
+            _holidayPauseTimer.OnHolidayEnd += holidayPauseTimer_OnHolidayEnd;
 
-            thread.IsBackground = true;
+            _thread.IsBackground = true;
 
-            thread.Start();
+            _thread.Start();
         }
 
         void holidayPauseTimer_OnHolidayEnd()
         {
-            kursExcelProvider.Start();
+            _kursExcelProvider.Start();
         }
 
         void holidayPauseTimer_OnHolidayStart()
         {
-            kursExcelProvider.Stop();
+            _kursExcelProvider.Stop();
         }
 
         public void Stop()
         {
-            kursExcelProvider.Stop();
-            excelKiller.KillExcelProcessForThisApp();
+            Logger.Info("Shutdown begin.");
+            _kursExcelProvider.Stop();
+            _thread.Join();
+            _excelKiller.KillExcelProcessForThisApp();
+            Logger.Info("Shutdown done.");
         }
     }
 }

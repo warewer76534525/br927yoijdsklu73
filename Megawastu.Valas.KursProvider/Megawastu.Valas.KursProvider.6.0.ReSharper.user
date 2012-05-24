@@ -3,81 +3,97 @@
     <Session>
       <Name>Session #1</Name>
       <Elements>
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_convert_string_to_decimal" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
         <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
         <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_retrieve_list_of_kurs" type="NUnitTestFixtureElement" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_convert_string_to_decimal.Should_include_the_zero_value" ParentId="Megawastu.Valas.KursProvider.Specs.When_convert_string_to_decimal" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_convert_string_to_decimal" MethodName="Should_include_the_zero_value" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
         <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup.Should_pause_the_kurs_provider" ParentId="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_meet_holiday_at_startup" MethodName="Should_pause_the_kurs_provider" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
         <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory.Should_register_holiday_from_configuration" ParentId="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_instansiate_holiday_from_factory" MethodName="Should_register_holiday_from_configuration" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
+        <UnitTestElement Provider="nUnit" Id="Megawastu.Valas.KursProvider.Specs.When_retrieve_list_of_kurs.Should_return_list_of_kurs" ParentId="Megawastu.Valas.KursProvider.Specs.When_retrieve_list_of_kurs" type="NUnitTestElement" TypeName="Megawastu.Valas.KursProvider.Specs.When_retrieve_list_of_kurs" MethodName="Should_return_list_of_kurs" Project="34992B1B-CBEC-4519-9102-4737226DF89F" />
       </Elements>
     </Session>
   </UnitTestSessions>
   <RecentFiles>
     <RecentFiles>
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.manifest" caret="0" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursProviderConfig.cs" caret="640" fromTop="15" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="394" fromTop="15" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_create_date_scheduler.cs" caret="341" fromTop="10" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="353" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateScheduler.cs" caret="1048" fromTop="10" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="696" fromTop="12" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateJob.cs" caret="349" fromTop="11" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="674" fromTop="1" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="1064" fromTop="15" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1093" fromTop="28" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="308" fromTop="5" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="229" fromTop="9" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2439" fromTop="12" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="284" fromTop="5" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1711" fromTop="11" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="717" fromTop="11" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="708" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateScheduler.cs" caret="124" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="1118" fromTop="16" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:Holidays.cs" caret="167" fromTop="6" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:packages.config" caret="0" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="1344" fromTop="41" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_retrieve_list_of_kurs.cs" caret="328" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1276" fromTop="43" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="390" fromTop="4" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="267" fromTop="4" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursProviderConfig.cs" caret="424" fromTop="12" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_reading_excel_file.cs" caret="1992" fromTop="20" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="338" fromTop="6" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="963" fromTop="14" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateJob.cs" caret="0" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKiller.cs" caret="552" fromTop="10" />
+      <File id="C2B9270A-4C91-4FB4-A58E-C05EB3EE6734/f:Rates.cs" caret="143" fromTop="6" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="613" fromTop="7" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_create_date_scheduler.cs" caret="0" fromTop="0" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_serialize_rate.cs" caret="239" fromTop="11" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_upload_kurs_to_endpoint.cs" caret="646" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2192" fromTop="10" />
+      <File id="C2B9270A-4C91-4FB4-A58E-C05EB3EE6734/f:Kurs.cs" caret="193" fromTop="7" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1045" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="67" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="2832" fromTop="18" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursAdvisor.cs" caret="1786" fromTop="18" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_detect_change_in_excel.cs" caret="2256" fromTop="11" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_convert_string_to_decimal.cs" caret="300" fromTop="12" />
     </RecentFiles>
     <RecentEdits>
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="118" fromTop="2" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="431" fromTop="14" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_instansiate_holiday_from_factory.cs" caret="302" fromTop="12" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="543" fromTop="12" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="335" fromTop="7" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="642" fromTop="6" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="826" fromTop="11" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="1149" fromTop="14" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalandarFactory.cs" caret="48" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="392" fromTop="8" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayCalendar.cs" caret="1485" fromTop="14" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="629" fromTop="9" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="376" fromTop="5" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="308" fromTop="5" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="774" fromTop="6" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="914" fromTop="11" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_meet_holiday_at_startup.cs" caret="1107" fromTop="18" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1683" fromTop="15" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1567" fromTop="16" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="696" fromTop="12" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="215" fromTop="9" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1093" fromTop="13" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="281" fromTop="10" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="924" fromTop="19" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="699" fromTop="14" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="817" fromTop="8" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1261" fromTop="8" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="540" fromTop="12" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="423" fromTop="7" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="284" fromTop="5" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="714" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="182" fromTop="5" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="525" fromTop="15" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="900" fromTop="9" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="646" fromTop="3" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="919" fromTop="10" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="338" fromTop="6" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="1725" fromTop="18" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_reading_excel_file.cs" caret="1851" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="665" fromTop="6" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="665" fromTop="5" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1165" fromTop="19" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1222" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="657" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1548" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1549" fromTop="11" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1706" fromTop="16" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1326" fromTop="13" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_create_date_scheduler.cs" caret="0" fromTop="0" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_convert_string_to_decimal.cs" caret="361" fromTop="13" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_convert_string_to_decimal.cs" caret="495" fromTop="19" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_convert_string_to_decimal.cs" caret="495" fromTop="12" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_serialize_rate.cs" caret="239" fromTop="11" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_upload_kurs_to_endpoint.cs" caret="1240" fromTop="11" />
+      <File id="C2B9270A-4C91-4FB4-A58E-C05EB3EE6734/f:Kurs.cs" caret="193" fromTop="7" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2192" fromTop="10" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="2832" fromTop="18" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursAdvisor.cs" caret="1545" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursAdvisor.cs" caret="1786" fromTop="18" />
+      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_upload_kurs_to_endpoint.cs" caret="1240" fromTop="11" />
     </RecentEdits>
   </RecentFiles>
   <CompletionStatisticsManager>
     <ItemStatistics item="CSharpCodeCompletionContext">
-      <Item value="var" priority="95" />
-      <Item value="public" priority="223" />
-      <Item value="static" priority="31" />
+      <Item value="var" priority="351" />
+      <Item value="public" priority="383" />
+      <Item value="static" priority="63" />
       <Item value="_holidayCalendar" priority="96" />
-      <Item value="new" priority="191" />
+      <Item value="new" priority="319" />
       <Item value="HolidayCalendar" priority="57" />
-      <Item value="null" priority="58" />
-      <Item value="return" priority="31" />
-      <Item value="KursProviderConfig`0" priority="31" />
-      <Item value="foreach" priority="31" />
-      <Item value="void" priority="95" />
-      <Item value="Test" priority="31" />
+      <Item value="null" priority="90" />
+      <Item value="return" priority="191" />
+      <Item value="KursProviderConfig`0" priority="63" />
+      <Item value="foreach" priority="95" />
+      <Item value="void" priority="159" />
+      <Item value="Test" priority="63" />
       <Item value="HolidayCalendar`0" priority="31" />
       <Item value="holidayses" priority="65" />
       <Item value="holidays" priority="31" />
@@ -89,16 +105,60 @@
       <Item value="TestFixture" priority="31" />
       <Item value="holidayPauseTimer" priority="32" />
       <Item value="HolidayPauseTimer" priority="28" />
-      <Item value="Console`0" priority="63" />
+      <Item value="Console`0" priority="95" />
       <Item value="SetUp" priority="31" />
       <Item value="else" priority="31" />
-      <Item value="Logger" priority="31" />
+      <Item value="Logger" priority="63" />
       <Item value="Thread" priority="57" />
-      <Item value="rates" priority="31" />
-      <Item value="true" priority="31" />
+      <Item value="rates" priority="96" />
+      <Item value="true" priority="255" />
+      <Item value="holday" priority="31" />
+      <Item value="x" priority="63" />
+      <Item value="int" priority="95" />
+      <Item value="Rates`0" priority="26" />
+      <Item value="xlApp" priority="63" />
+      <Item value="excelPath" priority="63" />
+      <Item value="misValue" priority="58" />
+      <Item value="false" priority="127" />
+      <Item value="Notify" priority="31" />
+      <Item value="Thread`0" priority="95" />
+      <Item value="thread" priority="31" />
+      <Item value="_kursAdvisors" priority="32" />
+      <Item value="private" priority="63" />
+      <Item value="string" priority="383" />
+      <Item value="_kurs" priority="128" />
+      <Item value="Kurs" priority="28" />
+      <Item value="currency" priority="64" />
+      <Item value="bid" priority="31" />
+      <Item value="_askCell" priority="63" />
+      <Item value="_askClient" priority="95" />
+      <Item value="ask" priority="31" />
+      <Item value="DdeKursAdvisor" priority="28" />
+      <Item value="List" priority="31" />
+      <Item value="advisors" priority="64" />
+      <Item value="List&lt;DdeKursAdvisor&gt;" priority="28" />
+      <Item value="DdeKursReader`0" priority="31" />
+      <Item value="ddeKursReader" priority="32" />
+      <Item value="DdeKursReader" priority="28" />
+      <Item value="reader" priority="32" />
+      <Item value="_bidClient" priority="31" />
+      <Item value="i" priority="31" />
+      <Item value="bidCell" priority="31" />
+      <Item value="askCell" priority="31" />
+      <Item value="Close`0" priority="31" />
+      <Item value="Open`0" priority="31" />
+      <Item value="try" priority="95" />
+      <Item value="while" priority="31" />
+      <Item value="bool" priority="31" />
+      <Item value="do" priority="31" />
+      <Item value="connected" priority="31" />
+      <Item value="converted" priority="31" />
+      <Item value="number" priority="31" />
+      <Item value="double" priority="63" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Megawastu.Valas.KursProvider.Application.KursProviderConfig">
       <Item value="HOLIDAY_DATE_LIST" priority="26" />
+      <Item value="EXCEL_READER_TIMER" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.String">
       <Item value="Split`0" priority="53" />
@@ -113,19 +173,70 @@
       <Item value="GetInstance`0" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="27" />
+      <Item value="Add`0" priority="54" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
-      <Item value="WriteLine`0" priority="26" />
+      <Item value="WriteLine`0" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.HolidayPauseTimer">
       <Item value="Start`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Threading.Thread">
-      <Item value="Sleep`0" priority="26" />
+      <Item value="Sleep`0" priority="80" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NLog.Logger">
-      <Item value="Info`1" priority="134" />
+      <Item value="Info`1" priority="215" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IList`1">
+      <Item value="OrderBy`2" priority="22" />
+      <Item value="Add`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.Holidays">
+      <Item value="Month" priority="26" />
+      <Item value="Day" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DateTime">
+      <Item value="AddDays`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Int32">
+      <Item value="Parse`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Office.Interop.Excel.Workbooks">
+      <Item value="Open`0" priority="45" />
+      <Item value="OpenDatabase`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Threading.Thread">
+      <Item value="Join`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.ViewModel.Kurs">
+      <Item value="bid" priority="26" />
+      <Item value="ask" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Megawastu.Valas.KursProvider.Application.DdeKursReaderFactory">
+      <Item value="Create`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.DdeKursAdvisor">
+      <Item value="GetHashCode`0" priority="26" />
+      <Item value="StartAdvise`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NDde.Client.DdeClient">
+      <Item value="Disconnect`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.DdeKursReader">
+      <Item value="Connect`0" priority="27" />
+      <Item value="Disconnect`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Format`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Megawastu.Valas.KursProvider.Application.DdeKursReaderFactory">
+      <Item value="Create`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Double">
+      <Item value="ToString`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Object">
+      <Item value="ToString`0" priority="53" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <NAntValidationSettings>

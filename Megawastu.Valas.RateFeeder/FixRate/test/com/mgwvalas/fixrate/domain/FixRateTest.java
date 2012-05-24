@@ -10,7 +10,8 @@ public class FixRateTest {
 	
 	@Test
 	public void should_update_low_bid_when_fixrate_updated() {
-		FixRate fx = new FixRate("IDR", 5, 5);
+		
+		FixRate fx = new FixRate("IDR", 0);
 		fx.update(1d, 1d);
 		Assert.assertEquals("Message", 1, fx.getLowBid(), 0);
 	}

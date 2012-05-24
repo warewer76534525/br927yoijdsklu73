@@ -28,7 +28,7 @@ namespace Megawastu.Valas.KursProvider.Application
         {
             get
             {
-                Holidays nextHoliday = _holidays.Where(x => x.Month >= DateTime.Now.Month && x.Day >= DateTime.Now.Day).FirstOrDefault();
+                Holidays nextHoliday = _holidays.OrderBy(x => x.Month) .Where(x => x.Month > DateTime.Now.Month && x.Day > DateTime.Now.Day).FirstOrDefault();
 
                 if (nextHoliday == null) 
                 {
@@ -36,13 +36,14 @@ namespace Megawastu.Valas.KursProvider.Application
                     return new DateTime(DateTime.Now.Year + 1, nextYearHoliday.Month, nextYearHoliday.Day).ToUniversalTime();
                 }
 
-                return new DateTime(DateTime.Now.Year, nextHoliday.Month, nextHoliday.Day).ToUniversalTime();
+                return new DateTime(DateTime.Now.Year, nextHoliday.Month, nextHoliday.Day).ToUniversalTime().AddDays(1);
             }
         }
 
         public bool IsNowHoliday()
         {
-            return _holidays.Where(x => x.Month >= DateTime.Now.Month && x.Day >= DateTime.Now.Day).FirstOrDefault() != null;
+            var holday = _holidays.Where(x => x.Month == DateTime.Now.Month && x.Day == DateTime.Now.Day).FirstOrDefault();
+            return holday != null;
         }
     }
 }

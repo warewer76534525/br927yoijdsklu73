@@ -106,7 +106,25 @@
 		</property>
 	</bean>
 	
+	<!-- Scheduler CONFIGURATION -->
+	<bean name="holidayJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.mgwvalas.fixrate.scheduler.HolidayCheckerJob" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="fixRateService" value-ref="fixRateService" />
+				<entry key="configurationDao" value-ref="configurationDao" />
+			</map>
+		</property>
+	</bean>
+	
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="holidayJob" />
+		<property name="cronExpression" value="${endofday.cron}" />
+	</bean>
+	
+	<bean id="holidayCheckerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="endOfDayJob" />
 		<property name="cronExpression" value="${endofday.cron}" />
 	</bean>

@@ -2,15 +2,16 @@
 <project name="master" basedir=".">
   <property name="db.dir" location="sql"/>
   <property file="${db.dir}/sql.properties" />
+  <property file="build.properties" />
   <property name="bin.dir" location="bin"/>
   <property name="fixrate-service.dir" location="${bin.dir}/fixrate-service"/>
   <property name="sintesis-service.dir" location="${bin.dir}/sintesis-service"/>
   <property name="snap-service.dir" location="${bin.dir}/snap-service"/>
   <property name="stale-service.dir" location="${bin.dir}/stale-service"/>
   <property name="lib.dir" value="lib" />
-  <property name="web.home.dir" value="C:\appserv\www\megawastu" />
+  <property name="web.home.dir" value="${web.home.dir}" />
   <property name="web.src.dir" value="${bin.dir}\megawastu" />
-  <property name="rest.deploy.dir" value="C:\appserv\tomcat7\webapps" />
+  <property name="rest.deploy.dir" value="${rest.deploy.dir}" />
   <property name="rest.src.file" value="${bin.dir}\moneychanger.war" />
   
   <path id="sql.classpath">

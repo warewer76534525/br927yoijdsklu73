@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/ResourceProject/commons-dbcp.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/commons-lang.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/commons-logging.jar"/>
@@ -25,7 +24,6 @@
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jdbc.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.orm.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.oxm.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.spring-library.libd"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.test.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.transaction.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.web.jar"/>
@@ -37,5 +35,7 @@
 	<classpathentry kind="lib" path="/ResourceProject/xstream-1.3.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jms-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/jms-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

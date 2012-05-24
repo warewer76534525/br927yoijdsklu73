@@ -22,7 +22,7 @@ public class CurrencyDao extends SimpleJdbcDaoSupport implements ICurrencyDao {
 	private final static String SNAP_TYPE = "SNAP";
 	private final static String SINTESIS_TYPE = "SINTESIS";
 	
-	private final static String CURRENCY_QUERY = "SELECT c.name, c.type FROM currency c WHERE c.type=?";
+	private final static String CURRENCY_QUERY = "SELECT c.name, c.type, c.fixed FROM currency c WHERE c.type=?";
 	
 	@Autowired()
 	public CurrencyDao(DataSource dataSource) {
@@ -54,6 +54,7 @@ public class CurrencyDao extends SimpleJdbcDaoSupport implements ICurrencyDao {
 			Currency currency = new Currency();
 			currency.setName(rs.getString("name"));
 			currency.setType(rs.getString("type"));
+			currency.setFixed(rs.getInt("fixed"));
 			return currency;
 		}
 	}

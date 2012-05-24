@@ -44,9 +44,7 @@ namespace Megawastu.Valas.KursProvider.Application
             Logger.Info("Start Holiday Timer");
             if (_holidayCalendar.IsNowHoliday()) {
                 Logger.Info("Now Is Holiday, Stop Publisher");
-                ScheduleEndingHoliday(_holidayCalendar.NextHoliday);
-                inHoliday = true;
-                OnHolidayStart();
+                TimerExecuted();
             }
             else
             {

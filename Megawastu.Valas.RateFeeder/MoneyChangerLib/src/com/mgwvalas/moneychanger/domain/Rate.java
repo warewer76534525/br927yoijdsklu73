@@ -69,4 +69,5 @@ public class Rate implements Serializable {
 		return new Rate(currency, bid, ask);
 	}
 
+
 }

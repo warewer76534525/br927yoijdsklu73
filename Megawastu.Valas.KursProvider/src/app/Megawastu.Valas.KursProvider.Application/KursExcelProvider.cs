@@ -4,43 +4,69 @@ using System.Collections.Generic;
 using System.Threading;
 using System;
 using NLog;
+using Newtonsoft.Json;
 
 namespace Megawastu.Valas.KursProvider.Application
 {
     public class KursExcelProvider
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        ExcelKursReader reader = new ExcelKursReader();
-        private volatile bool running = true;
+        private readonly DdeKursReader _reader = new DdeKursReaderFactory().Create();
+        //ExcelKursReader reader = new ExcelKursReader();
+        private volatile bool _running = true;
 
         public void Start()
         {
-            KursPublisher publisher = new KursPublisher();
-            
-            reader.Open();
+            var publisher = new KursPublisher();
+            DdeConnect();
 
-            while (running)
+            while (_running)
             {
                 try
                 {
-                    Rates rates = reader.GetAllRates();
+                    Rates rates = _reader.GetAllRates();
+                    Logger.Info(JsonConvert.SerializeObject(rates));
                     publisher.Publish(rates);
-                    Logger.Info("Publish rate {0}", rates);
-
-                    Thread.Sleep(5000); // TODO atur sleep -> bisa diganti menjadi real times
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
+                Thread.Sleep(KursProviderConfig.EXCEL_READER_TIMER);
             }
 
-            reader.Close();
+            try
+            {
+                _reader.Disconnect();
+            }
+            catch
+            {
+               
+            }
+        }
+
+        private void DdeConnect()
+        {
+            bool connected = false;
+            do
+            {
+                try
+                {
+                    _reader.Connect();
+                    connected = true;
+                }
+                catch
+                {
+                    Logger.Info("Excel is not open yet");
+                    Thread.Sleep(5000);
+                }       
+            } while (!connected);
+            
         }
 
         public void Stop()
         {
-            running = false;
+            _running = false;
         }
 
         //~KursExcelProvider()

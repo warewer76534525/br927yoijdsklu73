@@ -4,11 +4,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
+import com.mgwvalas.fixrate.dao.ICurrencyDao;
 import com.mgwvalas.fixrate.domain.FixRate;
 import com.mgwvalas.fixrate.domain.FixRates;
 import com.mgwvalas.moneychanger.domain.Rate;
@@ -20,6 +25,11 @@ public class FixRateService implements IFixRateService {
 	private FixRates fixRates = new FixRates();
 	private String directory;
 	private String fileName;
+	
+	@Autowired
+	private ICurrencyDao currencyDao;
+	
+	
 	private boolean holidayWriteFlag = false;
 
 	public FixRates getRates() {
@@ -37,7 +47,15 @@ public class FixRateService implements IFixRateService {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
+	
+	@PostConstruct
+	public void init() {
+		List<FixRate> availableRates = currencyDao.queryCurrencyPairs();
+		log.info("INIT currencyListForSintesis: " + availableRates);
+		
+		fixRates.setRates(availableRates);
+	}
+	
 	public void update(Rates _rate) {
 		Iterator<Rate> ratesIterator = _rate.getRates().iterator();
 		while (ratesIterator.hasNext()) {
@@ -63,6 +81,7 @@ public class FixRateService implements IFixRateService {
 		ratesJson = gson.toJson(fixRates);
 		try {
 			fout = new FileWriter(new File(directory, fileName));
+			log.info("writedata" + ratesJson);
 			fout.write(ratesJson);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
@@ -79,6 +98,7 @@ public class FixRateService implements IFixRateService {
 	public void reset() {
 		log.info("Reset FixRate");
 		fixRates.reset();
+		notStale();
 	}
 
 	@Override

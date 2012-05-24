@@ -19,7 +19,7 @@ namespace Megawastu.Valas.KursProvider.WinService
                     s.Named("tc");                                
                     s.HowToBuildService(name => new KursProviderService());  
                     s.WhenStarted(tc => tc.Start());              
-                    s.WhenStopped(tc => tc.Stop());               
+                    s.WhenStopped(tc => tc.Stop());  
                 });
                 x.RunAsLocalSystem();                            
 

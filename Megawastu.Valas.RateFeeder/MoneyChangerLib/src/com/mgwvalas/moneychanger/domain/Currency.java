@@ -3,6 +3,7 @@ package com.mgwvalas.moneychanger.domain;
 public class Currency {
 	private String name;
 	private String type;
+	private int fixed;
 
 	public String getName() {
 		return name;
@@ -19,5 +20,15 @@ public class Currency {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public int getFixed() {
+		return fixed;
+	}
+
+	public void setFixed(int fixed) {
+		this.fixed = fixed;
+	}
+
+
 
 }

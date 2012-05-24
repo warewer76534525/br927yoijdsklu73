@@ -49,7 +49,7 @@ namespace Megawastu.Valas.KursProvider.Specs
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
                 obj = null;
             }
-            catch (Exception ex)
+            catch
             {
                 obj = null;
             }

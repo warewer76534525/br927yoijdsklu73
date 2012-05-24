@@ -16,3 +16,7 @@ dist/
 /Megawastu.Valas.RateFeeder/MoneyChanger/build1.xml
 /Megawastu.Valas.RateFeeder/moneychanger.war
 /Megawastu.Valas.RateFeeder/SnapScheduler/example.log
+
+/Megawastu.Valas.KursProvider/_ReSharper.Megawastu.Valas.KursProvider
+/Megawastu.Valas.KursProvider/packages/NLog.2.0.0.2000/lib/net35
+/Megawastu.Valas.KursProvider/packages/NLog.2.0.0.2000/lib/net20

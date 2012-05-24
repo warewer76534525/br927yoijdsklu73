@@ -4,6 +4,7 @@ import com.mgwvalas.moneychanger.domain.Rate;
 
 public class FixRate {
 	private String currency;
+	private int fixed;
 	private double bid;
 	private double ask;
 	private double lowBid;
@@ -11,6 +12,11 @@ public class FixRate {
 	private double lowAsk;
 	private double highAsk;
 
+	public FixRate(String currency, int fixed) {
+		this.currency = currency;
+		this.setFixed(fixed);
+	}
+	
 	public FixRate(String currency, double bid, double ask) {
 		this.currency = currency;
 		this.bid = bid;
@@ -32,6 +38,15 @@ public class FixRate {
 	}
 
 	public void update(double _bid, double _ask) {
+		
+		if (isReset()) {
+			lowAsk = _ask;
+			highAsk = _ask;
+			lowBid = _bid;
+			highBid = _bid;
+		}
+			
+		
 		if (!isCurrentBidLowerThan(_bid)) {
 			lowBid = _bid;
 		}
@@ -50,6 +65,10 @@ public class FixRate {
 
 		bid = _bid;
 		ask = _ask;
+	}
+
+	private boolean isReset() {
+		return highAsk == 0 && highBid == 0 && lowAsk == 0 && lowBid == 0; 
 	}
 
 	private boolean isCurrentBidHigherThan(double _bid) {
@@ -96,4 +115,20 @@ public class FixRate {
 		return currency;
 	}
 
+	public int getFixed() {
+		return fixed;
+	}
+
+	public void setFixed(int fixed) {
+		this.fixed = fixed;
+	}
+
+	@Override
+	public String toString() {
+		return "FixRate [currency=" + currency + ", fixed=" + fixed + ", bid="
+				+ bid + ", ask=" + ask + ", lowBid=" + lowBid + ", highBid="
+				+ highBid + ", lowAsk=" + lowAsk + ", highAsk=" + highAsk + "]";
+	}
+
+	
 }
