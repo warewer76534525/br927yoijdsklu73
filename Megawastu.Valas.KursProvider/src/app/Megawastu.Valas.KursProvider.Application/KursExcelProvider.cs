@@ -25,12 +25,15 @@ namespace Megawastu.Valas.KursProvider.Application
                 try
                 {
                     Rates rates = _reader.GetAllRates();
-                    Logger.Info(JsonConvert.SerializeObject(rates));
+
+                    if (Logger.IsEnabled(LogLevel.Debug))
+                        Logger.Debug(JsonConvert.SerializeObject(rates));
+
                     publisher.Publish(rates);
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Logger.Error(e.Message);
                 }
                 Thread.Sleep(KursProviderConfig.EXCEL_READER_TIMER);
             }

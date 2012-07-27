@@ -8,13 +8,21 @@ namespace Megawastu.Valas.KursProvider.Application
 {
     public class ExcelKursReader
     {
-        string excelPath = KursProviderConfig.EXCEL_RATE_SOURCE_LOCATION;
+        private string excelPath;
 
         Excel.Application xlApp;
         Excel.Workbook xlWorkBook;
         Excel.Worksheet xlWorkSheet;
-        object misValue = System.Reflection.Missing.Value;
-        
+
+        public ExcelKursReader()
+        {
+            excelPath = KursProviderConfig.EXCEL_RATE_SOURCE_LOCATION;
+        }
+
+        public ExcelKursReader(string path)
+        {
+            excelPath = path;
+        }
 
         public Rates GetAllRates()
         {    
@@ -32,13 +40,13 @@ namespace Megawastu.Valas.KursProvider.Application
 
             for (int i = 0; i < 19; i++)
             {
-                dollarKursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3]) });
+                dollarKursList.Add(new Kurs { currency = valueArray[22 + i, 1].ToString().TrimEnd('='), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3]) });
             }
 
 
             for (int i = 0; i < 18; i++)
             {
-                dollarKursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), bid = ConvertToDoubleTwoDecimal(valueArray[45 + i, 3]) });
+                dollarKursList.Add(new Kurs { currency = valueArray[45 + i, 1].ToString().TrimEnd('='), bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]), ask = ConvertToDoubleTwoDecimal(valueArray[45 + i, 3]) });
             }
 
             return new Rates { rates = dollarKursList};
@@ -61,7 +69,7 @@ namespace Megawastu.Valas.KursProvider.Application
 
         public void Close()
         {
-            xlWorkBook.Close(false, misValue, misValue);
+            xlWorkBook.Close(false, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
             xlApp.Quit();
 
             releaseObject(xlWorkSheet);

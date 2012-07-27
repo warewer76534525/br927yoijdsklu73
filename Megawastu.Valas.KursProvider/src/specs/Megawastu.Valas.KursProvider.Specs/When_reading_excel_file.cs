@@ -1,12 +1,15 @@
 ﻿using System;
+using NUnit.Framework;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Threading;
 using System.IO;
 
 namespace Megawastu.Valas.KursProvider.Specs
 {
+    [TestFixture]
     public class When_reading_excel_file
     {
+        [Test]
         public void Should_read_value_repeatedly()
         {
             Excel.Application xlApp;

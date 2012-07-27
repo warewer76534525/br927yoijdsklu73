@@ -33,31 +33,33 @@ namespace Megawastu.Valas.KursProvider.Application
             var valueArray = (object[,])excelRange.get_Value(
                 XlRangeValueDataType.xlRangeValueDefault);
 
-            for (int i = 0; i < 19; i++)
+            int usdLength = KursProviderConfig.BASE_USD_ROW_END - KursProviderConfig.BASE_USD_ROW_START + 1;
+            for (int i = 0; i < usdLength; i++)
             {
                 var kurs = new Kurs
                     {
                         currency = valueArray[22 + i, 1].ToString().TrimEnd('='),
-                        ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]),
-                        bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3])
+                        bid = ConvertToDoubleTwoDecimal(valueArray[22 + i, 2]),
+                        ask = ConvertToDoubleTwoDecimal(valueArray[22 + i, 3])
                     };
-                var bidCell = string.Format("R{0}C2", 22+i );
-                var askCell = string.Format("R{0}C3", 22 + i);
+                var bidCell = string.Format("R{0}C2", KursProviderConfig.BASE_USD_ROW_START + i);
+                var askCell = string.Format("R{0}C3", KursProviderConfig.BASE_USD_ROW_START + i);
 
                 advisors.Add(new DdeKursAdvisor(kurs, bidCell, askCell));
             }
 
 
-            for (int i = 0; i < 19; i++)
+            int idrLength = KursProviderConfig.BASE_IDR_ROW_END - KursProviderConfig.BASE_IDR_ROW_START + 1 ;
+            for (int i = 0; i < idrLength; i++)
             {
                 var kurs = new Kurs
                 {
                     currency = valueArray[44 + i, 1].ToString().TrimEnd('='),
-                    ask = ConvertToDoubleTwoDecimal(valueArray[44 + i, 2]),
-                    bid = ConvertToDoubleTwoDecimal(valueArray[44 + i, 3])
+                    bid = ConvertToDoubleTwoDecimal(valueArray[44 + i, 2]),
+                    ask = ConvertToDoubleTwoDecimal(valueArray[44 + i, 3])
                 };
-                var bidCell = string.Format("R{0}C2", 22 + i);
-                var askCell = string.Format("R{0}C3", 22 + i);
+                var bidCell = string.Format("R{0}C2", KursProviderConfig.BASE_IDR_ROW_START + i);
+                var askCell = string.Format("R{0}C3", KursProviderConfig.BASE_IDR_ROW_START + i);
 
                 advisors.Add(new DdeKursAdvisor(kurs, bidCell, askCell));
             }

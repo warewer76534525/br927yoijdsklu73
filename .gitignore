@@ -20,3 +20,6 @@ dist/
 /Megawastu.Valas.KursProvider/_ReSharper.Megawastu.Valas.KursProvider
 /Megawastu.Valas.KursProvider/packages/NLog.2.0.0.2000/lib/net35
 /Megawastu.Valas.KursProvider/packages/NLog.2.0.0.2000/lib/net20
+/installers
+/meeting
+/installer/KursProvider

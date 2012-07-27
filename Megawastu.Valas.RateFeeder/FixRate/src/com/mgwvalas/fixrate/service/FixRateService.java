@@ -54,6 +54,7 @@ public class FixRateService implements IFixRateService {
 		log.info("INIT currencyListForSintesis: " + availableRates);
 		
 		fixRates.setRates(availableRates);
+		fixRates.stale();
 	}
 	
 	public void update(Rates _rate) {
