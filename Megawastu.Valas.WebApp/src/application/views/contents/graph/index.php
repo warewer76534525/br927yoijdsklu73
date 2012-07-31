@@ -1,0 +1,1 @@
+<div style="text-align:center; height:300px"><i>Choose currency to displaying graph</i></div>

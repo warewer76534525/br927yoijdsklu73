@@ -1,69 +1,65 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class login extends CI_Controller {
+/**
+ * Login Controller
+ * @author 		Jogi Silalahi <silalahi.jogi@gmail.com>
+ * @copyright 	2012 GMYT Trading
+ */
+class Login extends CI_Controller {
 
-	function __construct()
+	/**
+	 * Index
+	 * Homepage controller show
+	 */
+	public function index()
 	{
-		parent::__construct();
-	}
+		$user = $this->auth->user();
+		if($user !== FALSE)
+		{
+			// User already logged in
+			redirect('rates');
+		}
 
-	function index()
-	{ 
-		$this->load->view('layout/login');
-	}
+		// Process login
+		$user = new user();
+		if($this->input->post('username') !== FALSE)
+		{
+			$user->username = $_POST['username'];
+			$user->password = $_POST['password'];
 
-	function verify()
-	{
-		//if submit from form
-		if($this->input->post('__submit')){
+			$login_redirect = $this->auth->login($user);
 
-			//load the model
-			$this->load->model('mwp_users');
-
-			$user = addslashes($this->input->post('username'));
-			$pass = md5($this->input->post('password'));
-
-			$result = $this->mwp_users->login($user)->result_array();
-
-			if(count($result) == 0){
-				$this->session->set_flashdata('message', 'Username you entered not exist!');
-				redirect('login');
-			}else{
-				if($pass == $result[0]['password']){
-
-					//load all library and model needed
-					$this->load->model('mwp_session');
-					$log = $this->mwp_session->get_like($result[0]['username'])->result_array();
-
-					//create session
-					$this->session->set_userdata('logged_id', $result[0]['id']);
-					$this->session->set_userdata('logged_auth', $result[0]['username']);
-					$this->session->set_userdata('logged_group', $result[0]['group']);
-
-					if(count($log) != 0){ //jika ternyata login di tempat berbeda
-						$this->mwp_session->delete(array('session_id' => $log[0]['session_id']));
-					}
-
-					$this->load->library('user_agent');
-					if($this->agent->is_mobile()){
-						redirect("mobile/kurs", true);
-					}
-						
-					redirect('home', true);
-					
-				}else{
-					$this->session->set_flashdata('message', 'Invalid password!');
-					redirect('login');
+			if($login_redirect)
+			{
+				// If success
+				if($login_redirect === TRUE)
+				{
+					redirect('rates');
+				}
+				else
+				{ 
+					// Redirect for last access page
+					redirect($login_redirect);
 				}
 			}
-
-		//if access from url
-		}else{	
-			//redirect to login form
-			redirect('login', true);
+			else
+			{
+				// Failed to login
+				$this->session->set_flashdata('error', 'Invalid username or password.');
+				redirect('login');
+			}
 		}
+
+		$content_data = array(
+				'navigation' => '',
+				'content' => $this->load->view('contents/auth/login', '', TRUE),
+				'page' => 'Login',
+				'action' => '',
+			);
+
+		$this->load->view('layouts/default', $content_data);
 	}
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/home.php */
+/* End of file login.php */
+/* Location: ./application/controllers/login.php */

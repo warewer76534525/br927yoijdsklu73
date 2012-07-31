@@ -1,184 +1,123 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class users extends CI_Controller {
+class Users extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
-
-		// auth the user
-		if(! $this->session->userdata('logged_auth')){
-			redirect('login', true);
-		}
-
-		if($this->session->userdata('logged_auth')){
-			$sess_id = $this->session->userdata('session_id');
-			$this->load->model('mwp_session');
-			$result = $this->mwp_session->get($sess_id)->result_array();
-
-			if(count($result) == 0){
-				$this->mwp_session->delete(array('session_id' => $sess_id));
-				redirect('home', true);
-			}
-		}
-
-		
-
-		//load the model
-		$this->load->model('mwp_users');
+		$this->auth->check(array(1));
 	}
 
-	function index()
-	{ 
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+	public function index()
+	{
+		$this->all();
+	}
 
-		$data = $this->mwp_users->get_all()->result_array();
-		$this->load->helper('string');
-		
+	public function all()
+	{
+		$users = new user();
+		$users->get_all();
+
+		$data = array(
+				'users' => $users,
+			);
+
 		$content_data = array(
-			'data' => $data,
-		);
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/users', '', true),
-			'page' => "VIew All News",
-			'content' => $this->load->view('content/users/view_all', $content_data, true),
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/user/index', $data, TRUE),
+				'page' => 'Users',
+				'action' => anchor('users/add', 'Add User'),
 			);
 
-		$this->load->view('layout/default', $data);
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function add()
+	public function detail($id)
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		$news = new newsfeed($id);
 
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/users', '', true),
-			'page' => "Add New User",
-			'content' => $this->load->view('content/users/add', '', true),
+		$data = array(
+				'news' => $news,
 			);
 
-		$this->load->view('layout/default', $data);
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/news/detail', $data, TRUE),
+				'page' => $news->headline,
+				'action' => anchor('news/all', '&larr; Back'),
+			);
+
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function process_add()
+	public function add()
 	{
-		if($this->input->post("__submit")){
-			$data = array();		
-		
-			foreach($_POST as $key => $value) {
-				if (strcmp(substr($key, 0, 2), "__") != 0) {
-					$data[$key] = $value;
-				}
-			}
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/user/add', '', TRUE),
+				'page' => 'Add News',
+				'action' => anchor('users/all', '&larr; Back'),
+			);
 
-			$data['password']	= md5($data['password']);
-		
-			$this->mwp_users->insert($data);
-		}
-
-		redirect('users', true);
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function update($id="")
+	public function create()
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		if($this->input->post('__submit'))
+		{
+			$user = new user();
+			$user->username = $this->input->post('username');
+			$user->password = md5($this->input->post('password'));
+			$user->status = $this->input->post('status');
+			$user->group = $this->input->post('group');
 
-		if($id == ""){
+			$user->save();
+
 			redirect('users');
 		}
+	}
 
-		$result = $this->mwp_users->get(decode_for_uri($id))->result_array();
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/users', '', true),
-			'page' => 'Update Users',
-			'content' => $this->load->view('content/users/update', $result[0], true),
+	public function edit($id)
+	{
+		$user = new user($id);
+		$data = array(
+				'user' => $user,
+			);
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/user/edit', $data, TRUE),
+				'page' => 'Edit User',
+				'action' => anchor('users/all', '&larr; Back'),
 			);
 
-		$this->load->view('layout/default', $data);
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function process_update($id)
+	public function update()
 	{
-		if($this->input->post("__submit")){
-			$data = array();		
-		
-			foreach($_POST as $key => $value) {
-				if (strcmp(substr($key, 0, 2), "__") != 0) {
-					$data[$key] = $value;
-				}
-			}
+		if($this->input->post('__submit'))
+		{
+			$user = new user($this->input->post('__id'));
+			$user->username = $this->input->post('username');
+			$user->status = $this->input->post('status');
+			$user->group = $this->input->post('group');
 
-			//load the date helper
-			$this->load->helper('date');
+			$user->save();
 
-			if($data['password'] == ""){
-				unset($data['password']);
-			}else{
-				$data['password'] = md5($data['password']);
-			}
-		
-			$this->mwp_users->update($data, array('id' => decode_for_uri($id)));
+			redirect('users');
 		}
-
-		redirect('users', true);
 	}
 
-	/*function delete($id)
+	function delete($id)
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		$user = new user($id);
+		$user->delete();
 
-		$id = decode_for_uri($id);
-
-		$this->mwp_users->delete(array('id' => $id));
-		
 		redirect('users');
-	}*/
-
-	function change_password()
-	{
-		if($this->input->post("__submit")){
-			if($this->input->post('new_password') != $this->input->post('con_password')){
-				$this->session->set_flashdata('error', 'new password not match!');
-				redirect('users/change_password');
-			}
-
-			$result = $this->mwp_users->get($this->session->userdata('logged_id'))->result_array();
-			if($result[0]['password'] != md5($this->input->post('cur_password'))){
-				$this->session->set_flashdata('error', 'wrong current password!');
-				redirect('users/change_password');
-			}
-
-			$data['password'] = md5($this->input->post('new_password'));
-			$this->mwp_users->update($data, array('id' => $this->session->userdata('logged_id')));
-			$this->session->set_flashdata('error', 'successful to change password');
-			redirect('users/change_password');
-		}
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/users', '', true),
-			'page' => 'Change Password',
-			'content' => $this->load->view('content/users/change_password', '', true),
-			);
-
-		$this->load->view('layout/default', $data);
-		
 	}
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/home.php */
+/* End of file users.php */
+/* Location: ./application/controllers/users.php */

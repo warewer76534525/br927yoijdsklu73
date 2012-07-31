@@ -1,165 +1,135 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class news extends CI_Controller {
+class News extends CI_Controller {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
-
-		// auth the user
-		if(! $this->session->userdata('logged_auth')){
-			redirect('login', true);
-		}
-
-		if($this->session->userdata('logged_auth')){
-			$sess_id = $this->session->userdata('session_id');
-			$this->load->model('mwp_session');
-			$result = $this->mwp_session->get($sess_id)->result_array();
-
-			if(count($result) == 0){
-				$this->mwp_session->delete(array('session_id' => $sess_id));
-				redirect('home', true);
-			}
-		}
-
-		//load the model
-		$this->load->model('mwp_news');
+		$this->auth->check(array(0, 1));
 	}
 
-	function index()
-	{ 
-		$data = $this->mwp_news->get_all()->result_array();
-		$this->load->helper('string');
-		
+	public function index()
+	{
+		$this->all();
+	}
+
+	public function all()
+	{
+		$this->load->helper('text');
+		$news = new newsfeed();
+
+		$data = array(
+				'news' => $news->get_all(),
+			);
+
+		$user = $this->auth->user();
+
 		$content_data = array(
-			'data' => $data,
-		);
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/news', '', true),
-			'page' => "VIew All News",
-			'content' => $this->load->view('content/news/view_all', $content_data, true),
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/news/index', $data, TRUE),
+				'page' => 'News',
+				'action' => ($user->group == 1)? anchor('news/add', 'Add News') : '',
 			);
 
-		$this->load->view('layout/default', $data);
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function add()
+	public function detail($id)
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		$news = new newsfeed($id);
 
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/news', '', true),
-			'page' => "Add New News",
-			'content' => $this->load->view('content/news/add', '', true),
+		$data = array(
+				'news' => $news,
 			);
 
-		$this->load->view('layout/default', $data);
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/news/detail', $data, TRUE),
+				'page' => $news->headline,
+				'action' => anchor('news/all', '&larr; Back'),
+			);
+
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function process_add()
+	public function add()
 	{
-		if($this->input->post("__submit")){
-			$data = array();		
-		
-			foreach($_POST as $key => $value) {
-				if (strcmp(substr($key, 0, 2), "__") != 0) {
-					$data[$key] = $value;
-				}
-			}
+		$this->auth->check(array(1));
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/news/add', '', TRUE),
+				'page' => 'Add News',
+				'action' => anchor('news/all', '&larr; Back'),
+			);
 
-			//load the date helper
-			$this->load->helper('date');
-
-			$data['author']	= $this->session->userdata('logged_auth');
-			$data['date'] = mdate('%Y%m%d%H%i%s', now());
-		
-			$this->mwp_news->insert($data);
-		}
-
-		redirect('news', true);
+		$this->load->view('layouts/default', $content_data);
 	}
 
-	function view($id=""){
-		if($id == ""){
+	public function create()
+	{
+		$this->auth->check(array(1));
+
+		if($this->input->post('__submit'))
+		{
+			$news = new newsfeed();
+			$news->headline = $this->input->post('headline');
+			$news->content = nl2br($this->input->post('content'));
+			$news->type = $this->input->post('type');
+			$news->date = date('Y-m-d H:i:s');
+
+			$news->save();
+
 			redirect('news');
 		}
-
-		$result = $this->mwp_news->get(decode_for_uri($id))->result_array();
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/news', '', true),
-			'page' => $result[0]['headline'],
-			'content' => $this->load->view('content/news/view', $result[0], true),
-			);
-
-		$this->load->view('layout/default', $data);
 	}
 
-	function update($id="")
+	public function edit($id)
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
+		$this->auth->check(array(1));
 
-		if($id == ""){
+		$news = new newsfeed($id);
+		$data = array(
+				'news' => $news,
+			);
+		$content_data = array(
+				'navigation' => $this->load->view('navigations/default', '', TRUE),
+				'content' => $this->load->view('contents/news/edit', $data, TRUE),
+				'page' => 'Edit News',
+				'action' => anchor('news/all', '&larr; Back'),
+			);
+
+		$this->load->view('layouts/default', $content_data);
+	}
+
+	public function update()
+	{
+		$this->auth->check(array(1));
+
+		if($this->input->post('__submit'))
+		{
+			$news = new newsfeed($this->input->post('__id'));
+			$news->headline = $this->input->post('headline');
+			$news->content = $this->input->post('content');
+			$news->type = $this->input->post('type');
+			$news->date = date('Y-m-d H:i:s');
+
+			$news->save();
+
 			redirect('news');
 		}
-
-		$result = $this->mwp_news->get(decode_for_uri($id))->result_array();
-
-		$data = array (
-			'menu' => $this->load->view('nav/home_menu', '', true),
-			'submenu' => $this->load->view('nav/news', '', true),
-			'page' => 'Update News',
-			'content' => $this->load->view('content/news/update', $result[0], true),
-			);
-
-		$this->load->view('layout/default', $data);
-	}
-
-	function process_update($id)
-	{
-		if($this->input->post("__submit")){
-			$data = array();		
-		
-			foreach($_POST as $key => $value) {
-				if (strcmp(substr($key, 0, 2), "__") != 0) {
-					$data[$key] = $value;
-				}
-			}
-
-			//load the date helper
-			$this->load->helper('date');
-
-			$data['author']	= $this->session->userdata('logged_auth');
-			$data['date'] = mdate('%Y%m%d%H%i%s', now());
-		
-			$this->mwp_news->update($data, array('id' => decode_for_uri($id)));
-		}
-
-		redirect('news', true);
 	}
 
 	function delete($id)
 	{
-		if($this->session->userdata('logged_group') == 0){
-			redirect('home', true);
-		}
-
-		$id = decode_for_uri($id);
-
-		$this->mwp_news->delete(array('id' => $id));
+		$this->auth->check(array(1));
 		
+		$news = new newsfeed($id);
+		$news->delete();
+
 		redirect('news');
 	}
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/home.php */
+/* End of file news.php */
+/* Location: ./application/controllers/news.php */

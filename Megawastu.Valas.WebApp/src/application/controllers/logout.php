@@ -1,15 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class logout extends CI_Controller {
+/**
+ * Logout
+ * @author 		Jogi Silalahi <silalahi.jogi@gmail.com>
+ * @copyright 	2012 
+ */
+class Logout extends CI_Controller {
 
-	function __construct()
+	/**
+	 * Index
+	 */
+	public function index()
 	{
-		parent::__construct();
-	}
-
-	function index()
-	{ 
-		$this->session->sess_destroy();
+		$this->auth->logout();
 		redirect('login');
 	}
 }
+
+/* End of file logout.php */
+/* Location: ./application/controllers/logout.php */
