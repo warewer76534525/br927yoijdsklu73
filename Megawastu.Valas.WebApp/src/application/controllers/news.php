@@ -76,6 +76,7 @@ class News extends CI_Controller {
 			$news->content = nl2br($this->input->post('content'));
 			$news->type = $this->input->post('type');
 			$news->date = date('Y-m-d H:i:s');
+			$news->author = $this->auth->user()->id;
 
 			$news->save();
 

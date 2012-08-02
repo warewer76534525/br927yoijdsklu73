@@ -68,7 +68,7 @@ class Users extends CI_Controller {
 		{
 			$user = new user();
 			$user->username = $this->input->post('username');
-			$user->password = md5($this->input->post('password'));
+			$user->password = $this->input->post('password');
 			$user->status = $this->input->post('status');
 			$user->group = $this->input->post('group');
 

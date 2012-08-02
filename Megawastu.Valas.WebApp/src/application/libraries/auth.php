@@ -100,11 +100,13 @@ class Auth {
 	public function login($user)
 	{
 		$success = $user->login();
+		
+		$sessionId = $this->CI->session->userdata('session_id');
 		if($success)
 		{
 			// Store User ID into session
 			$this->CI->session->set_userdata('mwp_id', $user->id);
-			$this->CI->session->set_userdata('mwp_sess_id', $this->CI->session->userdata('session_id'));
+			$this->CI->session->set_userdata('mwp_sess_id', $sessionId);
 			$this->user = $user;
 
 			// Check if any redirect
@@ -117,15 +119,28 @@ class Auth {
 
 		$monitor = new monitor();
 		$monitor->where('username', $user->username)->get();
+
+		
 		if($monitor->exists())
 		{
-			$monitor->delete_all();
+			$result = $monitor->delete_all();
+		} else {
 		}
 
+		$monitor = new monitor();
+		$monitor->where('session_id', $sessionId)->get();
+
+		
+		if($monitor->exists())
+		{
+			$result = $monitor->delete_all();
+		} else {
+		}
+		
 		$this->CI->load->library('user_agent');
 
 		$monitor = new monitor();
-		$monitor->session_id = $this->CI->session->userdata('mwp_sess_id');
+		$monitor->session_id = $this->CI->session->userdata('session_id');
 		$monitor->ip_address = $this->CI->input->ip_address();
 		$monitor->user_agent = $this->CI->agent->agent_string();
 		$monitor->username = $user->username;
@@ -149,6 +164,7 @@ class Auth {
 		{
 			$monitor->delete_all();
 		}
+
 		$this->CI->session->sess_destroy();
 		$this->user = NULL;
 	}
