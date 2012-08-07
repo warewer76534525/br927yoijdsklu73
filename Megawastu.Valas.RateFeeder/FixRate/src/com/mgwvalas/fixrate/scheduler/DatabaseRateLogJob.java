@@ -26,7 +26,9 @@ public class DatabaseRateLogJob extends QuartzJobBean {
 		
 		for (FixRate fixrate : fixRateService.getRates().getRates()) {
 			Rate rate = new Rate(fixrate.getCurrency(), fixrate.getBid(), fixrate.getAsk());
-			rates.add(rate);
+			if (!rate.isEmpty()) {
+				rates.add(rate);
+			}
 		}
 		
 		rateService.save(rates);

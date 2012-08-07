@@ -68,6 +68,9 @@ public class Rate implements Serializable {
 	public Rate copy() {
 		return new Rate(currency, bid, ask);
 	}
-
+	
+	public boolean isEmpty() {
+		return bid == 0 && ask == 0;
+	}
 
 }
