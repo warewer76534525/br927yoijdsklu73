@@ -37,6 +37,7 @@
 	</bean>
 	
 	<!-- jms listener config -->
+	<!-- disable dblog if log updated to prevent to large data store in database 
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destination" ref="fixRateListenerDestination" />
@@ -45,7 +46,9 @@
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="logRateUpdatedClient"></property>
 	</bean>
-
+ 	-->
+ 	
+ 	
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destination" ref="fixRateListenerDestination" />
@@ -128,7 +131,7 @@
 		<property name="jobDetail" ref="endOfDayJob" />
 		<property name="cronExpression" value="${endofday.cron}" />
 	</bean>
-
+	
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 			<list>
@@ -142,6 +145,41 @@
 			</list>
 		</property>
 	</bean>
+	
+	
+	<!-- DB Log Scheduler CONFIGURATION -->
+	<bean name="databaseRateLogJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.mgwvalas.fixrate.scheduler.DatabaseRateLogJob" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="fixRateService" value-ref="fixRateService" />
+				<entry key="rateService" value-ref="rateService" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="databaseRateLogTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="databaseRateLogJob" />
+		<property name="repeatInterval" value="${quartz.dblog.interval}" />
+		<property name="startDelay" value="1000" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="databaseRateLogJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="databaseRateLogTrigger" />
+			</list>
+		</property>
+	</bean>
+	
 	
 	<bean id="jmsTransactionManager"
 		class="org.springframework.jms.connection.JmsTransactionManager">
