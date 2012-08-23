@@ -62,7 +62,8 @@ class Auth {
 			$monitor->where('session_id', $sess_id)->get();
 			if(! $monitor->exists())
 			{
-				$this->logout();
+				$monitor->delete_all();
+				$this->CI->session->sess_destroy();
 				redirect('login');
 			}
 		}

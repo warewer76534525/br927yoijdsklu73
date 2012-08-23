@@ -10,6 +10,7 @@ class Api extends CI_Controller {
 
 	public function rates($currency, $direction)
 	{
+		date_default_timezone_set('UTC');
 		$rates_log = new rates_log();
 		$rates_log->get_rates($currency, $direction);
 
