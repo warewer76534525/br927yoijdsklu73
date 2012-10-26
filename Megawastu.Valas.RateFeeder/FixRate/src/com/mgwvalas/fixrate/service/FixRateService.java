@@ -116,7 +116,11 @@ public class FixRateService implements IFixRateService {
 	public void holiday() {
 		fixRates.holiday();
 	}
-
+	
+	public boolean isStale() {
+		return fixRates.isStale();
+	}
+	
 	@Override
 	public void notHoliday() {
 		if (holidayWriteFlag) {

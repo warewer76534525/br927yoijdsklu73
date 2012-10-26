@@ -46,6 +46,8 @@ public class RateDao extends SimpleJdbcDaoSupport implements IRateDao {
 		String sql = "SELECT * FROM rates r GROUP BY r.currency ORDER BY r.currency ASC, r.timestamp DESC ";
 		return getJdbcTemplate().query(sql, new RateMapper());
 	}
+	
+	
 
 	private static class RateMapper implements RowMapper<Rate> {
 

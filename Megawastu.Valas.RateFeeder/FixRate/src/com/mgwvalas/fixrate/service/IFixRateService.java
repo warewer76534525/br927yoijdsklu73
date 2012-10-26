@@ -12,4 +12,6 @@ public interface IFixRateService {
 	void notStale();
 	void holiday();
 	void notHoliday();
+	
+	boolean isStale();
 }

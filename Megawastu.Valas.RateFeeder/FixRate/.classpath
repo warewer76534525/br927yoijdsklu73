@@ -44,5 +44,7 @@
 	<classpathentry kind="lib" path="/ResourceProject/WinRun4J.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/xstream-1.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="/ResourceProject/jackson-annotations-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/ResourceProject/jackson-core-2.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -8,7 +8,6 @@
 
 		$.each(names, function(i, name) {
 			$.getJSON('<?php echo base_url(); ?>index.php/api/rates/<?php echo $currency; ?>/'+name.toLowerCase()+'?callback=?', function(data) {
-				console.log(name.toLowerCase());
 				seriesOptions[i] = {
 					name: name,
 					data: data
@@ -17,7 +16,6 @@
 				if (seriesCounter == names.length) {
 					createChart();
 				}
-				console.log(data);
 			});
 		});
 

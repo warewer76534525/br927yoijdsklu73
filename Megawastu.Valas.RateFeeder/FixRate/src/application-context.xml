@@ -156,6 +156,7 @@
 			<map>
 				<entry key="fixRateService" value-ref="fixRateService" />
 				<entry key="rateService" value-ref="rateService" />
+				<entry key="ratesBatchLogAppender" value-ref="ratesBatchLogAppender" />
 			</map>
 		</property>
 	</bean>
