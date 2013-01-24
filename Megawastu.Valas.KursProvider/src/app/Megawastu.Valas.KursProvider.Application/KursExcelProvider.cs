@@ -19,7 +19,7 @@ namespace Megawastu.Valas.KursProvider.Application
         {
             var publisher = new KursPublisher();
             DdeConnect();
-
+            bool isError = false;
             while (_running)
             {
                 try
@@ -30,10 +30,16 @@ namespace Megawastu.Valas.KursProvider.Application
                         Logger.Debug(JsonConvert.SerializeObject(rates));
 
                     publisher.Publish(rates);
+                    if (isError)
+                    {
+                        Logger.Info("Connected, And already published");
+                        isError = false;
+                    }
                 }
                 catch (Exception e)
                 {
                     Logger.Error(e.Message);
+                    isError = true;
                 }
                 Thread.Sleep(KursProviderConfig.EXCEL_READER_TIMER);
             }

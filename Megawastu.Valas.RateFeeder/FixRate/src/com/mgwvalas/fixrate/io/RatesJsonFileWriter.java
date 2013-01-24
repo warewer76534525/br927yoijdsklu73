@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.mgwvalas.fixrate.domain.RateLog;
-import com.mgwvalas.moneychanger.domain.Rate;
 
 public class RatesJsonFileWriter {
 	private String path;

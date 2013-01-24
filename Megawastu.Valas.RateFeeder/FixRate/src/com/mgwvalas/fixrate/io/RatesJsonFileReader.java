@@ -9,7 +9,6 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.mgwvalas.fixrate.domain.RateLog;
-import com.mgwvalas.moneychanger.domain.Rate;
 
 
 public class RatesJsonFileReader {

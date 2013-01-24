@@ -19,7 +19,11 @@ public class StaleKursUpdatedListener implements MessageListener {
 	
 	@Override
 	public void onMessage(Message message) {
-		log.info("Not stale anymore");
-		stalenessTimeoutManager.reset();
+		try {
+			log.info("Not stale anymore");
+			stalenessTimeoutManager.reset();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
 	}
 }

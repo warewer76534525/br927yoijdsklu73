@@ -34,3 +34,4 @@ Bundle-ClassPath: MoneyChanger.jar,
  org.springframework.transaction.jar,
  org.springframework.web.jar,
  org.springframework.web.servlet.jar
+Import-Package: javax.servlet.http

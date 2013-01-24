@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="/ResourceProject/WinRun4J.jar"/>
 	<classpathentry kind="lib" path="/ResourceProject/aopalliance-1.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="/ResourceProject/activemq-pool-5.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

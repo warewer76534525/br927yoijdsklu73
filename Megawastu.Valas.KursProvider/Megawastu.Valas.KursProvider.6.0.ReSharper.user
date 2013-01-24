@@ -25,7 +25,6 @@
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_retrieve_list_of_kurs.cs" caret="328" fromTop="0" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:HolidayPauseTimer.cs" caret="1276" fromTop="43" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DateJob.cs" caret="0" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKiller.cs" caret="552" fromTop="10" />
       <File id="C2B9270A-4C91-4FB4-A58E-C05EB3EE6734/f:Rates.cs" caret="143" fromTop="6" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_create_date_scheduler.cs" caret="0" fromTop="0" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursAdvisor.cs" caret="1786" fromTop="18" />
@@ -44,19 +43,15 @@
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursProviderConfig.cs" caret="949" fromTop="17" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="0" fromTop="0" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="836" fromTop="9" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="291" fromTop="10" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1080" fromTop="8" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="354" fromTop="10" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="660" fromTop="0" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="397" fromTop="4" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="348" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKiller.cs" caret="647" fromTop="10" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1572" fromTop="14" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="660" fromTop="0" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1799" fromTop="7" />
     </RecentFiles>
     <RecentEdits>
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_reading_excel_file.cs" caret="196" fromTop="4" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_reading_excel_file.cs" caret="334" fromTop="9" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="351" fromTop="12" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="237" fromTop="4" />
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_detect_change_in_excel.cs" caret="2243" fromTop="11" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="1033" fromTop="20" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="1085" fromTop="12" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2603" fromTop="11" />
@@ -82,6 +77,11 @@
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="397" fromTop="4" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="526" fromTop="10" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="438" fromTop="10" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="683" fromTop="4" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1374" fromTop="18" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1193" fromTop="17" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1601" fromTop="16" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1522" fromTop="12" />
     </RecentEdits>
   </RecentFiles>
   <CompletionStatisticsManager>
@@ -105,17 +105,17 @@
       <Item value="Holidays`0" priority="31" />
       <Item value="List&lt;Holidays&gt;" priority="28" />
       <Item value="HolidayCalandarFactory`0" priority="31" />
-      <Item value="if" priority="31" />
+      <Item value="if" priority="63" />
       <Item value="TestFixture" priority="63" />
       <Item value="holidayPauseTimer" priority="32" />
       <Item value="HolidayPauseTimer" priority="28" />
       <Item value="Console`0" priority="191" />
       <Item value="SetUp" priority="63" />
       <Item value="else" priority="31" />
-      <Item value="Logger" priority="95" />
+      <Item value="Logger" priority="127" />
       <Item value="Thread" priority="57" />
       <Item value="rates" priority="128" />
-      <Item value="true" priority="255" />
+      <Item value="true" priority="287" />
       <Item value="holday" priority="31" />
       <Item value="x" priority="95" />
       <Item value="int" priority="127" />
@@ -123,7 +123,7 @@
       <Item value="xlApp" priority="63" />
       <Item value="excelPath" priority="63" />
       <Item value="misValue" priority="58" />
-      <Item value="false" priority="127" />
+      <Item value="false" priority="191" />
       <Item value="Notify" priority="31" />
       <Item value="Thread`0" priority="95" />
       <Item value="thread" priority="31" />
@@ -151,9 +151,9 @@
       <Item value="askCell" priority="31" />
       <Item value="Close`0" priority="31" />
       <Item value="Open`0" priority="31" />
-      <Item value="try" priority="159" />
+      <Item value="try" priority="191" />
       <Item value="while" priority="31" />
-      <Item value="bool" priority="31" />
+      <Item value="bool" priority="63" />
       <Item value="do" priority="31" />
       <Item value="connected" priority="31" />
       <Item value="converted" priority="31" />
@@ -165,6 +165,7 @@
       <Item value="Assert`0" priority="31" />
       <Item value="XAUIDR" priority="31" />
       <Item value="TearDown" priority="31" />
+      <Item value="isError" priority="95" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@Megawastu.Valas.KursProvider.Application.KursProviderConfig">
       <Item value="HOLIDAY_DATE_LIST" priority="26" />
@@ -197,7 +198,7 @@
       <Item value="Sleep`0" priority="80" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:NLog.Logger">
-      <Item value="Info`1" priority="215" />
+      <Item value="Info`1" priority="242" />
       <Item value="Debug`1" priority="22" />
       <Item value="IsDebugEnabled" priority="26" />
       <Item value="IsEnabled`0" priority="27" />

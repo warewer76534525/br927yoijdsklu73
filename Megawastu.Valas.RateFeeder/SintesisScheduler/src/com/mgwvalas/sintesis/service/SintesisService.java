@@ -50,7 +50,14 @@ public class SintesisService {
 	}
 
 	public void publish() {
-		snapUpdatedPublisher.publish(currencySintzRepository.sitesisResults());
+		Rates rates = currencySintzRepository.sitesisResults().copy();
+		log.debug("begin publish snap rates"+ rates);
+		snapUpdatedPublisher.publish(rates);
+		log.debug("end publish snap rates"+ rates);
+	}
+	
+	public Rates GetSintesisRates() {
+		return currencySintzRepository.sitesisResults().copy();
 	}
 
 	public void generateSintesis() {
@@ -61,7 +68,7 @@ public class SintesisService {
 			sintz.freshUpdate(freshRate);
 		}
 
-		log.info("$$$$ generate sintesis value"
+		log.debug("$$$$ generate sintesis value"
 				+ currencySintzRepository.sitesisResults());
 	}
 

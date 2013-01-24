@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +20,21 @@ public class When_write_kurs_stock_chart {
 	
 	@Before
 	public void Before() {
+		Date now = new Date();
 		String path = "D:\\project\\triplelands\\moneychanger\\Megawastu.Valas.RateFeeder\\FixRate\\test\\resource\\";
 		_ratesStockChartFileWriter = new RatesStockChartFileWriter(path, "CHF");
 		
-		for (int i = 0; i < 53568; i++) {
+		double min = 1.9999;
+		Random r = new Random();
+		
+		for (int i = 0; i < 20; i++) {
+			double bid = r.nextDouble() + min;
+			double ask = bid + 0.2;
+			
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.HOUR, i);
-			_ratesLogs.add(new RateLog("CHF", 2.4564, 2.6321, calendar.getTime()));
+			
+			_ratesLogs.add(new RateLog("CHF", bid, ask, calendar.getTime()));
 		}
 	}
 	

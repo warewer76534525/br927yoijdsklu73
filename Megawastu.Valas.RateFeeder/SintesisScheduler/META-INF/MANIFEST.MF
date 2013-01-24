@@ -509,3 +509,4 @@ Export-Package: com.mgwvalas.sintesis.dao,
  org.springframework.web.servlet.view.xml,
  org.springframework.web.servlet.view.xslt,
  org.springframework.web.util
+Import-Package: com.mgwvalas.moneychanger.domain

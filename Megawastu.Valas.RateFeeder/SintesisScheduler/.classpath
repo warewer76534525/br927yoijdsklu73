@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="/ResourceProject/mysql.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/ResourceProject/activemq-pool-5.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

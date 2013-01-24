@@ -46,7 +46,16 @@ namespace Megawastu.Valas.KursProvider.WinService
             Logger.Info("Shutdown begin.");
             _kursExcelProvider.Stop();
             _thread.Join();
-            _excelKiller.KillExcelProcessForThisApp();
+
+            try
+            {
+                _excelKiller.KillExcelProcessForThisApp();    
+            }
+            catch (Exception)
+            {
+            
+            }
+            
             Logger.Info("Shutdown done.");
         }
     }

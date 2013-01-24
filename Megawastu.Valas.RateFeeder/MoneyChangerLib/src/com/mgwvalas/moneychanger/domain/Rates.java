@@ -77,5 +77,13 @@ public class Rates implements Serializable {
 
 		return new Rates(filteredList);
 	}
-
+	
+	public Rates copy() {
+		Rates copyRates = new Rates();
+		for (Rate rate : rates) {
+			copyRates.addRate(rate.copy());
+		}
+		
+		return copyRates;
+	}
 }

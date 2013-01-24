@@ -73,6 +73,8 @@ public class FixRateService implements IFixRateService {
 		String ratesJson = "";
 		FileWriter fout = null;
 		
+		log.debug("begin serialize fixrate update : " + fixRates.isHoliday() + ", write flag: " + holidayWriteFlag);
+		
 		if (fixRates.isHoliday() && holidayWriteFlag) {
 			return;
 		} else if (fixRates.isHoliday() && !holidayWriteFlag) {
@@ -82,7 +84,7 @@ public class FixRateService implements IFixRateService {
 		ratesJson = gson.toJson(fixRates);
 		try {
 			fout = new FileWriter(new File(directory, fileName));
-			log.info("writedata" + ratesJson);
+			log.debug("writedata" + ratesJson);
 			fout.write(ratesJson);
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
@@ -92,7 +94,7 @@ public class FixRateService implements IFixRateService {
 			} catch (Exception e) {
 			}
 		}
-		log.info("serialize fixrate, when holiday: " + fixRates.isHoliday() + ", write flag: " + holidayWriteFlag);
+		log.debug("serialize fixrate, when holiday: " + fixRates.isHoliday() + ", write flag: " + holidayWriteFlag);
 	}
 
 	@Override

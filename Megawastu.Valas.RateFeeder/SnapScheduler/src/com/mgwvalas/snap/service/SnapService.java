@@ -54,17 +54,19 @@ public class SnapService {
 			// remove rate when the currency is not in snap list
 			if (!currencyListForSnap.contains(currency)) {
 				rateIterator.remove();
-				log.debug("remove rate: " + rate);
 			}
 		}
 
 		rates = _rates;
-		log.info("incoming from publisher: " + rates);
+		log.debug("incoming update: " + rates);
 	}
 
 	public void publish() {
-		log.info("publish snap rates"+ rates);
-		snapUpdatedPublisher.publish(rates);
+		Rates cloneRates = rates.copy();
+	}
+	
+	public Rates getSnapRates() {
+		return rates.copy();
 	}
 
 	public List<String> getCurrencyListForSnap() {
