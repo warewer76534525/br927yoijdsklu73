@@ -10,41 +10,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- Configures support for auto scan Controller -->
+	<context:component-scan base-package="com.mgwvalas.moneychanger.service" />
+	<context:component-scan base-package="com.mgwvalas.moneychanger.domain" />
+	<context:property-placeholder location="classpath*:application.properties" />
 	<context:component-scan base-package="com.mgwvalas.moneychanger.web" />
 	
-	<!-- Configures support for @Controllers -->
-	<mvc:annotation-driven />
-
-	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views 
-		directory -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-
-	<bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"
-		p:order="1">
-		<property name="mediaTypes">
-			<map>
-				<entry key="xml" value="text/xml" />
-				<entry key="json" value="text/json" />
-			</map>
-		</property>
-		<property name="favorPathExtension" value="true"></property>
-		<property name="defaultViews">
-			<list>
-				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-					<property name="marshaller">
-						<bean class="org.springframework.oxm.xstream.XStreamMarshaller"
-							p:autodetectAnnotations="true" />
-					</property>
-				</bean>
-				<bean
-					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-			</list>
-		</property>
-	</bean>
-
+	
 </beans>

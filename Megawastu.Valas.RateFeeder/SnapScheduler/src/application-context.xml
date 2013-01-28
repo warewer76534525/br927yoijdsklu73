@@ -2,6 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jms="http://www.springframework.org/schema/jms"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans	
@@ -10,6 +11,7 @@
 		http://www.springframework.org/schema/context/spring-context.xsd 
 		http://www.springframework.org/schema/tx  
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
 ">
 	<tx:annotation-driven />
 	
@@ -36,43 +38,40 @@
 	<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.ratesUpdate.topic}" />
 	</bean>
-
-	<bean
-		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="cachedConnectionFactory" />
-		<property name="destination" ref="ratesUpdatedListenerDestination" />
-		<property name="messageListener" ref="rateUpdatedListener" />
-		<property name="sessionTransacted" value="true" />
-		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="rateUpdatedSnapClient"></property>
-	</bean>
 	
+	<jms:listener-container
+      container-type="default"
+      connection-factory="connectionFactory"
+      acknowledge="auto"
+      destination-type="topic">
+    	<jms:listener destination="${jms.ratesUpdate.topic}" subscription="${jms.ratesUpdate.topic}" 
+    	ref="rateUpdatedListener" method="onMessage" id="rateUpdatedSnapClient" />
+  	</jms:listener-container>
+  	
 	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.stale.topic}" />
 	</bean>
 	
-	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="cachedConnectionFactory" />
-		<property name="destination" ref="staleDestination" />
-		<property name="messageListener" ref="staleUpdatedListener" />
-		<property name="sessionTransacted" value="true" />
-		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="snapStaleUpdatedClient"></property>
-	</bean>
-	
+	<jms:listener-container
+      container-type="default"
+      connection-factory="connectionFactory"
+      acknowledge="auto" destination-type="topic">
+    	<jms:listener destination="${jms.stale.topic}" subscription="${jms.stale.topic}" ref="staleUpdatedListener" method="onMessage" id="snapStaleUpdatedClient" />
+  	</jms:listener-container>
+  
 	<bean id="holidayDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.holiday.topic}" />
 	</bean>
 	
-	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="cachedConnectionFactory" />
-		<property name="destination" ref="holidayDestination" />
-		<property name="messageListener" ref="holidayListener" />
-		<property name="sessionTransacted" value="true" />
-		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="snapHolidayListener"></property>
-	</bean>
-	
+	<jms:listener-container
+      container-type="default"
+      connection-factory="connectionFactory"
+      acknowledge="auto"
+      destination-type="topic">
+    	<jms:listener destination="${jms.holiday.topic}" subscription="${jms.holiday.topic}" 
+    	ref="holidayListener" method="onMessage" id="snapHolidayListener" />
+  	</jms:listener-container>
+  	
 	<!-- Fix rates publisher -->
  	
  	<bean id="fixRateListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">

@@ -1,6 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jms="http://www.springframework.org/schema/jms"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans	
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -8,6 +9,7 @@
 		http://www.springframework.org/schema/context/spring-context.xsd 
 		http://www.springframework.org/schema/tx  
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
 ">
 	<tx:annotation-driven />
 	
@@ -31,17 +33,16 @@
 	<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.ratesUpdate.topic}" />
 	</bean>
-
-	<bean
-		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="ratesUpdatedListenerDestination" />
-		<property name="messageListener" ref="staleKursUpdatedListener" />
-		<property name="sessionTransacted" value="true" />
-		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="staleKursUpdatedListener"></property>
-	</bean>
 	
+	<jms:listener-container
+      container-type="default"
+      connection-factory="connectionFactory"
+      acknowledge="auto"
+      destination-type="topic">
+    	<jms:listener destination="${jms.ratesUpdate.topic}" subscription="${jms.ratesUpdate.topic}" 
+    	ref="staleKursUpdatedListener" method="onMessage" id="staleKursUpdatedListenerClient" />
+  	</jms:listener-container>
+  	
 	<!-- Stale publisher -->
  	
  	<bean id="staleDestination" class="org.apache.activemq.command.ActiveMQTopic">

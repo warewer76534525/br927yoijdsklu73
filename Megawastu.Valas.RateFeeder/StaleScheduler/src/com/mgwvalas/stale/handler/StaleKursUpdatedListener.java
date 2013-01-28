@@ -2,6 +2,7 @@ package com.mgwvalas.stale.handler;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,7 +17,7 @@ public class StaleKursUpdatedListener implements MessageListener {
 	
 	@Autowired
 	private StalenessTimeoutManager stalenessTimeoutManager;
-	
+
 	@Override
 	public void onMessage(Message message) {
 		try {
@@ -26,4 +27,7 @@ public class StaleKursUpdatedListener implements MessageListener {
 			log.error(e.getMessage(), e);
 		}
 	}
+	
 }
+
+

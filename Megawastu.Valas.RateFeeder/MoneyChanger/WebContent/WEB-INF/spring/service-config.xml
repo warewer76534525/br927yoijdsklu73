@@ -7,22 +7,6 @@
 
 	<!-- Scans within the base package of the application for @Components to 
 		configure as beans -->
-	<context:component-scan base-package="com.mgwvalas.moneychanger" />
-	<context:property-placeholder location="application.properties" />
-
-	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-		<property name="brokerURL" value="${jms.brokerURL}" />
-	</bean>
-
-	<bean id="ratesUpdatedListenerDestination" class="org.apache.activemq.command.ActiveMQTopic">
-		<constructor-arg value="${jms.ratesUpdate.topic}" />
-	</bean>
-
-	<bean id="kursJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="receiveTimeout" value="10000" />
-		<property name="defaultDestination" ref="ratesUpdatedListenerDestination" />
-		<property name="messageConverter" ref="serializableMessageConverter" />
-	</bean>
+	
 
 </beans>

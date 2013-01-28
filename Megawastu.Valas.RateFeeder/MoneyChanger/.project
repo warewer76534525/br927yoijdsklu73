@@ -3,6 +3,7 @@
 	<name>MoneyChanger</name>
 	<comment></comment>
 	<projects>
+		<project>MoneyChangerLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

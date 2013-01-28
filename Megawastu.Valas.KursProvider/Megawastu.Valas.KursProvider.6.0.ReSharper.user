@@ -37,22 +37,21 @@
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_reading_excel_file.cs" caret="325" fromTop="9" />
       <File id="C2B9270A-4C91-4FB4-A58E-C05EB3EE6734/f:Kurs.cs" caret="153" fromTop="6" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:app.config" caret="173" fromTop="4" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2444" fromTop="2" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="1017" fromTop="31" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:packages.config" caret="0" fromTop="0" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursProviderConfig.cs" caret="949" fromTop="17" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="0" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="836" fromTop="9" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1080" fromTop="8" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="397" fromTop="4" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="348" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2444" fromTop="2" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKiller.cs" caret="647" fromTop="10" />
-      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1572" fromTop="14" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:app.config" caret="348" fromTop="8" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:NLog.config" caret="397" fromTop="4" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:Program.cs" caret="1080" fromTop="8" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReader.cs" caret="836" fromTop="9" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="660" fromTop="0" />
-      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1799" fromTop="7" />
+      <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1697" fromTop="20" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="391" fromTop="10" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="973" fromTop="7" />
     </RecentFiles>
     <RecentEdits>
-      <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="1033" fromTop="20" />
       <File id="34992B1B-CBEC-4519-9102-4737226DF89F/f:When_read_kurs_from_excel_file.cs" caret="1085" fromTop="12" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:ExcelKursReader.cs" caret="2603" fromTop="11" />
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:DdeKursReaderFactory.cs" caret="3444" fromTop="4" />
@@ -82,6 +81,7 @@
       <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursExcelProvider.cs" caret="1193" fromTop="17" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1601" fromTop="16" />
       <File id="3595F020-3252-4247-B9BC-DCEFE6EEE4CE/f:KursProviderService.cs" caret="1522" fromTop="12" />
+      <File id="5874B0F5-9C30-4868-A251-B6D9E7D0C90F/f:KursPublisher.cs" caret="542" fromTop="13" />
     </RecentEdits>
   </RecentFiles>
   <CompletionStatisticsManager>
@@ -272,6 +272,9 @@
     <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
       <Item value="AreEqual`0" priority="26" />
       <Item value="IsTrue`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.WebClient">
+      <Item value="UploadStringAsync`0" priority="22" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <NAntValidationSettings>

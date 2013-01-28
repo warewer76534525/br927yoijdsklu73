@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
+        <dependent-module archiveName="MoneyChangerLib.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MoneyChangerLib/MoneyChangerLib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="MoneyChanger"/>
         <property name="java-output-path" value="/MoneyChanger/build/classes"/>
     </wb-module>

@@ -53,7 +53,9 @@ public class RateRecieverRest {
 		rates.addRate(idr);
 		rates.addRate(yui);
 		rates.addRate(aud);
+		ratesUpdatedPublisher.publish(rates);
 		log.info("rates: " + rates);
+		
 		return rates;
 	}
 

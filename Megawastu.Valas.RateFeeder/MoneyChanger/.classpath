@@ -6,38 +6,176 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MoneyChangerLib"/>
-	<classpathentry kind="lib" path="/ResourceProject/activemq-all-5.4.2.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/commons-dbcp.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/commons-lang.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/commons-logging.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/commons-pool.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/gson-1.4.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/jackson-all-1.7.1.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/jms-1.1.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/lombok.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/mysql.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.aop.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.asm.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.aspects.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.beans.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.context.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.context.support.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.core.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.expression.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.instrument.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.instrument.tomcat.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jdbc.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jms-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.orm.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.oxm.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.test.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.transaction.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.web.jar"/>
-	<classpathentry kind="lib" path="/ResourceProject/org.springframework.web.servlet.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="/ResourceProject/activemq-all-5.4.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/commons-dbcp.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/commons-lang.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/commons-logging.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/commons-pool.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/gson-1.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/jackson-all-1.7.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/jms-1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/jstl-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/log4j-1.2.15.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/lombok.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/mysql.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.aop.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.asm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.aspects.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.beans.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.context.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.context.support.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.core.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.expression.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.instrument.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.instrument.tomcat.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jdbc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.jms-3.0.5.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.orm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.oxm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.test.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.transaction.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.web.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/org.springframework.web.servlet.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web;#system#"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_31">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/activemq-pool-5.4.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/ResourceProject/aopalliance-1.0.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
